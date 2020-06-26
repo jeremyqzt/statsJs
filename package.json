@@ -4,8 +4,8 @@
   "description": "Helper methods for stats, combinatorics, permutations and probabilities",
   "main": "index.js",
   "scripts": {
-    "test": "node ./test/test.js",
-    "docs": "jsdoc src/*.js -d ./docs -R ./README.md"
+    "test": "node ./test.js",
+    "gen-docs": "jsdoc ./src/ -d ./docs -R ./README.md"
   },
   "repository": {
     "type": "git",

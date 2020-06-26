@@ -6,7 +6,7 @@ class statsLib{
     /**
      * Evaluates sum of an array.
      * @param {number[]} inArr - The array to sum
-     * @return {!number} Numerical value representing the sum of all array elements
+     * @return {number} Numerical value representing the sum of all array elements
      */
     static sum(inArr){
         let total = 0;
@@ -19,7 +19,7 @@ class statsLib{
     /**
      * Evaluates geometric sum of an array.
      * @param {number[]} inArr - The array to sum
-     * @return {!number} Numerical value representing the geometric sum of all array elements
+     * @return {number} Numerical value representing the geometric sum of all array elements
      */
     static geometricSum(inArr){
         if (!inArr.length){
@@ -35,7 +35,7 @@ class statsLib{
     /**
      * Evaluates statistical mean of an array.
      * @param {number[]} inArr - The array to find mean for.
-     * @return {!number} Numerical value representing the mean of all array elements
+     * @return {number} Numerical value representing the mean of all array elements
      */
     static mean(inArr){
         return statsLib.sum(inArr) / inArr.length;
@@ -44,7 +44,7 @@ class statsLib{
     /**
      * Evaluates statistical geometric mean of an array.
      * @param {number[]} inArr - The array to find geometric mean for.
-     * @return {!number} Numerical value representing the geometric mean of all array elements
+     * @return {number} Numerical value representing the geometric mean of all array elements
      */
     static geometricMean(inArr){
         let totalGeometric = statsLib.geometricSum(inArr);
@@ -54,7 +54,7 @@ class statsLib{
     /**
      * Evaluates statistical median of an array.
      * @param {number[]} inArr - The array to find median for.
-     * @return {!number} Numerical value representing the median of all array elements
+     * @return {number} Numerical value representing the median of all array elements
      */
     static median(inArr){
         let newArr = [...inArr];
@@ -68,7 +68,7 @@ class statsLib{
     /**
      * Evaluates statistical mode of an array.
      * @param {number[]} inArr - The array to find mode for.
-     * @return {!number} Numerical value representing the mode of all array elements
+     * @return {number} Numerical value representing the mode of all array elements
      */
     static mode(inArr){
         let retMode = [];
@@ -90,7 +90,7 @@ class statsLib{
      * Evaluates statistical standard deviation of an array.
      * @param {number[]} inArr - The array to find standard deviation for
      * @param {{population: boolean}} opt - Option denoting if a population or a sample is provided
-     * @return {!number} Numerical value representing the standard deviation of all array elements
+     * @return {number} Numerical value representing the standard deviation of all array elements
      */
     static stdev(inArr, opt = {
         "population": true,
@@ -128,7 +128,7 @@ class statsLib{
      * @param {number} val - Value to find Z score for
      * @param {number[]} inArr - The array representing the population or sample
      * @param {{population: boolean}} opt - Option denoting if a population or a sample is provided
-     * @return {!number} Numerical value representing the Z score the given value in the context of the dataset
+     * @return {number} Numerical value representing the Z score the given value in the context of the dataset
      */
     static zScore(val, inArr, opt = {
         "population": true,
@@ -143,7 +143,7 @@ class statsLib{
      * @param {number} val - Value to find percentile for
      * @param {number[]} inArr - The array representing the population or sample
      * @param {{population: boolean}} opt - Option denoting if a population or a sample is provided
-     * @return {!number} Numerical value representing the percentile the given value in the context of the dataset
+     * @return {number} Numerical value representing the percentile the given value in the context of the dataset
      */
     static percentile(val, inArr, opt = {
         "population": true,
@@ -157,7 +157,7 @@ class statsLib{
      * @param {number} val - Value to find percentile for
      * @param {number} mean - The value representing mean of the dataset
      * @param {number} stdev - The value representing standard deviation of the dataset
-     * @return {!number} Numerical value representing the percentile the given value in the context of the dataset
+     * @return {number} Numerical value representing the percentile the given value in the context of the dataset
      */
     static percentileFromMeanAndStdev(val, mean, stdev){
         let diff = val - mean;
@@ -169,7 +169,7 @@ class statsLib{
      * Evaluates the percentile of a given Z score, maximum is [-3.99, 3.99]. If the value is too large
        or too small, it goes to the nearest valid Z score.
      * @param {number} score - Z score to find percentile for
-     * @return {!number} Numerical value representing the percentile the given Z score
+     * @return {number} Numerical value representing the percentile the given Z score
      */
     static zScorePercentile(score){
         if (!(typeof score == 'number')){

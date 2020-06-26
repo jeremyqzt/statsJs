@@ -1,10 +1,15 @@
 # Node Stats Helpers
 This is a library that helps with some common stats operations. We support the following:
  * Combinations
+   *  Counting number of combinations
+   *  Getting an array of k-combinations
  * Permutations
+    *  Counting number of permutations
+    *  Getting an array of k-permutations
+    *  Getting an array of all permutations
  * Statical Calculation (mean, median, mode, stdev, percentiles, etc...)
  * Z-score table (From -3.99 to 3.99)
- * Probability
+ * Simple probability calculations
 
 Example Usages below.
 
@@ -35,6 +40,14 @@ console.log(combinationLib.combinations([1,2,3,4,5,6,7,8,9,10],7).length)
 
 
 ## Permutation Helper
+
+### Factorials
+Returns the evaluated factorial of the given input.
+```
+console.log(permutationLib.factorial(5));
+//=> 120
+```
+
 ### Counting number of permutations
 Returns the number of pemutations of the given input. The following is 5P5.
 ```

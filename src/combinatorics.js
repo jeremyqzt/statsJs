@@ -4,9 +4,9 @@ class permutationLib{
 
     /**
      * Counts the number of permutations using n permutate r (nPr).
-     * @param {!number} n - The n value in nPr
-     * @param {!number} r - The r value in nPr
-     * @return {!number} Numerical value representing the evaluation of nPr
+     * @param {number} n - The n value in nPr
+     * @param {number} r - The r value in nPr
+     * @return {number} Numerical value representing the evaluation of nPr
      */
     static countPermutation(n, r){
         if(n === r || n === 0 || r === 0 || n < r){
@@ -17,8 +17,8 @@ class permutationLib{
 
     /**
      * Evaluates a factorial n.
-     * @param {!number} n - Factorial to evaluate
-     * @return {!number} Result of the factorial evaluation
+     * @param {number} n - Factorial to evaluate
+     * @return {number} Result of the factorial evaluation
      */
     static factorial(n){
         if(n === 0){
@@ -34,8 +34,8 @@ class permutationLib{
 
     /**
      * Finds all possible permutations of length k in a given array.
-     * @param {number[]} The input array to permutate
-     * @param {!number} k - The length of output arrays
+     * @param {number[]} inArr - The input array to permutate
+     * @param {number} k - The length of output arrays
      * @return {number[][]} Array of arrays representing all permutations of k length.
      */
     static kPermutations(inArr, k){
@@ -109,9 +109,9 @@ class combinationLib{
 
     /**
      * Counts the number of permutations using n choose r (nCr).
-     * @param {!number} n - The n value in nCr
-     * @param {!number} r - The r value in nCr
-     * @return {!number} Numerical value representing the evaluation of nCr
+     * @param {number} n - The n value in nCr
+     * @param {number} r - The r value in nCr
+     * @return {number} Numerical value representing the evaluation of nCr
      */
     static countCombinations(n, r){
         if (n === r || n === 0 || r === 0) {
@@ -122,8 +122,8 @@ class combinationLib{
 
     /**
      * Finds all possible combinations of length k in a given array.
-     * @param {number[]} The input array to combine
-     * @param {!number} k - The length of the possible combinations
+     * @param {number[]} inArr - The input array to combine
+     * @param {number} k - The length of the possible combinations
      * @return {array} Array of Sets representing all permutations of k length.
      */
     static combinations(inArr, k){
