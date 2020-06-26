@@ -36,10 +36,12 @@ console.log(combinationLib.combinations([1,2,3,4,5,6,7,8,9,10],7).length)
 
 ## Permutation Helper
 ### Counting number of permutations
-Returns the number of pemutations of the given input. The following is 5P1.
+Returns the number of pemutations of the given input. The following is 5P5.
 ```
-console.log(permutationLib.countPermutation(1,5))
+console.log(permutationLib.countPermutation(5,5))
 //=> 120
+console.log(permutationLib.countPermutation(5,1))
+//=> 5
 ```
 
 ### Getting the permutations
@@ -57,7 +59,7 @@ console.log(permutationLib.permutation([1,2,3]))
 ### Getting N permutations
 Returns the N pemutations of the given input. This utilizes a recursive algorithm to generate all permutations of a given length. The Following is 3-length permutations of 5 (5P3).
 ```
-console.log(permutationLib.nPermutations([1,2,3,4,5], 3))
+console.log(permutationLib.kPermutations([1,2,3,4,5], 3))
 //=> [ [ 1, 2, 3 ],
 //     [ 1, 2, 4 ],
 //     [ 1, 2, 5 ],

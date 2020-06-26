@@ -1,22 +1,50 @@
+
+/** Class aggregating permutation methods. */
 class permutationLib{
-    static countPermutation(start, end){
-        if (start <= 0 || end < start){
-            return 0;
+
+    /**
+     * Counts the number of permutations using n permutate r (nPr).
+     * @param {!number} n - The n value in nPr
+     * @param {!number} r - The r value in nPr
+     * @return {!number} Numerical value representing the evaluation of nPr
+     */
+    static countPermutation(n, r){
+        if(n === r || n === 0 || r === 0 || n < r){
+            return 1;
+        }
+        return permutationLib.factorial(n) / permutationLib.factorial(n - r);
+    }
+
+    /**
+     * Evaluates a factorial n.
+     * @param {!number} n - Factorial to evaluate
+     * @return {!number} Result of the factorial evaluation
+     */
+    static factorial(n){
+        if(n === 0){
+            return 1;
         }
 
         let ret = 1;
-        for (let i = start; i <= end; i++){
+        for (let i = 1; i <= n; i++){
             ret *= i;
         }
         return ret;
     }
 
-    static nPermutations(inArr, n){
+    /**
+     * Finds all possible permutations of length k in a given array.
+     * @param {number[]} The input array to permutate
+     * @param {!number} k - The length of output arrays
+     * @return {number[][]} Array of arrays representing all permutations of k length.
+     */
+    static kPermutations(inArr, k){
         let ret = [];
-        if (n >= inArr.length){
+        if (k >= inArr.length){
             return [inArr];
         }
-        let newArr = new Array(n, 0);
+
+        let newArr = new Array(k, 0);
         const arrUnique = (arr) => {
             let setTest = new Set(arr);
             if (setTest.size === arr.length){
@@ -24,6 +52,7 @@ class permutationLib{
             }
             return false;
         }
+
         const permutate = (curArr, newArr, outSize, idx) => {
             if (idx === outSize){
                 if (arrUnique(curArr)){
@@ -31,7 +60,7 @@ class permutationLib{
                 }
                 return;
             }
-            
+
             let nextArr = [...curArr];
             for (let i = 0; i < newArr.length; i++){
                 nextArr[idx] = newArr[i]
@@ -39,32 +68,16 @@ class permutationLib{
                 nextArr = [...curArr];
             }
         }
-        permutate(new Array(n), inArr, n, 0);
+        permutate(new Array(k), inArr, k, 0);
         return ret;
     }
 
+    /**
+     * Finds all possible permutations of in a given array.
+     * @param {number[]} The input array to permutate
+     * @return {number[][]} Array of arrays representing all permutations.
+     */
     static permutation(inArr){
-        /**procedure generate(k : integer, A : array of any):
-            if k = 1 then
-                output(A)
-            else
-                // Generate permutations with kth unaltered
-                // Initially k == length(A)
-                generate(k - 1, A)
-        
-                // Generate permutations for kth swapped with each k-1 initial
-                for i := 0; i < k-1; i += 1 do
-                    // Swap choice dependent on parity of k (even or odd)
-                    if k is even then
-                        swap(A[i], A[k-1]) // zero-indexed, the kth is at k-1
-                    else
-                        swap(A[0], A[k-1])
-                    end if
-                    generate(k - 1, A)
-        
-                end for
-            end if
-        **/
         let ret = [];
         const permute = (k, arr) => {
             if (k === 1) {
@@ -91,18 +104,28 @@ class permutationLib{
     }
 }
 
+/** Class aggregating combinatorics methods. */
 class combinationLib{
+
+    /**
+     * Counts the number of permutations using n choose r (nCr).
+     * @param {!number} n - The n value in nCr
+     * @param {!number} r - The r value in nCr
+     * @return {!number} Numerical value representing the evaluation of nCr
+     */
     static countCombinations(n, r){
-        if (n === r) {
+        if (n === r || n === 0 || r === 0) {
             return 1;
         }
-        let nObj = permutationLib.countPermutation(1, n);
-        let noOrder = permutationLib.countPermutation(1, n-r);
-        let rObj = permutationLib.countPermutation(1, r);
-
-        return (nObj)/(noOrder*rObj);
+        return permutationLib.countPermutation(n, r) / permutationLib.factorial(r);
     }
 
+    /**
+     * Finds all possible combinations of length k in a given array.
+     * @param {number[]} The input array to combine
+     * @param {!number} k - The length of the possible combinations
+     * @return {array} Array of Sets representing all permutations of k length.
+     */
     static combinations(inArr, k){
         let ret = [];
         let N = inArr.length;
