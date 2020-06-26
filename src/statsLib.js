@@ -93,13 +93,28 @@ class statsLib{
     static percentile(val, inArr, opt = {
         "population": true,
     }){
-        let z = statsLib.zScore(val, inArr, opt).toFixed(2);
-        //Cant go any deeper...
-        z = (z > 3.99) ? 3.99: z;
-        z = (z < -3.99) ? -3.99: z;
-        let combinedIdx = `${z}`;
+        let z = statsLib.zScore(val, inArr, opt);
+        return statsLib.zScorePercentile(z);
+    }
+
+    static percentileFromMeanAndStdev(val, mean, stdev){
+        let diff = val - mean;
+        let zScore = (diff/stdev);
+        return statsLib.zScorePercentile(zScore);
+    }
+
+    static zScorePercentile(score){
+        if (!(typeof score == 'number')){
+            return undefined;
+        }
+        
+        score = (score > 3.99) ? 3.99: score;
+        score = (score < -3.99) ? -3.99: score;
+        let combinedIdx = score.toFixed(2);
         let idx1 =  combinedIdx.substr(0, combinedIdx.length - 1);
         let idx2 = combinedIdx.substr(combinedIdx.length - 1, 1);
         return zTable.zScoreTab[idx1][idx2];
     }
 }
+
+console.log(statsLib.percentile(13, [1,2,3,4,5,6,7,8,9,10], opt={"population": false}));
