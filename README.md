@@ -14,6 +14,12 @@ This is a library that helps with some common stats operations. We support the f
 Example Usages below.
 
 ## Combination Helper
+Importing and using
+```
+const {probabilityLib, statsLib, combinationLib, permutationLib} = require('nodestats');
+```
+
+## Combination Helper
 ### Counting number of combinations
 Returns the number of pemutations of the given input. The following is 5 choose 3 (5C3) and 10 choose 7 (10C7).
 ```
