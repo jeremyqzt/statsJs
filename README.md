@@ -133,16 +133,6 @@ console.log(statsLib.geometricMean([1,2,3,4,5]));
 //=> 2.605171084697352
 ```
 
-
-    static median(inArr){
-        let newArr = [...inArr];
-        let arrSizeEven = newArr.length % 2 === 0;
-        let midIdx = Math.floor(newArr.length / 2);
-
-        newArr.sort(function(a, b) {return a - b;});
-        console.log(newArr)
-        return arrSizeEven ? (newArr[midIdx] + newArr[midIdx - 1]) / 2 : newArr[midIdx];
-    }
 ### Median of array
 Returns a value representing the geometric mean of the input array. Returns _NaN_ if input is invalid.
 ```

@@ -41,3 +41,7 @@ class probabilityLib{
         return 0;
     }
 }
+
+module.exports = {
+    probabilityLib: probabilityLib,
+};

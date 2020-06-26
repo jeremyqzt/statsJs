@@ -143,3 +143,8 @@ class combinationLib{
         return ret;
     }
 }
+
+module.exports = {
+    combinationLib: combinationLib,
+    permutationLib: permutationLib,
+};
