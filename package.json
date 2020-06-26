@@ -1,0 +1,30 @@
+{
+  "name": "nodestats",
+  "version": "1.0.0",
+  "description": "Helper methods for stats, combinatorics, permutations and probabilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benbennza1/NodeStats.git"
+  },
+  "keywords": [
+    "zscore",
+    "ztable",
+    "permutations",
+    "combinations",
+    "combinatorics",
+    "statistics",
+    "stats",
+    "probabilities",
+    "percentiles"
+  ],
+  "author": "Jeremy Qian and Ben Ni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benbennza1/NodeStats/issues"
+  },
+  "homepage": "https://github.com/benbennza1/NodeStats#readme"
+}
