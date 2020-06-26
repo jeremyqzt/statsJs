@@ -13,8 +13,8 @@ This is a library that helps with some common stats operations. We support the f
 
 Example Usages below.
 
-## Combination Helper
-Importing and using
+## Importing
+The libraries can be imported using the following.
 ```
 const {probabilityLib, statsLib, combinationLib, permutationLib} = require('nodestats');
 ```
