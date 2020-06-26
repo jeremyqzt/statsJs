@@ -11,3 +11,5 @@ console.log(combinationLib.combinations([1,2,3,4,5,6,7,8,9,10],7).length)
 console.log(permutationLib.nPermutations([1,2,3,4,5], 3))
 
 console.log(permutationLib.nPermutations([1,2,3,4,5], 3).length)
+
+console.log(statsLib.percentileFromMeanAndStdev(5, 5.5, 3));

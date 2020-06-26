@@ -172,8 +172,8 @@ console.log(statsLib.absolutePercentile(80, [5,3,1,4,2,3,4,5,7,7,7]));
 ### Percentile given value and input array
 Returns a value representing the percentile of a value and a given input. Value does not have to be in the input, a Z-score calculation and lookup occurs. Returns _undefined_ if input is not a number.
 ```
-console.log(statsLib.percentileFromMeanAndStdev(5, 5,5, 3));
-//=> 0.5
+console.log(statsLib.percentileFromMeanAndStdev(5, 5.5, 3));
+//=> 0.43251
 console.log(statsLib.percentileFromMeanAndStdev(5, 22, 1.3));
 //=> 0.00003
 ```
