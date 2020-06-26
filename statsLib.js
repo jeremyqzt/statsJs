@@ -32,10 +32,10 @@ class statsLib{
     static median(inArr){
         let newArr = [...inArr];
         let arrSizeEven = newArr.length % 2 === 0;
-        let midIdx = math.floor(newArr.length / 2);
+        let midIdx = Math.floor(newArr.length / 2);
 
         newArr.sort(function(a, b) {return a - b;});
-        return arrSizeEven ? (newArr[midIdx] + newArr[midIdx + 1]) / 2 : newArr[mid];
+        return arrSizeEven ? (newArr[midIdx] + newArr[midIdx - 1]) / 2 : newArr[midIdx];
     }
 
     static mode(inArr){
