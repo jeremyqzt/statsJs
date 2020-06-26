@@ -23,12 +23,12 @@ Returns the combinations of the given input. This utilizes the Forward-Backward 
 ```
 console.log(combinationLib.combinations([1,2,3,4,5,6,7,8,9,10],7))
 //=> [ Set { 1, 2, 3, 4, 5, 6, 7 },
-//      Set { 1, 2, 3, 4, 5, 6, 8 },
-//      Set { 1, 2, 3, 4, 5, 6, 9 },
-//      Set { 1, 2, 3, 4, 5, 6, 10 },
-//      Set { 1, 2, 3, 4, 5, 7, 8 },
-//      Set { 1, 2, 3, 4, 5, 7, 9 },
-//      ...119 more
+//     Set { 1, 2, 3, 4, 5, 6, 8 },
+//     Set { 1, 2, 3, 4, 5, 6, 9 },
+//     Set { 1, 2, 3, 4, 5, 6, 10 },
+//     Set { 1, 2, 3, 4, 5, 7, 8 },
+//     Set { 1, 2, 3, 4, 5, 7, 9 },
+//     ...119 more
 console.log(combinationLib.combinations([1,2,3,4,5,6,7,8,9,10],7).length)
 //=> 120
 ```
@@ -47,11 +47,11 @@ Returns the pemutations of the given input. This utilizes Heap's Algorithm for g
 ```
 console.log(permutationLib.permutation([1,2,3]))
 //=> [ [ 1, 2, 3 ],
-//      [ 2, 1, 3 ],
-//      [ 3, 2, 1 ],
-//      [ 2, 3, 1 ],
-//      [ 1, 2, 3 ],
-//      [ 2, 1, 3 ] ]
+//     [ 2, 1, 3 ],
+//     [ 3, 2, 1 ],
+//     [ 2, 3, 1 ],
+//     [ 1, 2, 3 ],
+//     [ 2, 1, 3 ] ]
 ```
 
 ### Getting N permutations
@@ -59,12 +59,12 @@ Returns the N pemutations of the given input. This utilizes a recursive algorith
 ```
 console.log(permutationLib.nPermutations([1,2,3,4,5], 3))
 //=> [ [ 1, 2, 3 ],
-//      [ 1, 2, 4 ],
-//      [ 1, 2, 5 ],
-//      [ 1, 3, 2 ],
-//      [ 1, 3, 4 ],
-//      [ 1, 3, 5 ],
-//      ...54 more
+//     [ 1, 2, 4 ],
+//     [ 1, 2, 5 ],
+//     [ 1, 3, 2 ],
+//     [ 1, 3, 4 ],
+//     [ 1, 3, 5 ],
+//     ...54 more
 console.log(permutationLib.nPermutations([1,2,3,4,5], 3).length)
 //=> 60
 ```
