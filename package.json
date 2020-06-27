@@ -1,5 +1,5 @@
 {
-  "name": "nodestats",
+  "name": "@jeremyqzt/nodestats",
   "version": "1.0.0",
   "description": "Helper methods for stats, combinatorics, permutations and probabilities",
   "main": "index.js",

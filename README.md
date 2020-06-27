@@ -19,7 +19,7 @@ Example usages are as followed.
 ## Importing
 The libraries can be imported using the following.
 ```
-const {probabilityLib, statsLib, combinationLib, permutationLib} = require('nodestats');
+const {probabilityLib, statsLib, combinationLib, permutationLib} = require('@jeremyqzt/nodestats');
 ```
 
 ## Combination Helper
