@@ -253,7 +253,7 @@ describe('Permutation Test', () => {
     simpleTestIdx++;
 
     it(`${testDesc} ${simpleTestIdx}: z-Score Validation`, () => {
-        for (let i = -3.99; i < 4.00; i += 0.01){
+        for (let i = -4.1; i < 4.1; i += 0.01){
             assert(statsLib.zScorePercentile(i) <= statsLib.zScorePercentile(i+0.01));
         }
     });
