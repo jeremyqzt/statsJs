@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec",
+    "test-travis": "cli cover _mocha --reporter spec",
     "gen-docs": "jsdoc ./src/ -d ./docs -R ./README.md"
   },
   "repository": {
@@ -29,7 +30,11 @@
   },
   "homepage": "https://github.com/benbennza1/NodeStats#readme",
   "devDependencies": {
+    "coveralls": "^3.1.0",
+    "istanbul": "^0.4.5",
     "jsdocs": "^1.0.0",
-    "mocha": "^8.0.1"
-  }
+    "mocha": "^8.0.1",
+    "mocha-lcov-reporter": "^1.3.0"
+  },
+  "dependencies": {}
 }
