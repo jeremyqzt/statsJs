@@ -130,7 +130,7 @@ describe('Permutation Test', () => {
     let testData = Array.from(new Set(Array.from({length: len}, () => Math.floor(Math.random() * 100))));
     len = testData.length;
     let diffLen = len - Math.floor((Math.random()) * len);
-    len2 = Math.max(1, diffLen);
+    len2 = Math.max(2, diffLen);
     let testOutput = combinationLib.combinations(testData, len2);
 
     it(`${testDesc} ${simpleTestIdx}: ${testData.length}C${len2} = ${testOutput.length}`, () => {
@@ -253,7 +253,7 @@ describe('Permutation Test', () => {
     simpleTestIdx++;
 
     it(`${testDesc} ${simpleTestIdx}: z-Score Validation`, () => {
-        for (let i = -3.99; i < 3.99; i += 0.01){
+        for (let i = -3.99; i < 4.00; i += 0.01){
             assert(statsLib.zScorePercentile(i) <= statsLib.zScorePercentile(i+0.01));
         }
     });
@@ -310,13 +310,16 @@ describe('Permutation Test', () => {
    });
 
    describe('Invalid Input Test', () => {
-    let testDesc = "Invalid Input Test";
+    let testDesc = "Invalid/Trivial Input Test";
     let simpleTestIdx = 1;
 
     it(`${testDesc} ${simpleTestIdx}`, () => {
         assert.equal(1, permutationLib.countPermutation(0, 1));
         assert.equal(1, permutationLib.countPermutation(1, 0));
         assert.equal(1, permutationLib.countPermutation(1, 2));
+        assert.equal(1, combinationLib.countCombinations(1, 1));
+        assert.equal(1, combinationLib.countCombinations(1, 0));
+        assert.equal(1, combinationLib.countCombinations(0, 1));
     });
     simpleTestIdx++;
 

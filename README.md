@@ -13,7 +13,7 @@ This is a library that helps with some common stats operations. We support the f
  * Z-score table (From -3.99 to 3.99)
  * Simple probability calculations
 
-Full Docs can be found at [out git pages](https://jeremyqzt.github.io/NodeStats/).
+Full Docs can be found at [our git pages](https://jeremyqzt.github.io/NodeStats/).
 Example usages are as followed.
 
 ## Importing
