@@ -4,7 +4,7 @@
   "description": "Helper methods for stats, combinatorics, permutations and probabilities",
   "main": "index.js",
   "scripts": {
-    "test": "node ./test.js",
+    "test": "mocha --reporter spec",
     "gen-docs": "jsdoc ./src/ -d ./docs -R ./README.md"
   },
   "repository": {

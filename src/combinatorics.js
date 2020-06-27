@@ -9,7 +9,7 @@ class permutationLib{
      * @return {number} Numerical value representing the evaluation of nPr
      */
     static countPermutation(n, r){
-        if(n === r || n === 0 || r === 0 || n < r){
+        if(n === 0 || r === 0 || n < r){
             return 1;
         }
         return permutationLib.factorial(n) / permutationLib.factorial(n - r);
@@ -40,7 +40,7 @@ class permutationLib{
      */
     static kPermutations(inArr, k){
         let ret = [];
-        if (k >= inArr.length){
+        if (k > inArr.length){
             return [inArr];
         }
 
@@ -79,27 +79,28 @@ class permutationLib{
      */
     static permutation(inArr){
         let ret = [];
-        const permute = (k, arr) => {
-            if (k === 1) {
-                ret.push(arr)
+
+        const permute = (arr, size) => {
+            if (size === 1) {
+                ret.push([...arr]);
             } else {
-                permute(k - 1, [...arr])
-                for (let i = 0; i < k - 1; i++) {
-                    if( k % 2 === 0){
-                        let t = arr[k-1];
-                        arr[k-1] = arr[i]
-                        arr[i] = t
+                for (let i = 0; i < size; i++) {
+                    permute(arr, size - 1);
+
+                    if(size % 2 === 0){
+                        let temp = arr[size-1];
+                        arr[size-1] = arr[i];
+                        arr[i] = temp;
                     } else {
-                        let t = arr[k-1];
-                        arr[k-1] = arr[0]
-                        arr[0] = t
+                        let temp = arr[size-1];
+                        arr[size-1] = arr[0];
+                        arr[0] = temp;
                     }
-                    permute(k - 1, [...arr])
                 }
             }
         }
 
-        permute(inArr.length, inArr)
+        permute(inArr, inArr.length);
         return ret;
     }
 }
