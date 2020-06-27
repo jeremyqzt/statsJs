@@ -135,7 +135,7 @@ class combinationLib{
         let r = 0;
 
         if (k > N){
-            return inArr;
+            return [inArr];
         }
 
         while (r >= 0){

@@ -193,6 +193,12 @@ describe('Permutation Test', () => {
     });
     simpleTestIdx++;
 
+    let evenSizedArr = [5,1,3,4,5,1];
+    it(`${testDesc} ${simpleTestIdx}: Median of Even Sized Array = ${mean}`, () => {
+        assert.equal(3.5, statsLib.median(evenSizedArr));
+    });
+    simpleTestIdx++;
+
     let modeTest = [1,2,3,4,5,6,7,8,9,9];
     it(`${testDesc} ${simpleTestIdx}: Mode of Array = [9]`, () => {
         assert.equal(9, statsLib.mode(modeTest)[0]);
@@ -301,4 +307,90 @@ describe('Permutation Test', () => {
     });
     simpleTestIdx++;
     
+   });
+
+   describe('Invalid Input Test', () => {
+    let testDesc = "Invalid Input Test";
+    let simpleTestIdx = 1;
+
+    it(`${testDesc} ${simpleTestIdx}`, () => {
+        assert.equal(1, permutationLib.countPermutation(0, 1));
+        assert.equal(1, permutationLib.countPermutation(1, 0));
+        assert.equal(1, permutationLib.countPermutation(1, 2));
+    });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}`, () => {
+        assert.equal(1, permutationLib.kPermutations([1,2,3], 4).length);
+     });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}`, () => {
+        assert.equal(1, combinationLib.combinations([1,2,3], 4).length);
+     });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}`, () => {
+        assert.equal(0, statsLib.geometricSum([]));
+     });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}`, () => {
+        assert.equal(undefined, statsLib.absolutePercentile(40, []));
+     });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}`, () => {
+        assert.equal(undefined, statsLib.zScorePercentile([]));
+     });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}`, () => {
+        assert.equal(false, probabilityLib.valuesOk(-1.5, 0.5));
+        assert.equal(false, probabilityLib.valuesOk(1.5, 0.5));
+        assert.equal(false, probabilityLib.valuesOk(0, 1.5));
+        assert.equal(false, probabilityLib.valuesOk(0, -1.5));
+    });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}`, () => {
+        assert.equal(0, probabilityLib.XandY(-1.5, 0.5));
+        assert.equal(0, probabilityLib.XandY(1.5, 0.5));
+        assert.equal(0, probabilityLib.XandY(0, 1.5));
+        assert.equal(0, probabilityLib.XandY(0, -1.5));
+    });
+    simpleTestIdx++;
+
+    
+    it(`${testDesc} ${simpleTestIdx}`, () => {
+        assert.equal(0, probabilityLib.XandNotY(-1.5, 0.5));
+        assert.equal(0, probabilityLib.XandNotY(1.5, 0.5));
+        assert.equal(0, probabilityLib.XandNotY(0, 1.5));
+        assert.equal(0, probabilityLib.XandNotY(0, -1.5));
+    });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}`, () => {
+        assert.equal(0, probabilityLib.XorY(-1.5, 0.5));
+        assert.equal(0, probabilityLib.XorY(1.5, 0.5));
+        assert.equal(0, probabilityLib.XorY(0, 1.5));
+        assert.equal(0, probabilityLib.XorY(0, -1.5));
+    });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}`, () => {
+        assert.equal(0, probabilityLib.XgivenY(-1.5, 0.5));
+        assert.equal(0, probabilityLib.XgivenY(1.5, 0.5));
+        assert.equal(0, probabilityLib.XgivenY(0, 1.5));
+        assert.equal(0, probabilityLib.XgivenY(0, -1.5));
+    });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}`, () => {
+        assert.equal(0, probabilityLib.XgivenNotY(-1.5, 0.5));
+        assert.equal(0, probabilityLib.XgivenNotY(1.5, 0.5));
+        assert.equal(0, probabilityLib.XgivenNotY(0, 1.5));
+        assert.equal(0, probabilityLib.XgivenNotY(0, -1.5));
+    });
+    simpleTestIdx++;
    });
