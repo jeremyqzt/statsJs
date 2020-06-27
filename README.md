@@ -1,4 +1,5 @@
 # Node Stats Helpers
+[![Build Status](https://travis-ci.com/jeremyqzt/NodeStats.svg?branch=master)](https://travis-ci.com/jeremyqzt/NodeStats)
 This is a library that helps with some common stats operations. We support the following:
  * Combinations
    *  Counting number of combinations
