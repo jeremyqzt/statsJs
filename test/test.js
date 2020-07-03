@@ -168,8 +168,6 @@ describe('Permutation Test', () => {
     let testData = Array.from(new Set(Array.from({length: len}, () => Math.floor(Math.random() * 100))));
     let testOutput = combinationLib.powerSet(testData);
 
-    console.log(testOutput);
-
     it(`${testDesc} ${simpleTestIdx}: ${testData.length}C${len2} = ${testOutput.length}`, () => {
            assert.equal(testOutput.length, combinationLib.countPowerSet(testData.length));
     });
