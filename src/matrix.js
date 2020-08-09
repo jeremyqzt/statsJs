@@ -39,11 +39,13 @@ class matrixLib{
 
         let ret = null;
         if (Array.isArray(A[0])){
-            let B = Array(A.length).fill([]);
+            let B = [];
             for (let i = 0; i < A.length; i++){
+                let newRow = [];
                 for (let j = 0; j < A[i].length; j++){
-                    B[i][j] = c
+                    newRow[j] = c
                 }
+                B[i] = newRow;
             }
             ret = matrixLib.matrixOpperation(A, B, addFunc);
         } else {
@@ -65,11 +67,13 @@ class matrixLib{
 
         let ret = null;
         if (Array.isArray(A[0])){
-            let B = Array(A.length).fill([]);
+            let B = [];
             for (let i = 0; i < A.length; i++){
+                let newRow = [];
                 for (let j = 0; j < A[i].length; j++){
-                    B[i][j] = c
+                    newRow[j] = c
                 }
+                B[i] = newRow;
             }
             ret = matrixLib.matrixOpperation(A, B, subFunc);
         } else {
@@ -119,6 +123,60 @@ class matrixLib{
     }
 
     /**
+     * Multiplies matrix A and B
+     * Note: You must check if the matrices are actually multiply-able
+     * @param {number[]} A - Matrix input A
+     * @param {number[]} B - Matrix input B
+     * @return {number[]} Matrix result from A * B
+     */
+    static multiplyMatrix(A, B){
+        if (!Array.isArray(A[0])){
+            //size 1 arr
+            let ret = 0;
+            for (let z = 0; z < A.length; z++){
+                ret += A[z] * B[z][0];
+            }
+            return [ret];
+        }
+
+        let aRow = A.length;
+        let bCol = B[0].length;
+
+        let outputSize = {
+            row: aRow,
+            col: bCol,
+        }
+
+        let ret = [];
+        for (let i = 0; i < outputSize.row; i++){
+            let newRow = [];
+            for (let j = 0; j < outputSize.col; j++){
+                newRow[j] = matrixLib.dotProductMatrix(A, B, i, j);
+            }
+            ret[i] = newRow;
+        }
+        return ret;
+    }
+
+    /**
+     * Computers the dot product at a given row and column
+     * Note: A and B must be multiply - able. The dot product is
+     * A (dot) B. Inputs are 0-offset.
+     * @param {number[]} A - The matrix A
+     * @param {number[]} B - The matrix B
+     * @param {number} row - Row to find dot product for
+     * @param {number} col - Column to find dot product for
+     * @return {number} Numerical evaluation of the dot product matrix A and B @ (row,col)
+     */
+    static dotProductMatrix(A, B, row, col){
+        let ret = 0;
+        for (let i = 0; i < A[row].length; i++){
+            ret += A[row][i] * B[i][col];
+        }
+        return ret;
+    }
+
+    /**
      * Operates on the given matricies with func (for 2D dim matrices)
      * @param {number[]} A - The matrix to sum
      * @param {number[]} B - The second to sum
@@ -153,10 +211,16 @@ class matrixLib{
 
 
 t = [[1,2,3], [2,3,4], [4,5,6]]
-t1 = [[1,2,3], [2,3,4], [4,5,2,1]]
+t1 = [[1,2,3], [2,3,4], [4,5,6]]
+
+t2 = [[1,2,3], [2,3,4]]
+t3 = [[1,2], [2,3], [4,5]]
 
 z = [1,2,3];
-console.log(matrixLib.subMatrixC(z, 3));
+z1 = [[1],[2],[3]]
+
+console.log(matrixLib.multiplyMatrix(z, z1));
+console.log(matrixLib.multiplyMatrix(t2, t3));
 
 module.exports = {
     matrixLib: matrixLib,
