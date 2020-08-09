@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/benbennza1/NodeStats.git"
+    "url": "git+https://github.com/jeremyqzt/statsJs.git"
   },
   "keywords": [
     "zscore",
@@ -26,9 +26,9 @@
   "author": "Jeremy Qian and Ben Ni",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/benbennza1/NodeStats/issues"
+    "url": "https://github.com/jeremyqzt/statsJs/issues"
   },
-  "homepage": "https://github.com/benbennza1/NodeStats#readme",
+  "homepage": "https://github.com/jeremyqzt/statsJs#readme",
   "devDependencies": {
     "coveralls": "^3.1.0",
     "istanbul": "^0.4.5",
