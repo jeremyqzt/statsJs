@@ -26,6 +26,64 @@ class matrixLib{
         return true;
     }
 
+    /**
+     * Adds constant c to each item in the matrix
+     * @param {number[]} A - The matrix to add c to
+     * @param {number[]} c - value to add to matrix A
+     * @return {number[]} Matrix result from the adding C to each element of A
+     */
+    static addMatrixC(A, c){
+        const addFunc = (i, j) =>{
+            return i + j;
+        };
+
+        let ret = null;
+        if (Array.isArray(A[0])){
+            let B = Array(A.length).fill([]);
+            for (let i = 0; i < A.length; i++){
+                for (let j = 0; j < A[i].length; j++){
+                    B[i][j] = c
+                }
+            }
+            ret = matrixLib.matrixOpperation(A, B, addFunc);
+        } else {
+            ret = matrixLib.matrixOpperation1D(A, Array(A.length).fill(c), addFunc);
+        }
+        return ret;
+    }
+
+    /**
+     * Subtracts constant c to each item in the matrix
+     * @param {number[]} A - The matrix to sub c to
+     * @param {number[]} c - value to sub to matrix A
+     * @return {number[]} Matrix result from the subtracting C to each element of A
+     */
+    static subMatrixC(A, c){
+        const subFunc = (i, j) =>{
+            return i - j;
+        };
+
+        let ret = null;
+        if (Array.isArray(A[0])){
+            let B = Array(A.length).fill([]);
+            for (let i = 0; i < A.length; i++){
+                for (let j = 0; j < A[i].length; j++){
+                    B[i][j] = c
+                }
+            }
+            ret = matrixLib.matrixOpperation(A, B, subFunc);
+        } else {
+            ret = matrixLib.matrixOpperation1D(A, Array(A.length).fill(c), subFunc);
+        }
+        return ret;
+    }
+
+    /**
+     * Adds matrix A to matrix B
+     * @param {number[]} A - Matrix input A
+     * @param {number[]} B - Matrix input B
+     * @return {number[]} Matrix result from adding A and B
+     */
     static addMatrix(A, B){
         const addFunc = (i, j) =>{
             return i + j;
@@ -40,6 +98,12 @@ class matrixLib{
         return ret;
     }
 
+    /**
+     * Subtracts matrix B from matrix A
+     * @param {number[]} A - Matrix input A
+     * @param {number[]} B - Matrix input B
+     * @return {number[]} Matrix result from A - B
+     */
     static subMatrix(A, B){
         const subFunc = (i, j) =>{
             return i - j;
@@ -92,7 +156,7 @@ t = [[1,2,3], [2,3,4], [4,5,6]]
 t1 = [[1,2,3], [2,3,4], [4,5,2,1]]
 
 z = [1,2,3];
-console.log(matrixLib.isValidMatrixPair(t, t1));
+console.log(matrixLib.subMatrixC(z, 3));
 
 module.exports = {
     matrixLib: matrixLib,
