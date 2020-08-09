@@ -226,6 +226,108 @@ class matrixLib{
     }
 
     /**
+     * Returns an zero matrix of a given size
+     * @param {number} size - The size of matrix to generate
+     * @return {number[]} Zero matrix of a given size
+     */
+    static getZeroMatrix(size){
+        let ret = [];
+        for (let i = 0; i < size; i++){
+            let newRow = [];
+            for (let j = 0; j < size; j++){
+                newRow[j] = 0;
+            }
+            ret[i] = newRow;
+        }
+        return ret;
+    }
+
+    /**
+     * Computes the determinant of a matrix, returns NaN if det === 0
+     * @param {number[]} A - The matrix to find determinat for
+     * @return {number} determinant of A
+     */
+    static determinantMatrix(A){
+        let {L, U} = matrixLib.LuDecomposeMatrix(A);
+        let lDet = 1;
+        let uDet = 1;
+
+        for (let i = 0; i < A.length; i++){
+            lDet = lDet * L[i][i];
+            uDet = uDet * U[i][i];
+        }
+
+        return lDet * uDet;
+    }
+
+    /**
+     * Computes the upper and lower matrix using crout's method
+     * Implementation is from: https://en.wikipedia.org/wiki/Crout_matrix_decomposition
+     * @param {number[]} A - The matrix to decompose
+     * @return {number[]} Identity matrix of a given size
+     */
+    static LuDecomposeMatrix(A){
+        let n = A.length;
+        let U = matrixLib.getIdentityMatrix(n);
+        let L = matrixLib.getZeroMatrix(n);
+        let sum = 0;
+       
+        for (let j = 0; j < n; j++) {
+            for (let i = j; i < n; i++) {
+                sum = 0;
+                for (let k = 0; k < j; k++) {
+                    sum = sum + L[i][k] * U[k][j];	
+                }
+                L[i][j] = A[i][j] - sum;
+            }
+    
+            for (let i = j; i < n; i++) {
+                sum = 0;
+                for(let k = 0; k < j; k++) {
+                    sum = sum + L[j][k] * U[k][i];
+                }
+                if (L[j][j] == 0) {
+                    return NaN;
+                }
+                U[j][i] = (A[j][i] - sum) / L[j][j];
+            }
+        }
+
+        return {
+            L: L,
+            U: U,
+        };
+    }
+
+    /**
+     * Gets a random matrix of given parameters
+     * @param {number} row - number of rows to generate
+     * @param {number} col - number of columns to generate
+     * @param {{min: number, max: number, intOnly: boolean}} opt - Option for random values
+     */
+    static getRandomMatrix(row, col, opt = {min: -10, max: 10, intOnly: true}){
+        let ret = [];
+
+        const randNum = (minVal, maxVal, integer) => {
+            let val = (Math.random() * maxVal + minVal);
+            if (integer){
+                return Math.round(val);
+            }
+            return val;
+        }
+
+        for (let i = 0; i < row; i++){
+            let newRow = [];
+            for (let j = 0; j < col; j++){
+                newRow[j] = randNum(opt.min, opt.max, opt.intOnly);
+            }
+            ret[i] = newRow;
+        }
+
+        return ret;
+    }
+
+    /**
      * Describes a given matrix
      * @param {number[]} mat - The matrix to describe
      * @return {number[]} Identity matrix of a given size
@@ -260,7 +362,6 @@ class matrixLib{
                 identity: isIdentity,
                 valid: colSame,
             };
-            console.log(ret);
             return ret;
         } else {
             return {
@@ -271,13 +372,17 @@ class matrixLib{
                 valid: true,
             };
         }
-
-
     }
 }
 
+test = [
+    [3,7,8,9],
+    [1,4,99,1],
+    [77,11,9,-5],
+    [1.5,5.5,1,-3.1]
+]
 
-t = [[1,2,3], [2,3,4], [4,5,6]]
+t = [[1,2,3], [2,3,4], [4,5,8]]
 t1 = [[1,2,3], [2,3,4], [4,5,6]]
 
 t2 = [[1,2,3], [2,3,4]]
@@ -290,8 +395,11 @@ z1 = [[1],[2],[3]]
 //console.log(matrixLib.multiplyMatrix(t2, t3));
 
 //console.log(matrixLib.getIdentityMatrix(6));
-matrixLib.describeMatrix(matrixLib.getIdentityMatrix(6))
+//matrixLib.describeMatrix(matrixLib.getIdentityMatrix(6))
 //console.log(matrixLib.describeMatrix(t2));
+//console.log(matrixLib.determinantMatrix(test));
+//console.log(matrixLib.getRandomMatrix(5, 4, {min:-2,max:10,intOnly: true}));
+
 module.exports = {
     matrixLib: matrixLib,
 };
