@@ -207,6 +207,73 @@ class matrixLib{
         }
         return ret;
     }
+
+    /**
+     * Returns an identity matrix of a given size
+     * @param {number} size - The size of matrix to generate
+     * @return {number[]} Identity matrix of a given size
+     */
+    static getIdentityMatrix(size){
+        let ret = [];
+        for (let i = 0; i < size; i++){
+            let newRow = [];
+            for (let j = 0; j < size; j++){
+                newRow[j] = (i === j) ? 1: 0;
+            }
+            ret[i] = newRow;
+        }
+        return ret;
+    }
+
+    /**
+     * Describes a given matrix
+     * @param {number[]} mat - The matrix to describe
+     * @return {number[]} Identity matrix of a given size
+     */
+    static describeMatrix(mat){
+        let rows = mat.length;
+        let colSame = true;
+        let isIdentity = true;
+
+        if (Array.isArray(mat[0])){
+            let colFirst = mat[0].length;
+            let first = mat[0][0];
+            for (let i = 0; i < rows; i++){
+                if (mat[i].length !== colFirst){
+                    colSame = colSame && false;
+                }
+
+                for (let j = 0; j < mat[i].length; j++){
+                    if (i === j){
+                        if (mat[i][j] !== first){
+                            isIdentity = isIdentity && false;
+                        }
+                    } else if (mat[i][j] !== 0){
+                        isIdentity = isIdentity && false;
+                    }
+                }
+            }
+            let ret = {
+                row: rows,
+                col: colFirst,
+                square: colFirst === rows,
+                identity: isIdentity,
+                valid: colSame,
+            };
+            console.log(ret);
+            return ret;
+        } else {
+            return {
+                row: 1,
+                col: mat.length,
+                square: false,
+                identity: false,
+                valid: true,
+            };
+        }
+
+
+    }
 }
 
 
@@ -219,9 +286,12 @@ t3 = [[1,2], [2,3], [4,5]]
 z = [1,2,3];
 z1 = [[1],[2],[3]]
 
-console.log(matrixLib.multiplyMatrix(z, z1));
-console.log(matrixLib.multiplyMatrix(t2, t3));
+//console.log(matrixLib.multiplyMatrix(z, z1));
+//console.log(matrixLib.multiplyMatrix(t2, t3));
 
+//console.log(matrixLib.getIdentityMatrix(6));
+matrixLib.describeMatrix(matrixLib.getIdentityMatrix(6))
+//console.log(matrixLib.describeMatrix(t2));
 module.exports = {
     matrixLib: matrixLib,
 };
