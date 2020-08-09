@@ -1,5 +1,5 @@
 # Node Stats Helpers
-[![Build Status](https://travis-ci.com/jeremyqzt/NodeStats.svg?branch=master)](https://travis-ci.com/jeremyqzt/NodeStats) [![Coverage Status](https://coveralls.io/repos/github/jeremyqzt/NodeStats/badge.svg?branch=master)](https://coveralls.io/github/jeremyqzt/NodeStats?branch=master) [![codebeat badge](https://codebeat.co/badges/9ff08632-d4ea-4535-a22c-c6325bb7657f)](https://codebeat.co/projects/github-com-jeremyqzt-nodestats-master)
+[![Build Status](https://travis-ci.com/jeremyqzt/statsJs.svg?branch=master)](https://travis-ci.com/jeremyqzt/statsJs)  [![Coverage Status](https://coveralls.io/repos/github/jeremyqzt/statsJs/badge.svg?branch=master)](https://coveralls.io/github/jeremyqzt/statsJs?branch=master)  [![Active Development](https://img.shields.io/badge/Maintenance%20Level-Actively%20Developed-brightgreen.svg)](https://gist.github.com/cheerfulstoic/d107229326a01ff0f333a1d3476e068d)
 
 This is a library that helps with some common stats operations. We support the following:
  * Combinations
