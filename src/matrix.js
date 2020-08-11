@@ -81,6 +81,34 @@ class matrixLib{
     }
 
     /**
+     * Divides constant c to each item in the matrix
+     * @param {number[]} A - The matrix to add c to
+     * @param {number[]} c - value to add to matrix A
+     * @return {number[]} Matrix result from the multiplying c to each element of A
+     */
+    static divideMatrixC(A, c){
+        const multFunc = (i, j) =>{
+            return i / j;
+        };
+
+        let ret = null;
+        if (Array.isArray(A[0])){
+            let B = [];
+            for (let i = 0; i < A.length; i++){
+                let newRow = [];
+                for (let j = 0; j < A[i].length; j++){
+                    newRow[j] = c
+                }
+                B[i] = newRow;
+            }
+            ret = matrixLib.matrixOpperation(A, B, multFunc);
+        } else {
+            ret = matrixLib.matrixOpperation1D(A, Array(A.length).fill(c), multFunc);
+        }
+        return ret;
+    }
+
+    /**
      * Subtracts constant c to each item in the matrix
      * @param {number[]} A - The matrix to sub c to
      * @param {number[]} c - value to sub to matrix A
@@ -426,7 +454,9 @@ z1 = [[1],[2],[3]]
 //console.log(matrixLib.determinantMatrix(test));
 //console.log(matrixLib.getRandomMatrix(5, 4, {min:-2,max:10,intOnly: true}));
 
-console.log(matrixLib.multiplyMatrixC(t, 6));
+//console.log(matrixLib.multiplyMatrixC(t, 6));
+
+console.log(matrixLib.divideMatrixC(t, 2));
 
 module.exports = {
     matrixLib: matrixLib,
