@@ -1,7 +1,5 @@
-
 /** Class aggregating matrix methods. */
 class matrixLib{
-
     /**
      * Checks if a pair of matricies are equal in size
      * @param {number[]} A - The matrix to check
@@ -50,6 +48,34 @@ class matrixLib{
             ret = matrixLib.matrixOpperation(A, B, addFunc);
         } else {
             ret = matrixLib.matrixOpperation1D(A, Array(A.length).fill(c), addFunc);
+        }
+        return ret;
+    }
+
+    /**
+     * Multiplies constant c to each item in the matrix
+     * @param {number[]} A - The matrix to add c to
+     * @param {number[]} c - value to add to matrix A
+     * @return {number[]} Matrix result from the multiplying c to each element of A
+     */
+    static multiplyMatrixC(A, c){
+        const multFunc = (i, j) =>{
+            return i * j;
+        };
+
+        let ret = null;
+        if (Array.isArray(A[0])){
+            let B = [];
+            for (let i = 0; i < A.length; i++){
+                let newRow = [];
+                for (let j = 0; j < A[i].length; j++){
+                    newRow[j] = c
+                }
+                B[i] = newRow;
+            }
+            ret = matrixLib.matrixOpperation(A, B, multFunc);
+        } else {
+            ret = matrixLib.matrixOpperation1D(A, Array(A.length).fill(c), multFunc);
         }
         return ret;
     }
@@ -399,6 +425,8 @@ z1 = [[1],[2],[3]]
 //console.log(matrixLib.describeMatrix(t2));
 //console.log(matrixLib.determinantMatrix(test));
 //console.log(matrixLib.getRandomMatrix(5, 4, {min:-2,max:10,intOnly: true}));
+
+console.log(matrixLib.multiplyMatrixC(t, 6));
 
 module.exports = {
     matrixLib: matrixLib,
