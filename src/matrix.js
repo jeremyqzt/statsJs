@@ -453,6 +453,52 @@ class matrixLib{
         }
         return ret;
     }
+
+    /**
+     * Determins a the matrix of cofactors.
+     * The cofactor checkerboard is the followed:
+     * [
+     *   [+, -, +, -]
+     *   [-, +, -, +]
+     *   [+, -, +, -]
+     *   [-, +, -, +]
+     * ]
+     * 
+     * The calculation of the cofactor is exampled as followed:
+     * [
+     *   [1, 1, 1, 1]          [1, -1, 1, -1]
+     *   [2, 2, 2, 2]   ---\   [-2, 2, -2, 2]
+     *   [3, 3, 3, 3]   ---/   [3, -3, 3, -3]
+     *   [4, 4, 4, 4]          [-4, 4, -4, 4] 
+     * ]
+     * 
+     * @param {number[]} mat - The matrix to determine cofactors for
+     * @return {number[]} matrix of cofactors
+     */
+    static cofactorMatrix(mat){
+        let ret = [];
+        let multFactor = 1;
+
+        //[1,2,3]
+        if (!Array.isArray(mat[0])){
+            for (let i = 0; i < mat.length; i++){
+                ret[i] = mat[i] * multFactor;
+                multFactor = multFactor * -1;
+            }
+            return ret;
+        }
+    
+        for (let i = 0; i < mat.length; i++){
+            let col = [];
+            for (let j = 0; j < mat[i].length; j++){
+                col[j] = (mat[i][j] * multFactor);
+                multFactor = multFactor * -1;
+            }
+            multFactor = (i % 2 === 0)? -1: 1;
+            ret[i] = col;
+        }
+        return ret;
+    }
 }
 
 test = [
@@ -467,8 +513,11 @@ t = [
     [2,3,4],
     [4,5,8]
 ]
-t1 = [[1,2,3], [2,3,4], [4,5,6]]
-
+t1 = [
+    [1,2,3,4],
+    [2,3,4,5],
+    [4,5,8,6]
+]
 t2 = [
     [1,2,3],
     [2,3,4],
@@ -491,9 +540,10 @@ z1 = [[1],[2],[3]]
 //console.log(matrixLib.multiplyMatrixC(t, 6));
 
 //console.log(matrixLib.divideMatrixC(t, 2));
+//console.log(matrixLib.transposeMatrix(z1))
 
+console.log(matrixLib.cofactorMatrix(z))
 
-console.log(matrixLib.transposeMatrix(z1))
 module.exports = {
     matrixLib: matrixLib,
 };
