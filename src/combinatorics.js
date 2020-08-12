@@ -74,7 +74,7 @@ class permutationLib{
 
     /**
      * Finds all possible permutations of in a given array.
-     * @param {number[]} The input array to permutate
+     * @param {number[]} inArr - The input array to permutate
      * @return {number[][]} Array of arrays representing all permutations.
      */
     static permutation(inArr){

@@ -1,4 +1,32 @@
-/** Class aggregating matrix methods. */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: matrix.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: matrix.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** Class aggregating matrix methods. */
 class matrixLib{
     /**
      * Checks if a pair of matricies are equal in size
@@ -15,7 +43,7 @@ class matrixLib{
             return false;
         }
 
-        for (let i = 0; i < A.length; i++){
+        for (let i = 0; i &lt; A.length; i++){
             if (A[i].length !== B[i].length){
                 return false;
             }
@@ -38,9 +66,9 @@ class matrixLib{
         let ret = null;
         if (Array.isArray(A[0])){
             let B = [];
-            for (let i = 0; i < A.length; i++){
+            for (let i = 0; i &lt; A.length; i++){
                 let newRow = [];
-                for (let j = 0; j < A[i].length; j++){
+                for (let j = 0; j &lt; A[i].length; j++){
                     newRow[j] = c
                 }
                 B[i] = newRow;
@@ -66,9 +94,9 @@ class matrixLib{
         let ret = null;
         if (Array.isArray(A[0])){
             let B = [];
-            for (let i = 0; i < A.length; i++){
+            for (let i = 0; i &lt; A.length; i++){
                 let newRow = [];
-                for (let j = 0; j < A[i].length; j++){
+                for (let j = 0; j &lt; A[i].length; j++){
                     newRow[j] = c
                 }
                 B[i] = newRow;
@@ -94,9 +122,9 @@ class matrixLib{
         let ret = null;
         if (Array.isArray(A[0])){
             let B = [];
-            for (let i = 0; i < A.length; i++){
+            for (let i = 0; i &lt; A.length; i++){
                 let newRow = [];
-                for (let j = 0; j < A[i].length; j++){
+                for (let j = 0; j &lt; A[i].length; j++){
                     newRow[j] = c
                 }
                 B[i] = newRow;
@@ -122,9 +150,9 @@ class matrixLib{
         let ret = null;
         if (Array.isArray(A[0])){
             let B = [];
-            for (let i = 0; i < A.length; i++){
+            for (let i = 0; i &lt; A.length; i++){
                 let newRow = [];
-                for (let j = 0; j < A[i].length; j++){
+                for (let j = 0; j &lt; A[i].length; j++){
                     newRow[j] = c
                 }
                 B[i] = newRow;
@@ -187,7 +215,7 @@ class matrixLib{
         if (!Array.isArray(A[0])){
             //size 1 arr
             let ret = 0;
-            for (let z = 0; z < A.length; z++){
+            for (let z = 0; z &lt; A.length; z++){
                 ret += A[z] * B[z][0];
             }
             return [ret];
@@ -202,9 +230,9 @@ class matrixLib{
         }
 
         let ret = [];
-        for (let i = 0; i < outputSize.row; i++){
+        for (let i = 0; i &lt; outputSize.row; i++){
             let newRow = [];
-            for (let j = 0; j < outputSize.col; j++){
+            for (let j = 0; j &lt; outputSize.col; j++){
                 newRow[j] = matrixLib.dotProductMatrix(A, B, i, j);
             }
             ret[i] = newRow;
@@ -224,7 +252,7 @@ class matrixLib{
      */
     static dotProductMatrix(A, B, row, col){
         let ret = 0;
-        for (let i = 0; i < A[row].length; i++){
+        for (let i = 0; i &lt; A[row].length; i++){
             ret += A[row][i] * B[i][col];
         }
         return ret;
@@ -238,9 +266,9 @@ class matrixLib{
      */
     static matrixOpperation(A, B, func){
         let ret = [];
-        for (let i = 0; i < A.length; i++){
+        for (let i = 0; i &lt; A.length; i++){
             let row = [];
-            for (let j = 0; j < A[i].length; j++){
+            for (let j = 0; j &lt; A[i].length; j++){
                 row[j] = func(A[i][j], B[i][j]);
             }
             ret[i] = row;
@@ -256,7 +284,7 @@ class matrixLib{
      */
     static matrixOpperation1D(A, B, func){
         let ret = [];
-        for (let i = 0; i < A.length; i++){
+        for (let i = 0; i &lt; A.length; i++){
             ret[i] = func(A[i], B[i]);
         }
         return ret;
@@ -269,9 +297,9 @@ class matrixLib{
      */
     static getIdentityMatrix(size){
         let ret = [];
-        for (let i = 0; i < size; i++){
+        for (let i = 0; i &lt; size; i++){
             let newRow = [];
-            for (let j = 0; j < size; j++){
+            for (let j = 0; j &lt; size; j++){
                 newRow[j] = (i === j) ? 1: 0;
             }
             ret[i] = newRow;
@@ -286,9 +314,9 @@ class matrixLib{
      */
     static getZeroMatrix(size){
         let ret = [];
-        for (let i = 0; i < size; i++){
+        for (let i = 0; i &lt; size; i++){
             let newRow = [];
-            for (let j = 0; j < size; j++){
+            for (let j = 0; j &lt; size; j++){
                 newRow[j] = 0;
             }
             ret[i] = newRow;
@@ -306,7 +334,7 @@ class matrixLib{
         let lDet = 1;
         let uDet = 1;
 
-        for (let i = 0; i < A.length; i++){
+        for (let i = 0; i &lt; A.length; i++){
             lDet = lDet * L[i][i];
             uDet = uDet * U[i][i];
         }
@@ -326,18 +354,18 @@ class matrixLib{
         let L = matrixLib.getZeroMatrix(n);
         let sum = 0;
        
-        for (let j = 0; j < n; j++) {
-            for (let i = j; i < n; i++) {
+        for (let j = 0; j &lt; n; j++) {
+            for (let i = j; i &lt; n; i++) {
                 sum = 0;
-                for (let k = 0; k < j; k++) {
+                for (let k = 0; k &lt; j; k++) {
                     sum = sum + L[i][k] * U[k][j];	
                 }
                 L[i][j] = A[i][j] - sum;
             }
     
-            for (let i = j; i < n; i++) {
+            for (let i = j; i &lt; n; i++) {
                 sum = 0;
-                for(let k = 0; k < j; k++) {
+                for(let k = 0; k &lt; j; k++) {
                     sum = sum + L[j][k] * U[k][i];
                 }
                 if (L[j][j] == 0) {
@@ -371,9 +399,9 @@ class matrixLib{
             return val;
         }
 
-        for (let i = 0; i < row; i++){
+        for (let i = 0; i &lt; row; i++){
             let newRow = [];
-            for (let j = 0; j < col; j++){
+            for (let j = 0; j &lt; col; j++){
                 newRow[j] = randNum(opt.min, opt.max, opt.intOnly);
             }
             ret[i] = newRow;
@@ -406,18 +434,18 @@ class matrixLib{
         if (Array.isArray(mat[0])){
             let colFirst = mat[0].length;
             let first = mat[0][0];
-            for (let i = 0; i < rows; i++){
+            for (let i = 0; i &lt; rows; i++){
                 if (mat[i].length !== colFirst){
-                    colSame = colSame && false;
+                    colSame = colSame &amp;&amp; false;
                 }
 
-                for (let j = 0; j < mat[i].length; j++){
+                for (let j = 0; j &lt; mat[i].length; j++){
                     if (i === j){
                         if (mat[i][j] !== first){
-                            isIdentity = isIdentity && false;
+                            isIdentity = isIdentity &amp;&amp; false;
                         }
                     } else if (mat[i][j] !== 0){
-                        isIdentity = isIdentity && false;
+                        isIdentity = isIdentity &amp;&amp; false;
                     }
                 }
             }
@@ -458,15 +486,15 @@ class matrixLib{
 
         //[1,2,3]
         if (!Array.isArray(mat[0])){
-            for (let i = 0; i < mat.length; i++){
+            for (let i = 0; i &lt; mat.length; i++){
                 ret[i] = [mat[i]];
             }
             return ret;
         }
     
-        for (let j = 0; j < mat[0].length; j++){
+        for (let j = 0; j &lt; mat[0].length; j++){
             let col = [];
-            for (let i = 0; i < mat.length; i++){
+            for (let i = 0; i &lt; mat.length; i++){
                 col.push(mat[i][j]);
             }
             ret[j] = col;
@@ -501,16 +529,16 @@ class matrixLib{
 
         //[1,2,3]
         if (!Array.isArray(mat[0])){
-            for (let i = 0; i < mat.length; i++){
+            for (let i = 0; i &lt; mat.length; i++){
                 ret[i] = mat[i] * multFactor;
                 multFactor = multFactor * -1;
             }
             return ret;
         }
     
-        for (let i = 0; i < mat.length; i++){
+        for (let i = 0; i &lt; mat.length; i++){
             let col = [];
-            for (let j = 0; j < mat[i].length; j++){
+            for (let j = 0; j &lt; mat[i].length; j++){
                 col[j] = (mat[i][j] * multFactor);
                 multFactor = multFactor * -1;
             }
@@ -566,4 +594,26 @@ console.log(matrixLib.cofactorMatrix(z))
 
 module.exports = {
     matrixLib: matrixLib,
-};
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="combinationLib.html">combinationLib</a></li><li><a href="matrixLib.html">matrixLib</a></li><li><a href="permutationLib.html">permutationLib</a></li><li><a href="probabilityLib.html">probabilityLib</a></li><li><a href="statsLib.html">statsLib</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue Aug 11 2020 21:48:23 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
