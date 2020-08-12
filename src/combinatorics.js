@@ -121,7 +121,7 @@ class combinationLib{
             for (let i = 0; i < Math.pow(2, N); i++){
                 let comb=[]
                 for (let j = 0; j < N; j++){
-                    if ((i >> j) % 2 == 1){
+                    if ((i >> j) % 2 === 1){
                         comb.push(items[j]);
                     }
                 }
