@@ -519,6 +519,27 @@ class matrixLib{
         }
         return ret;
     }
+
+    /**
+     * Duplicates a given matrix. I.e. new copy is created and returned
+     * Original reference is maintained
+     * @param {number[][]} mat - The matrix to duplicate
+     * @return {number[][]} Duplicated matrix
+     */
+    static duplicateMatrix(mat){
+        let ret = [];
+        let multFactor = 1;
+
+        //[1,2,3]
+        if (!Array.isArray(mat[0])){
+            return [...mat];
+        }
+    
+        for (let i = 0; i < mat.length; i++){
+            ret[i] = [...mat[i]];
+        }
+        return ret;
+    }
 }
 
 test = [
@@ -562,8 +583,9 @@ z1 = [[1],[2],[3]]
 //console.log(matrixLib.divideMatrixC(t, 2));
 //console.log(matrixLib.transposeMatrix(z1))
 
-console.log(matrixLib.cofactorMatrix(z))
-
+//console.log(matrixLib.cofactorMatrix(z))
+console.log(t === t)
+console.log(matrixLib.duplicateMatrix(t) === t)
 module.exports = {
     matrixLib: matrixLib,
 };
