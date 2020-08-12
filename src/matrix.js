@@ -427,6 +427,32 @@ class matrixLib{
             };
         }
     }
+
+    /**
+     * Transposes a given matrix
+     * @param {number[]} mat - The matrix to transpose
+     * @return {number[]} Transposed matrix
+     */
+    static transposeMatrix(mat){
+        let ret = [];
+
+        //[1,2,3]
+        if (!Array.isArray(mat[0])){
+            for (let i = 0; i < mat.length; i++){
+                ret[i] = [mat[i]];
+            }
+            return ret;
+        }
+    
+        for (let j = 0; j < mat[0].length; j++){
+            let col = [];
+            for (let i = 0; i < mat.length; i++){
+                col.push(mat[i][j]);
+            }
+            ret[j] = col;
+        }
+        return ret;
+    }
 }
 
 test = [
@@ -436,10 +462,18 @@ test = [
     [1.5,5.5,1,-3.1]
 ]
 
-t = [[1,2,3], [2,3,4], [4,5,8]]
+t = [
+    [1,2,3],
+    [2,3,4],
+    [4,5,8]
+]
 t1 = [[1,2,3], [2,3,4], [4,5,6]]
 
-t2 = [[1,2,3], [2,3,4]]
+t2 = [
+    [1,2,3],
+    [2,3,4],
+]
+
 t3 = [[1,2], [2,3], [4,5]]
 
 z = [1,2,3];
@@ -456,8 +490,10 @@ z1 = [[1],[2],[3]]
 
 //console.log(matrixLib.multiplyMatrixC(t, 6));
 
-console.log(matrixLib.divideMatrixC(t, 2));
+//console.log(matrixLib.divideMatrixC(t, 2));
 
+
+console.log(matrixLib.transposeMatrix(z1))
 module.exports = {
     matrixLib: matrixLib,
 };
