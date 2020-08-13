@@ -280,15 +280,16 @@ class matrixLib{
     }
 
     /**
-     * Returns an zero matrix of a given size
-     * @param {number} size - The size of matrix to generate
+     * Returns an square zero matrix of a given size
+     * @param {number} row - The row size of matrix to generate
+     * @param {number} col - The column size of matrix to generate
      * @return {number[][]} Zero matrix of a given size
      */
-    static getZeroMatrix(size){
+    static getZeroMatrix(row, col){
         let ret = [];
-        for (let i = 0; i < size; i++){
+        for (let i = 0; i < row; i++){
             let newRow = [];
-            for (let j = 0; j < size; j++){
+            for (let j = 0; j < col; j++){
                 newRow[j] = 0;
             }
             ret[i] = newRow;
@@ -323,7 +324,7 @@ class matrixLib{
     static LuDecomposeMatrix(A){
         let n = A.length;
         let U = matrixLib.getIdentityMatrix(n);
-        let L = matrixLib.getZeroMatrix(n);
+        let L = matrixLib.getZeroMatrix(n, n);
         let sum = 0;
        
         for (let j = 0; j < n; j++) {
@@ -591,8 +592,8 @@ t3 = [[1,2], [2,3], [4,5]]
 z = [1,2,3];
 z1 = [[1],[2],[3]]
 
-console.log(matrixLib.removeRowAndColMatrix(t1, 0, 0))
-
+//console.log(matrixLib.removeRowAndColMatrix(t1, 0, 0))
+console.log(matrixLib.LuDecomposeMatrix(t1))
 module.exports = {
     matrixLib: matrixLib,
 };
