@@ -540,6 +540,28 @@ class matrixLib{
         }
         return ret;
     }
+
+    /**
+     * Deletes a row and column of a given matrix
+     * Original reference is maintained
+     * This method only works on 2D matricies
+     * @param {number[][]} mat - The matrix to modify
+     * @param {number} row - The row to remove
+     * @param {number} col - The col to remove
+     * @return {number[][]} Matrix without the specified row and column
+     */
+    static removeRowAndColMatrix(mat, row, col){
+        let ret = matrixLib.duplicateMatrix(mat);
+    
+        for(var i = 0 ; i < ret.length ; i++)
+        {
+            ret[i].splice(col,1);
+        }
+
+        ret.splice(row, 1);
+        
+        return ret;
+    }
 }
 
 test = [
@@ -569,6 +591,12 @@ t3 = [[1,2], [2,3], [4,5]]
 z = [1,2,3];
 z1 = [[1],[2],[3]]
 
+console.log(matrixLib.removeRowAndColMatrix(t1, 0, 0))
+
+module.exports = {
+    matrixLib: matrixLib,
+};
+
 //console.log(matrixLib.multiplyMatrix(z, z1));
 //console.log(matrixLib.multiplyMatrix(t2, t3));
 
@@ -584,8 +612,5 @@ z1 = [[1],[2],[3]]
 //console.log(matrixLib.transposeMatrix(z1))
 
 //console.log(matrixLib.cofactorMatrix(z))
-console.log(t === t)
-console.log(matrixLib.duplicateMatrix(t) === t)
-module.exports = {
-    matrixLib: matrixLib,
-};
+//console.log(t === t)
+//console.log(matrixLib.duplicateMatrix(t) === t)
