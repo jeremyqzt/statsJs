@@ -304,6 +304,11 @@ class matrixLib{
      */
     static determinantMatrix(A){
         let {L, U} = matrixLib.LuDecomposeMatrix(A);
+
+        if (L === null || U === null){
+            return 0;
+        }
+
         let lDet = 1;
         let uDet = 1;
 
@@ -342,7 +347,10 @@ class matrixLib{
                     sum = sum + L[j][k] * U[k][i];
                 }
                 if (L[j][j] == 0) {
-                    return NaN;
+                    return {
+                        L: null,
+                        U: null,
+                    };
                 }
                 U[j][i] = (A[j][i] - sum) / L[j][j];
             }
@@ -554,7 +562,7 @@ class matrixLib{
     static removeRowAndColMatrix(mat, row, col){
         let ret = matrixLib.duplicateMatrix(mat);
     
-        for(var i = 0 ; i < ret.length ; i++)
+        for(let i = 0 ; i < ret.length ; i++)
         {
             ret[i].splice(col,1);
         }
@@ -563,7 +571,35 @@ class matrixLib{
         
         return ret;
     }
+
+    /**
+     * Computes the matrix of minors
+     * Note: this method does not accept 1D matricies.
+     * Original reference is maintained
+     * @param {number[][]} mat - The matrix to modify
+     * @param {number} row - The row to remove
+     * @param {number} col - The col to remove
+     * @return {number[][]} Matrix without the specified row and column
+     */
+    static ofMinorsMatrix(mat){
+        let ret = matrixLib.getZeroMatrix(mat.length, mat[0].length);
+    
+        for(let i = 0 ; i < mat.length ; i++)
+        {
+            for (let j = 0; j < mat[i].length; j++){
+                let newMat = matrixLib.removeRowAndColMatrix(mat, i, j);
+                ret[i][j] = matrixLib.determinantMatrix(newMat);
+            }
+        }
+        return ret;
+    }
 }
+
+minorTest = [
+    [1,2,1],
+    [6, -1, 0],
+    [-1,-2,-1]
+]
 
 test = [
     [3,7,8,9],
@@ -593,7 +629,8 @@ z = [1,2,3];
 z1 = [[1],[2],[3]]
 
 //console.log(matrixLib.removeRowAndColMatrix(t1, 0, 0))
-console.log(matrixLib.LuDecomposeMatrix(t1))
+//console.log(matrixLib.LuDecomposeMatrix(t1))
+console.log(matrixLib.ofMinorsMatrix(minorTest));
 module.exports = {
     matrixLib: matrixLib,
 };
