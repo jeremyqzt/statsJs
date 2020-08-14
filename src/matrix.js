@@ -27,7 +27,7 @@ class matrixLib{
     /**
      * Adds constant c to each item in the matrix
      * @param {number[][]} A - The matrix to add c to
-     * @param {number[][]} c - value to add to matrix A
+     * @param {number} c - Constant to add to each value
      * @return {number[][]} Matrix result from the adding C to each element of A
      */
     static addMatrixC(A, c){
@@ -55,7 +55,7 @@ class matrixLib{
     /**
      * Multiplies constant c to each item in the matrix
      * @param {number[][]} A - The matrix to add c to
-     * @param {number[][]} c - value to add to matrix A
+     * @param {number} c - Constant to multiply each value by
      * @return {number[][]} Matrix result from the multiplying c to each element of A
      */
     static multiplyMatrixC(A, c){
@@ -83,7 +83,7 @@ class matrixLib{
     /**
      * Divides constant c to each item in the matrix
      * @param {number[][]} A - The matrix to add c to
-     * @param {number[][]} c - value to add to matrix A
+     * @param {numbe} c - Constant to divide each value by
      * @return {number[][]} Matrix result from the multiplying c to each element of A
      */
     static divideMatrixC(A, c){
@@ -111,7 +111,7 @@ class matrixLib{
     /**
      * Subtracts constant c to each item in the matrix
      * @param {number[][]} A - The matrix to sub c to
-     * @param {number[][]} c - value to sub to matrix A
+     * @param {number} c - Constant to subtract from each value
      * @return {number[][]} Matrix result from the subtracting C to each element of A
      */
     static subMatrixC(A, c){
@@ -576,10 +576,8 @@ class matrixLib{
      * Computes the matrix of minors
      * Note: this method does not accept 1D matricies.
      * Original reference is maintained
-     * @param {number[][]} mat - The matrix to modify
-     * @param {number} row - The row to remove
-     * @param {number} col - The col to remove
-     * @return {number[][]} Matrix without the specified row and column
+     * @param {number[][]} mat - The matrix to find minors for
+     * @return {number[][]} Matrix of minors
      */
     static ofMinorsMatrix(mat){
         let ret = matrixLib.getZeroMatrix(mat.length, mat[0].length);
@@ -592,6 +590,22 @@ class matrixLib{
             }
         }
         return ret;
+    }
+
+    /**
+     * Computes the inverse of a matrix
+     * Note: this method does not accept 1D matricies and the input must be square
+     * Original reference is maintained
+     * @param {number[][]} mat - The matrix to find inverse of
+     * @return {number[][]} Inverse of the input matrix
+     */
+    static inverseMatrix(mat){
+        let minors = matrixLib.ofMinorsMatrix(mat);
+        let determinant = matrixLib.determinantMatrix(mat);
+        let cofactors = matrixLib.cofactorMatrix(minors);
+        let adjugate = matrixLib.transposeMatrix(cofactors);
+
+        return matrixLib.divideMatrixC(adjugate, determinant);
     }
 }
 
@@ -610,8 +624,8 @@ test = [
 
 t = [
     [1,2,3],
-    [2,3,4],
-    [4,5,8]
+    [4,5,6],
+    [7,2,9]
 ]
 t1 = [
     [1,2,3,4],
@@ -630,7 +644,9 @@ z1 = [[1],[2],[3]]
 
 //console.log(matrixLib.removeRowAndColMatrix(t1, 0, 0))
 //console.log(matrixLib.LuDecomposeMatrix(t1))
-console.log(matrixLib.ofMinorsMatrix(minorTest));
+//console.log(matrixLib.ofMinorsMatrix(minorTest));
+console.log(matrixLib.inverseMatrix(t));
+
 module.exports = {
     matrixLib: matrixLib,
 };
