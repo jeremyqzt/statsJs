@@ -55,7 +55,7 @@ class matrixLib{
     /**
      * Adds constant c to each item in the matrix
      * @param {number[][]} A - The matrix to add c to
-     * @param {number[][]} c - value to add to matrix A
+     * @param {number} c - Constant to add to each value
      * @return {number[][]} Matrix result from the adding C to each element of A
      */
     static addMatrixC(A, c){
@@ -83,7 +83,7 @@ class matrixLib{
     /**
      * Multiplies constant c to each item in the matrix
      * @param {number[][]} A - The matrix to add c to
-     * @param {number[][]} c - value to add to matrix A
+     * @param {number} c - Constant to multiply each value by
      * @return {number[][]} Matrix result from the multiplying c to each element of A
      */
     static multiplyMatrixC(A, c){
@@ -111,7 +111,7 @@ class matrixLib{
     /**
      * Divides constant c to each item in the matrix
      * @param {number[][]} A - The matrix to add c to
-     * @param {number[][]} c - value to add to matrix A
+     * @param {numbe} c - Constant to divide each value by
      * @return {number[][]} Matrix result from the multiplying c to each element of A
      */
     static divideMatrixC(A, c){
@@ -139,7 +139,7 @@ class matrixLib{
     /**
      * Subtracts constant c to each item in the matrix
      * @param {number[][]} A - The matrix to sub c to
-     * @param {number[][]} c - value to sub to matrix A
+     * @param {number} c - Constant to subtract from each value
      * @return {number[][]} Matrix result from the subtracting C to each element of A
      */
     static subMatrixC(A, c){
@@ -308,15 +308,16 @@ class matrixLib{
     }
 
     /**
-     * Returns an zero matrix of a given size
-     * @param {number} size - The size of matrix to generate
+     * Returns an square zero matrix of a given size
+     * @param {number} row - The row size of matrix to generate
+     * @param {number} col - The column size of matrix to generate
      * @return {number[][]} Zero matrix of a given size
      */
-    static getZeroMatrix(size){
+    static getZeroMatrix(row, col){
         let ret = [];
-        for (let i = 0; i &lt; size; i++){
+        for (let i = 0; i &lt; row; i++){
             let newRow = [];
-            for (let j = 0; j &lt; size; j++){
+            for (let j = 0; j &lt; col; j++){
                 newRow[j] = 0;
             }
             ret[i] = newRow;
@@ -331,6 +332,11 @@ class matrixLib{
      */
     static determinantMatrix(A){
         let {L, U} = matrixLib.LuDecomposeMatrix(A);
+
+        if (L === null || U === null){
+            return 0;
+        }
+
         let lDet = 1;
         let uDet = 1;
 
@@ -351,7 +357,7 @@ class matrixLib{
     static LuDecomposeMatrix(A){
         let n = A.length;
         let U = matrixLib.getIdentityMatrix(n);
-        let L = matrixLib.getZeroMatrix(n);
+        let L = matrixLib.getZeroMatrix(n, n);
         let sum = 0;
        
         for (let j = 0; j &lt; n; j++) {
@@ -369,7 +375,10 @@ class matrixLib{
                     sum = sum + L[j][k] * U[k][i];
                 }
                 if (L[j][j] == 0) {
-                    return NaN;
+                    return {
+                        L: null,
+                        U: null,
+                    };
                 }
                 U[j][i] = (A[j][i] - sum) / L[j][j];
             }
@@ -547,7 +556,92 @@ class matrixLib{
         }
         return ret;
     }
+
+    /**
+     * Duplicates a given matrix. I.e. new copy is created and returned
+     * Original reference is maintained
+     * @param {number[][]} mat - The matrix to duplicate
+     * @return {number[][]} Duplicated matrix
+     */
+    static duplicateMatrix(mat){
+        let ret = [];
+        let multFactor = 1;
+
+        //[1,2,3]
+        if (!Array.isArray(mat[0])){
+            return [...mat];
+        }
+    
+        for (let i = 0; i &lt; mat.length; i++){
+            ret[i] = [...mat[i]];
+        }
+        return ret;
+    }
+
+    /**
+     * Deletes a row and column of a given matrix
+     * Original reference is maintained
+     * This method only works on 2D matricies
+     * @param {number[][]} mat - The matrix to modify
+     * @param {number} row - The row to remove
+     * @param {number} col - The col to remove
+     * @return {number[][]} Matrix without the specified row and column
+     */
+    static removeRowAndColMatrix(mat, row, col){
+        let ret = matrixLib.duplicateMatrix(mat);
+    
+        for(let i = 0 ; i &lt; ret.length ; i++)
+        {
+            ret[i].splice(col,1);
+        }
+
+        ret.splice(row, 1);
+        
+        return ret;
+    }
+
+    /**
+     * Computes the matrix of minors
+     * Note: this method does not accept 1D matricies.
+     * Original reference is maintained
+     * @param {number[][]} mat - The matrix to find minors for
+     * @return {number[][]} Matrix of minors
+     */
+    static ofMinorsMatrix(mat){
+        let ret = matrixLib.getZeroMatrix(mat.length, mat[0].length);
+    
+        for(let i = 0 ; i &lt; mat.length ; i++)
+        {
+            for (let j = 0; j &lt; mat[i].length; j++){
+                let newMat = matrixLib.removeRowAndColMatrix(mat, i, j);
+                ret[i][j] = matrixLib.determinantMatrix(newMat);
+            }
+        }
+        return ret;
+    }
+
+    /**
+     * Computes the inverse of a matrix
+     * Note: this method does not accept 1D matricies and the input must be square
+     * Original reference is maintained
+     * @param {number[][]} mat - The matrix to find inverse of
+     * @return {number[][]} Inverse of the input matrix
+     */
+    static inverseMatrix(mat){
+        let minors = matrixLib.ofMinorsMatrix(mat);
+        let determinant = matrixLib.determinantMatrix(mat);
+        let cofactors = matrixLib.cofactorMatrix(minors);
+        let adjugate = matrixLib.transposeMatrix(cofactors);
+
+        return matrixLib.divideMatrixC(adjugate, determinant);
+    }
 }
+
+minorTest = [
+    [1,2,1],
+    [6, -1, 0],
+    [-1,-2,-1]
+]
 
 test = [
     [3,7,8,9],
@@ -558,8 +652,8 @@ test = [
 
 t = [
     [1,2,3],
-    [2,3,4],
-    [4,5,8]
+    [4,5,6],
+    [7,2,9]
 ]
 t1 = [
     [1,2,3,4],
@@ -576,6 +670,15 @@ t3 = [[1,2], [2,3], [4,5]]
 z = [1,2,3];
 z1 = [[1],[2],[3]]
 
+//console.log(matrixLib.removeRowAndColMatrix(t1, 0, 0))
+//console.log(matrixLib.LuDecomposeMatrix(t1))
+//console.log(matrixLib.ofMinorsMatrix(minorTest));
+console.log(matrixLib.inverseMatrix(t));
+
+module.exports = {
+    matrixLib: matrixLib,
+};
+
 //console.log(matrixLib.multiplyMatrix(z, z1));
 //console.log(matrixLib.multiplyMatrix(t2, t3));
 
@@ -590,11 +693,9 @@ z1 = [[1],[2],[3]]
 //console.log(matrixLib.divideMatrixC(t, 2));
 //console.log(matrixLib.transposeMatrix(z1))
 
-console.log(matrixLib.cofactorMatrix(z))
-
-module.exports = {
-    matrixLib: matrixLib,
-};</code></pre>
+//console.log(matrixLib.cofactorMatrix(z))
+//console.log(t === t)
+//console.log(matrixLib.duplicateMatrix(t) === t)</code></pre>
         </article>
     </section>
 
@@ -610,7 +711,7 @@ module.exports = {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue Aug 11 2020 21:48:23 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Aug 14 2020 21:50:28 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

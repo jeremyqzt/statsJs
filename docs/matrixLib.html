@@ -404,7 +404,7 @@
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Array.&lt;number>></span>
+<span class="param-type">number</span>
 
 
             
@@ -414,7 +414,7 @@
 
             
 
-            <td class="description last">value to add to matrix A</td>
+            <td class="description last">Constant to add to each value</td>
         </tr>
 
     
@@ -614,7 +614,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line498">line 498</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line507">line 507</a>
     </li></ul></dd>
     
 
@@ -773,7 +773,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line401">line 401</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line410">line 410</a>
     </li></ul></dd>
     
 
@@ -932,7 +932,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line304">line 304</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line305">line 305</a>
     </li></ul></dd>
     
 
@@ -1063,7 +1063,7 @@
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Array.&lt;number>></span>
+<span class="param-type">numbe</span>
 
 
             
@@ -1073,7 +1073,7 @@
 
             
 
-            <td class="description last">value to add to matrix A</td>
+            <td class="description last">Constant to divide each value by</td>
         </tr>
 
     
@@ -1400,6 +1400,165 @@
     
 
     
+    <h4 class="name" id=".duplicateMatrix"><span class="type-signature">(static) </span>duplicateMatrix<span class="signature">(mat)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Duplicates a given matrix. I.e. new copy is created and returnedOriginal reference is maintained
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix to duplicate</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line538">line 538</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Duplicated matrix
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id=".getIdentityMatrix"><span class="type-signature">(static) </span>getIdentityMatrix<span class="signature">(size)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
     
 
@@ -1706,7 +1865,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line363">line 363</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line372">line 372</a>
     </li></ul></dd>
     
 
@@ -1764,7 +1923,7 @@
     
 
     
-    <h4 class="name" id=".getZeroMatrix"><span class="type-signature">(static) </span>getZeroMatrix<span class="signature">(size)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    <h4 class="name" id=".getZeroMatrix"><span class="type-signature">(static) </span>getZeroMatrix<span class="signature">(row, col)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
     
 
     
@@ -1772,7 +1931,7 @@
 
 
 <div class="description">
-    Returns an zero matrix of a given size
+    Returns an square zero matrix of a given size
 </div>
 
 
@@ -1808,7 +1967,7 @@
 
         <tr>
             
-                <td class="name"><code>size</code></td>
+                <td class="name"><code>row</code></td>
             
 
             <td class="type">
@@ -1824,7 +1983,30 @@
 
             
 
-            <td class="description last">The size of matrix to generate</td>
+            <td class="description last">The row size of matrix to generate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>col</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The column size of matrix to generate</td>
         </tr>
 
     
@@ -1865,7 +2047,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line287">line 287</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line288">line 288</a>
     </li></ul></dd>
     
 
@@ -1895,6 +2077,165 @@
         
 <div class="param-desc">
     Zero matrix of a given size
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".inverseMatrix"><span class="type-signature">(static) </span>inverseMatrix<span class="signature">(mat)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Computes the inverse of a matrixNote: this method does not accept 1D matricies and the input must be squareOriginal reference is maintained
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix to find inverse of</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line602">line 602</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Inverse of the input matrix
 </div>
 
 
@@ -2206,7 +2547,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line323">line 323</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line329">line 329</a>
     </li></ul></dd>
     
 
@@ -2883,7 +3224,7 @@
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Array.&lt;number>></span>
+<span class="param-type">number</span>
 
 
             
@@ -2893,7 +3234,7 @@
 
             
 
-            <td class="description last">value to add to matrix A</td>
+            <td class="description last">Constant to multiply each value by</td>
         </tr>
 
     
@@ -2964,6 +3305,370 @@
         
 <div class="param-desc">
     Matrix result from the multiplying c to each element of A
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".ofMinorsMatrix"><span class="type-signature">(static) </span>ofMinorsMatrix<span class="signature">(mat)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Computes the matrix of minorsNote: this method does not accept 1D matricies.Original reference is maintained
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix to find minors for</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line582">line 582</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Matrix of minors
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".removeRowAndColMatrix"><span class="type-signature">(static) </span>removeRowAndColMatrix<span class="signature">(mat, row, col)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Deletes a row and column of a given matrixOriginal reference is maintainedThis method only works on 2D matricies
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix to modify</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>row</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The row to remove</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>col</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The col to remove</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line562">line 562</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Matrix without the specified row and column
 </div>
 
 
@@ -3247,7 +3952,7 @@
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Array.&lt;number>></span>
+<span class="param-type">number</span>
 
 
             
@@ -3257,7 +3962,7 @@
 
             
 
-            <td class="description last">value to sub to matrix A</td>
+            <td class="description last">Constant to subtract from each value</td>
         </tr>
 
     
@@ -3457,7 +4162,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line456">line 456</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line465">line 465</a>
     </li></ul></dd>
     
 
@@ -3531,7 +4236,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue Aug 11 2020 21:48:23 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Aug 14 2020 21:50:28 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
