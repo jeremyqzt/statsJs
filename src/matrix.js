@@ -80,6 +80,36 @@ class matrixLib{
         return ret;
     }
 
+
+    /**
+     * Takes the power C for each element in the array
+     * @param {number[][]} A - The matrix to take power for
+     * @param {number} c - Constant to take power for
+     * @return {number[][]} Matrix result from power of c for each element in A
+     */
+    static powerMatrixC(A, c){
+        const powFunc = (item, pow) =>{
+            return Math.pow(item, pow);
+        };
+
+        let ret = null;
+        if (Array.isArray(A[0])){
+            let B = [];
+            for (let i = 0; i < A.length; i++){
+                let newRow = [];
+                for (let j = 0; j < A[i].length; j++){
+                    newRow[j] = c
+                }
+                B[i] = newRow;
+            }
+            ret = matrixLib.matrixOpperation(A, B, powFunc);
+        } else {
+            ret = matrixLib.matrixOpperation1D(A, Array(A.length).fill(c), powFunc);
+        }
+        return ret;
+    }
+
+    
     /**
      * Divides constant c to each item in the matrix
      * @param {number[][]} A - The matrix to add c to
