@@ -18,6 +18,12 @@ This is a library that helps with some common stats operations. We support the f
     * Correlation
  * Z-score table (From -3.99 to 3.99)
  * Simple probability calculations
+ * Matrix Operations
+    * Determinant
+    * LU Decomposition
+    * QR Decomposition (Planned)
+    * Dot product
+    * Arithmetic on every matrix element
 
 Full Docs can be found at [our git pages](https://jeremyqzt.github.io/statsJs/).
 Example usages are as followed.
