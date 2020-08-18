@@ -34,6 +34,23 @@ The libraries can be imported using the following.
 const {probabilityLib, statsLib, combinationLib, permutationLib} = require('@jeremyqzt/nodestats');
 ```
 
+## Matrix Helper
+### Adding a constant to every matrix element
+Returns a matrix with the each constant C added to each element. In this example, c = 3
+```
+t = [[1,2,3], [1,2,3], [1,2,3]]
+console.log(matrixLib.addMatrixC(t,3))
+//=> [ [ 4, 5, 6 ], [ 4, 5, 6 ], [ 4, 5, 6 ] ]
+```
+
+### Subtracting a constant to every matrix element
+Returns a matrix with the each constant C subtracted from to each element. In this example, c = 3
+```
+t = [[1,2,3], [1,2,3], [1,2,3]]
+console.log(matrixLib.addMatrixC(t,3))
+//=> [ [ -2, -1, 0 ], [ -2, -1, 0 ], [ -2, -1, 0 ] ]
+```
+
 ## Combination Helper
 ### Counting number of combinations
 Returns the number of pemutations of the given input. The following is 5 choose 3 (5C3) and 10 choose 7 (10C7).

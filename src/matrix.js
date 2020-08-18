@@ -677,6 +677,9 @@ z1 = [[1],[2],[3]]
 //console.log(matrixLib.ofMinorsMatrix(minorTest));
 console.log(matrixLib.inverseMatrix(t));
 
+t = [[1,2,3], [1,2,3], [1,2,3]]
+console.log(matrixLib.subMatrixC(t,3))
+
 module.exports = {
     matrixLib: matrixLib,
 };
