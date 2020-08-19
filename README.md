@@ -44,11 +44,68 @@ console.log(matrixLib.addMatrixC(t,3))
 ```
 
 ### Subtracting a constant to every matrix element
-Returns a matrix with the each constant C subtracted from to each element. In this example, c = 3
+Returns a matrix with the each constant C subtracted from each element. In this example, c = 3
 ```
 t = [[1,2,3], [1,2,3], [1,2,3]]
 console.log(matrixLib.addMatrixC(t,3))
 //=> [ [ -2, -1, 0 ], [ -2, -1, 0 ], [ -2, -1, 0 ] ]
+```
+
+### Multiplying a constant to every matrix element
+Returns a matrix with the each constant c multiplied to each element. In this example, c = 3
+```
+t = [[1,2,3], [1,2,3], [1,2,3]]
+console.log(matrixLib.multiplyMatrixC(t,3))
+//=> [ [ 3, 6, 9 ], [ 3, 6, 9 ], [ 3, 6, 9 ] ]
+```
+
+### Matrix dot product
+Returns a matrix that represents the dot product of the 2 input matricies
+```
+t = [
+    [1,2,3],
+    [4,5,6],
+    [7,2,9]
+]
+
+t2 = [
+    [1,1,1],
+    [1,1,1],
+    [1,1,1]
+]
+console.log(matrixLib.multiplyMatrix(t, t2));
+//=> [ [ 6, 6, 6 ], [ 15, 15, 15 ], [ 18, 18, 18 ] ]
+```
+
+### Dividing a constant to every matrix element
+Returns a matrix with each element divided by constant c. In this example, c = 3
+```
+t = [[3,6,9], [12,15,18], [21,24,27]]
+console.log(matrixLib.divideMatrixC(t,3))
+//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+```
+
+### LU Decomposition
+Returns a lower and upper matrix decomposed from the given matrix.
+Returns null if the determinant is too close to 0 (No LU available)
+```
+t = [[3,6,9], [12,15,18], [21,24,27]]
+console.log(matrixLib.LuDecomposeMatrix(t))
+//=> { L: null, U: null }
+t = [[-3,1.7,-9], [-12,1,-0.6], [77,-24,100]]
+console.log(matrixLib.LuDecomposeMatrix(t))
+//=> {
+//     L: [
+//       [ -3, 0, 0 ],
+//       [ -12, -5.8, 0 ],
+//       [ 77, 19.633333333333333, -11.16896551724139 ]
+//     ],
+//     U: [
+//       [ 1, -0.5666666666666667, 3 ],
+//       [ 0, 1, -6.1034482758620685 ],
+//       [ 0, 0, 1 ]
+//     ]
+//   }
 ```
 
 ## Combination Helper

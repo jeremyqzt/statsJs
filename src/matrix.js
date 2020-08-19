@@ -254,6 +254,8 @@ class matrixLib{
      */
     static dotProductMatrix(A, B, row, col){
         let ret = 0;
+        console.log(A);
+        console.log(B)
         for (let i = 0; i < A[row].length; i++){
             ret += A[row][i] * B[i][col];
         }
@@ -652,11 +654,18 @@ test = [
     [1.5,5.5,1,-3.1]
 ]
 
-t = [
+test = [
     [1,2,3],
     [4,5,6],
     [7,2,9]
 ]
+
+test2 = [
+    [1,1,1],
+    [1,1,1],
+    [1,1,1]
+]
+
 t1 = [
     [1,2,3,4],
     [2,3,4,5],
@@ -675,16 +684,17 @@ z1 = [[1],[2],[3]]
 //console.log(matrixLib.removeRowAndColMatrix(t1, 0, 0))
 //console.log(matrixLib.LuDecomposeMatrix(t1))
 //console.log(matrixLib.ofMinorsMatrix(minorTest));
-console.log(matrixLib.inverseMatrix(t));
+//console.log(matrixLib.inverseMatrix(t));
 
-t = [[1,2,3], [1,2,3], [1,2,3]]
-console.log(matrixLib.subMatrixC(t,3))
+//t = [[-3,1.7,-9], [-12,1,-0.6], [77,-24,100]]
+
+//console.log(matrixLib.LuDecomposeMatrix(t))
 
 module.exports = {
     matrixLib: matrixLib,
 };
 
-//console.log(matrixLib.multiplyMatrix(z, z1));
+console.log(matrixLib.multiplyMatrix(test, test2));
 //console.log(matrixLib.multiplyMatrix(t2, t3));
 
 //console.log(matrixLib.getIdentityMatrix(6));
