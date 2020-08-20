@@ -694,7 +694,7 @@ module.exports = {
     matrixLib: matrixLib,
 };
 
-console.log(matrixLib.multiplyMatrix(test, test2));
+console.log(matrixLib.determinantMatrix(test));
 //console.log(matrixLib.multiplyMatrix(t2, t3));
 
 //console.log(matrixLib.getIdentityMatrix(6));

@@ -108,6 +108,14 @@ console.log(matrixLib.LuDecomposeMatrix(t))
 //   }
 ```
 
+### Determinant
+Returns the determinant of the matrix
+```
+test = [[1,2,3], [4,5,6], [7,2,9]]
+console.log(matrixLib.determinantMatrix(test));
+//=> -36
+```
+
 ## Combination Helper
 ### Counting number of combinations
 Returns the number of pemutations of the given input. The following is 5 choose 3 (5C3) and 10 choose 7 (10C7).
