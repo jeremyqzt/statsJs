@@ -569,8 +569,6 @@ class matrixLib{
      */
     static duplicateMatrix(mat){
         let ret = [];
-        let multFactor = 1;
-
         //[1,2,3]
         if (!Array.isArray(mat[0])){
             return [...mat];
@@ -639,6 +637,44 @@ class matrixLib{
 
         return matrixLib.divideMatrixC(adjugate, determinant);
     }
+
+    static rowCanonicalMatrix(mat){
+        let ret = matrixLib.duplicateMatrix(mat);
+        let rowCount = mat.length;
+        let columnCount = mat[0].length;
+        let lead = 0;
+
+        for (let r = 0; r < rowCount; r++){
+            let i = r;
+            while(ret[i][lead] === 0){
+                i = i + 1;
+                if (rowCount === i){
+                    i = r;
+                    lead = lead + 1;
+                    if (lead === columnCount){
+                        return null;
+                    }
+                }
+            }
+            let tmp = ret[r];
+            ret[r] = ret[i];
+            ret[i] = tmp;
+
+            if (ret[r][lead] !== 0){
+                let divisor = ret[i][lead];
+                ret[r] = matrixLib.divideMatrixC(ret[r], divisor);
+                for (let i = 0; i < rowCount; i++){
+                    if (i !== r){
+                        divisor = ret[i][lead];
+                        let matToProcess = matrixLib.multiplyMatrixC(ret[r], divisor);
+                        ret[i] = matrixLib.subMatrix(ret[i], matToProcess);
+                    }
+                }
+            }
+            lead = lead + 1;
+        }
+        return ret;
+    }
 }
 
 minorTest = [
@@ -647,13 +683,18 @@ minorTest = [
     [-1,-2,-1]
 ]
 
-test = [
+test3 = [
     [3,7,8,9],
     [1,4,99,1],
     [77,11,9,-5],
     [1.5,5.5,1,-3.1]
 ]
 
+test4 = [
+    [1,2,-1,-4],
+    [2,3,-1,-11],
+    [-2,0,-3,22],
+]
 test = [
     [1,2,3],
     [4,5,6],
@@ -693,8 +734,8 @@ z1 = [[1],[2],[3]]
 module.exports = {
     matrixLib: matrixLib,
 };
-
-console.log(matrixLib.determinantMatrix(test));
+let out = matrixLib.rowCanonicalMatrix(test4)
+console.log(out);
 //console.log(matrixLib.multiplyMatrix(t2, t3));
 
 //console.log(matrixLib.getIdentityMatrix(6));
