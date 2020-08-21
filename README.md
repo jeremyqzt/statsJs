@@ -20,10 +20,16 @@ This is a library that helps with some common stats operations. We support the f
  * Simple probability calculations
  * Matrix Operations
     * Determinant
+    * Matrix of Minors, Cofactors
+    * Matrix Transpose
+    * Matrix Inverse
+    * Row Canonical Form (AKA. Reduced Row Echelon Form)
     * LU Decomposition
     * QR Decomposition (Planned)
     * Dot product
     * Arithmetic on every matrix element
+    * Deep copying a matrix
+    * Random or Identity matrix of a given size
 
 Full Docs can be found at [our git pages](https://jeremyqzt.github.io/statsJs/).
 Example usages are as followed.

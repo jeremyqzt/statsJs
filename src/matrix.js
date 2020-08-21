@@ -431,7 +431,6 @@ class matrixLib{
      * @property {boolean} square - Boolean representing if the matrix is square
      * @property {boolean} identity - Boolean representing if the matrix is the identity matrix
      * @property {boolean} valid - Boolean representing if the matrix is valid
-
      */
 
     /**
@@ -485,12 +484,6 @@ class matrixLib{
      * Transposes a given matrix
      * 
      * A transpose is exampled as followed:
-     *   [                     [
-     *   [1, 1, 1, 1]          [1, 1]
-     *   [2, 2, 2, 2]   ---\   [2, 2]
-     *   ]              ---/   [3, 3]
-     *                         [4, 4]
-     *                         ]
      * @param {number[][]} mat - The matrix to transpose
      * @return {number[][]} Transposed matrix
      */
@@ -518,21 +511,6 @@ class matrixLib{
     /**
      * Determins a the matrix of cofactors.
      * The cofactor checkerboard is the followed:
-     * [
-     *   [+, -, +, -]
-     *   [-, +, -, +]
-     *   [+, -, +, -]
-     *   [-, +, -, +]
-     * ]
-     * 
-     * The calculation of the cofactor is exampled as followed:
-     *   [                     [
-     *   [1, 1, 1, 1]          [1, -1, 1, -1]
-     *   [2, 2, 2, 2]   ---\   [-2, 2, -2, 2]
-     *   [3, 3, 3, 3]   ---/   [3, -3, 3, -3]
-     *   [4, 4, 4, 4]          [-4, 4, -4, 4] 
-     *   ]                     ]
-     * 
      * @param {number[][]} mat - The matrix to determine cofactors for
      * @return {number[][]} matrix of cofactors
      */
