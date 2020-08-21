@@ -638,6 +638,14 @@ class matrixLib{
         return matrixLib.divideMatrixC(adjugate, determinant);
     }
 
+    /**
+     * Computes the row canonical form of a matrix (Also known as reduced row echelon)
+     * Implementation from pseudo code: https://rosettacode.org/wiki/Reduced_row_echelon_form
+     * Note: this method does not accept 1D matricies
+     * Original reference is maintained
+     * @param {number[][]} mat - The matrix to find inverse of
+     * @return {number[][]} Row canonical form of the given matrix
+     */
     static rowCanonicalMatrix(mat){
         let ret = matrixLib.duplicateMatrix(mat);
         let rowCount = mat.length;
