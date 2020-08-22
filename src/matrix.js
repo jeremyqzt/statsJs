@@ -662,6 +662,12 @@ class matrixLib{
         return ret;
     }
 
+    /**
+     * Compares a matrix against another one
+     * @param {number[][]} A - The matrix to compare
+     * @param {number[][]} B - The second matrix to compare
+     * @return {boolean} Absolute equality comparison result
+     */
     static areMatriciesEqual(A, B){
         let ret = true;
         if (!Array.isArray(A[0]) && !Array.isArray(B[0])){
@@ -681,6 +687,13 @@ class matrixLib{
         return Boolean(ret);
     }
 
+    /**
+     * Compares a matrix against another one, but allows a small difference tolerance
+     * @param {number[][]} A - The matrix to compare
+     * @param {number[][]} B - The second matrix to compare
+     * @param {number[][]} diff - The maximum tolerated difference between A[i][j] and B[i][j]
+     * @return {boolean} Absolute equality comparison result, accounting for tolerance
+     */
     static areMatriciesApproximatelyEqual(A, B, diff = 0.01){
         let ret = true;
         if (!Array.isArray(A[0]) && !Array.isArray(B[0])){
