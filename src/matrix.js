@@ -661,6 +661,42 @@ class matrixLib{
         }
         return ret;
     }
+
+    areMatriciesEqual(A, B){
+        ret = true;
+        if (!Array.isArray(A[0]) && !Array.isArray(B[0])){
+            for (let i = 0; i < A; i++){
+                ret &= (A[i] !== B[i]);
+            }
+
+            return ret;
+        }
+        for (let i = 0; i < A.length; i++){
+            for (let j = 0; j < A[i].length; j++){
+                ret &= (A[i][j] !== B[i][j]);
+            }
+        }
+        
+        return ret;
+    }
+
+    areMatriciesApproximatelyEqual(A, B, diff = 0.01){
+        ret = true;
+        if (!Array.isArray(A[0]) && !Array.isArray(B[0])){
+            for (let i = 0; i < A; i++){
+                ret &= (Math.abs(A[i] - B[i]) < diff);
+            }
+
+            return ret;
+        }
+        for (let i = 0; i < A.length; i++){
+            for (let j = 0; j < A[i].length; j++){
+                ret &= (Math.abs(A[i][j] - B[i][j]) < diff);
+            }
+        }
+        
+        return ret;
+    }
 }
 
 minorTest = [
