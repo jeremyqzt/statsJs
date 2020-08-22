@@ -254,8 +254,6 @@ class matrixLib{
      */
     static dotProductMatrix(A, B, row, col){
         let ret = 0;
-        console.log(A);
-        console.log(B)
         for (let i = 0; i < A[row].length; i++){
             ret += A[row][i] * B[i][col];
         }
@@ -675,7 +673,7 @@ class matrixLib{
                 ret &= (A[i] === B[i]);
             }
 
-            return Boolean(ret);
+            return !!ret;
         }
 
         for (let i = 0; i < A.length; i++){
@@ -684,7 +682,7 @@ class matrixLib{
             }
         }
         
-        return Boolean(ret);
+        return !!ret;
     }
 
     /**
@@ -701,7 +699,7 @@ class matrixLib{
                 ret &= (Math.abs(A[i] - B[i]) < diff);
             }
 
-            return Boolean(ret);
+            return !!ret;
         }
         
         for (let i = 0; i < A.length; i++){
@@ -710,7 +708,30 @@ class matrixLib{
             }
         }
         
-        return Boolean(ret);
+        return !!ret;
+    }
+
+    static getVectorFromMatrix(mat, idx){
+        let ret = [];
+        for (let i = 0 ; i < mat.length; i++){
+            ret[i] = [mat[i][idx]];
+        }
+
+        return ret;
+    }
+
+    static vectorNorm(vec){
+        let ret = 0;
+
+        for (let i = 0 ; i < vec.length; i++){
+            ret += (vec[i][0] * vec[i][0]);
+        }
+
+        return Math.sqrt(ret);
+    }
+
+    static QrDecomposeMatrix(mat){
+
     }
 }
 
@@ -720,6 +741,9 @@ minorTest = [
     [-1,-2,-1]
 ]
 
+vec = [ [ 1 ], [ 6 ], [ -1 ] ];
+
+console.log(matrixLib.vectorNorm(vec));
 test3 = [
     [3,7,8,9],
     [1,4,99,1],
@@ -756,7 +780,7 @@ t2 = [
 
 t3 = [[1,2], [2,3], [4,5]]
 
-z = [1,2,3];
+z = [[1,2,3]];
 z1 = [[1],[2],[3]]
 
 //console.log(matrixLib.removeRowAndColMatrix(t1, 0, 0))
@@ -775,7 +799,7 @@ module.exports = {
 //let out = matrixLib.areMatriciesEqual(test, test);
 
 //matrixLib.rowCanonicalMatrix(test4)
-console.log(out);
+console.log(matrixLib.multiplyMatrix(z1, z));
 //console.log(matrixLib.multiplyMatrix(t2, t3));
 
 //console.log(matrixLib.getIdentityMatrix(6));
