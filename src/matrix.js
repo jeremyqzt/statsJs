@@ -662,40 +662,42 @@ class matrixLib{
         return ret;
     }
 
-    areMatriciesEqual(A, B){
-        ret = true;
+    static areMatriciesEqual(A, B){
+        let ret = true;
         if (!Array.isArray(A[0]) && !Array.isArray(B[0])){
-            for (let i = 0; i < A; i++){
-                ret &= (A[i] !== B[i]);
+            for (let i = 0; i < A.length; i++){
+                ret &= (A[i] === B[i]);
             }
 
-            return ret;
+            return Boolean(ret);
         }
+
         for (let i = 0; i < A.length; i++){
             for (let j = 0; j < A[i].length; j++){
-                ret &= (A[i][j] !== B[i][j]);
+                ret &= (A[i][j] === B[i][j]);
             }
         }
         
-        return ret;
+        return Boolean(ret);
     }
 
-    areMatriciesApproximatelyEqual(A, B, diff = 0.01){
-        ret = true;
+    static areMatriciesApproximatelyEqual(A, B, diff = 0.01){
+        let ret = true;
         if (!Array.isArray(A[0]) && !Array.isArray(B[0])){
-            for (let i = 0; i < A; i++){
+            for (let i = 0; i < A.length; i++){
                 ret &= (Math.abs(A[i] - B[i]) < diff);
             }
 
-            return ret;
+            return Boolean(ret);
         }
+        
         for (let i = 0; i < A.length; i++){
             for (let j = 0; j < A[i].length; j++){
                 ret &= (Math.abs(A[i][j] - B[i][j]) < diff);
             }
         }
         
-        return ret;
+        return Boolean(ret);
     }
 }
 
@@ -756,7 +758,10 @@ z1 = [[1],[2],[3]]
 module.exports = {
     matrixLib: matrixLib,
 };
-let out = matrixLib.rowCanonicalMatrix(test4)
+//let out = matrixLib.areMatriciesApproximatelyEqual(z, matrixLib.addMatrixC(z, 0.1));
+//let out = matrixLib.areMatriciesEqual(test, test);
+
+//matrixLib.rowCanonicalMatrix(test4)
 console.log(out);
 //console.log(matrixLib.multiplyMatrix(t2, t3));
 
