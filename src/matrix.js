@@ -720,11 +720,16 @@ class matrixLib{
         return ret;
     }
 
-    static vectorNorm(vec){
+    static vectorNorm(vec, returnAsVec = false){
         let ret = 0;
 
         for (let i = 0 ; i < vec.length; i++){
             ret += (vec[i][0] * vec[i][0]);
+        }
+        if (returnAsVec){
+            let retVec = matrixLib.getZeroMatrix(vec.length, 1);
+            retVec[0][0] = Math.sqrt(ret);
+            return retVec;
         }
 
         return Math.sqrt(ret);
@@ -743,7 +748,7 @@ minorTest = [
 
 vec = [ [ 1 ], [ 6 ], [ -1 ] ];
 
-console.log(matrixLib.vectorNorm(vec));
+console.log(matrixLib.vectorNorm(vec, true));
 test3 = [
     [3,7,8,9],
     [1,4,99,1],
