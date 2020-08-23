@@ -737,9 +737,23 @@ class matrixLib{
     }
 
     static QrDecomposeMatrix(mat){
+        let X = matrixLib.getVectorFromMatrix(mat, 0);
+        let Xnorm = matrixLib.vectorNorm(X, true);
+        let U = matrixLib.subMatrix(X, Xnorm);
+        let H_numerator = matrixLib.multiplyMatrix(U, matrixLib.transposeMatrix(U));
+        let H_denominator = matrixLib.multiplyMatrix(matrixLib.transposeMatrix(U), U)[0][0] / 2;
+        let identity = matrixLib.getIdentityMatrix(H_numerator.length);
+        let H_i = matrixLib.subMatrix(identity, matrixLib.divideMatrixC(H_numerator, H_denominator));
+        let H_iA = matrixLib.multiplyMatrix(H_i, mat);
 
+        console.log(H_iA);
+
+        return 0;
     }
 }
+
+let matTest = [[1,2,1], [2,3,2], [1,2,3]];
+console.log(matrixLib.QrDecomposeMatrix(matTest))
 
 minorTest = [
     [1,2,1],
@@ -749,7 +763,7 @@ minorTest = [
 
 vec = [ [ 1 ], [ 6 ], [ -1 ] ];
 
-console.log(matrixLib.transposeMatrix(matrixLib.vectorNorm(vec, true)));
+//console.log(matrixLib.transposeMatrix(matrixLib.vectorNorm(vec, true)));
 test3 = [
     [3,7,8,9],
     [1,4,99,1],
@@ -805,7 +819,7 @@ module.exports = {
 //let out = matrixLib.areMatriciesEqual(test, test);
 
 //matrixLib.rowCanonicalMatrix(test4)
-console.log(matrixLib.multiplyMatrix(z1, z));
+//console.log(matrixLib.multiplyMatrix(z1, z));
 //console.log(matrixLib.multiplyMatrix(t2, t3));
 
 //console.log(matrixLib.getIdentityMatrix(6));
