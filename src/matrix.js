@@ -726,6 +726,7 @@ class matrixLib{
         for (let i = 0 ; i < vec.length; i++){
             ret += (vec[i][0] * vec[i][0]);
         }
+
         if (returnAsVec){
             let retVec = matrixLib.getZeroMatrix(vec.length, 1);
             retVec[0][0] = Math.sqrt(ret);
@@ -748,7 +749,7 @@ minorTest = [
 
 vec = [ [ 1 ], [ 6 ], [ -1 ] ];
 
-console.log(matrixLib.vectorNorm(vec, true));
+console.log(matrixLib.transposeMatrix(matrixLib.vectorNorm(vec, true)));
 test3 = [
     [3,7,8,9],
     [1,4,99,1],
