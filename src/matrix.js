@@ -736,6 +736,20 @@ class matrixLib{
         return Math.sqrt(ret);
     }
 
+
+    static getSubMatix(mat, idx){
+        let ret = matrixLib.getZeroMatrix(mat.length - idx, mat.length - idx);
+
+        for (let i = idx; i < mat.length; i++){
+            for (let j = idx; j < mat[i].length; j++){
+                ret[i-idx][j-idx] = mat[i][j];
+            }
+        }
+
+        return ret;
+    }
+
+
     static QrDecomposeMatrix(mat){
         let X = matrixLib.getVectorFromMatrix(mat, 0);
         let Xnorm = matrixLib.vectorNorm(X, true);
@@ -760,6 +774,9 @@ minorTest = [
     [6, -1, 0],
     [-1,-2,-1]
 ]
+
+console.log(matrixLib.getSubMatix(minorTest, 2));
+
 
 vec = [ [ 1 ], [ 6 ], [ -1 ] ];
 
