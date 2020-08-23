@@ -749,8 +749,23 @@ class matrixLib{
         return ret;
     }
 
+    static setSubMatix(mat, sub, idx){
+        let ret = matrixLib.duplicateMatrix(mat);
 
-    static QrDecomposeMatrix(mat){
+        for (let i = idx; i < mat.length; i++){
+            for (let j = idx; j < mat[i].length; j++){
+                ret[i][j] = sub[i-idx][j-idx];
+            }
+        }
+
+        return ret;
+    }
+
+    static QrDecomposeMatrix(mat, topLevel = true){
+        if (mat.length === 1){
+            return mat;
+        }
+
         let X = matrixLib.getVectorFromMatrix(mat, 0);
         let Xnorm = matrixLib.vectorNorm(X, true);
         let U = matrixLib.subMatrix(X, Xnorm);
@@ -760,9 +775,19 @@ class matrixLib{
         let H_i = matrixLib.subMatrix(identity, matrixLib.divideMatrixC(H_numerator, H_denominator));
         let H_iA = matrixLib.multiplyMatrix(H_i, mat);
 
-        console.log(H_iA);
+        let subMatrix_H_iA = matrixLib.getSubMatix(H_iA, 1);
+        let lowerQr = matrixLib.QrDecomposeMatrix(subMatrix_H_iA, false);
+        let R = matrixLib.setSubMatix(H_iA, lowerQr, 1);
+        if (topLevel){
+            let Q = matrixLib.multiplyMatrix(mat, matrixLib.inverseMatrix(R));
 
-        return 0;
+            return {
+                R: R,
+                Q: Q,
+            };
+        }
+
+        return R;
     }
 }
 
@@ -775,7 +800,7 @@ minorTest = [
     [-1,-2,-1]
 ]
 
-console.log(matrixLib.getSubMatix(minorTest, 2));
+//console.log(matrixLib.getSubMatix(minorTest, 2));
 
 
 vec = [ [ 1 ], [ 6 ], [ -1 ] ];
