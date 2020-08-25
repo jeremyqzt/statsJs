@@ -807,8 +807,11 @@ class matrixLib{
         return ret;
     }
 
+    static QrDecomposeMatrix(mat){
+        return matrixLib._QrDecomposeMatrix(mat, true);
+    }
 
-    static QrDecomposeMatrix(mat, topLevel = true){
+    static _QrDecomposeMatrix(mat, topLevel){
         if (mat.length === 1){
             return {
                 R: mat,
@@ -827,7 +830,7 @@ class matrixLib{
         let H_iA = matrixLib.multiplyMatrix(H_i, mat);
 
         let subMatrix_H_iA = matrixLib.getSubMatix(H_iA, 1);
-        let nextQr = matrixLib.QrDecomposeMatrix(subMatrix_H_iA, false);
+        let nextQr = matrixLib._QrDecomposeMatrix(subMatrix_H_iA, false);
         let lowerQr = nextQr.R;
 
         let H_i_next = [H_i];
@@ -865,13 +868,13 @@ class matrixLib{
 
 let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
 let test = matrixLib.QrDecomposeMatrix(matTest);
-let test2 = matrixLib.rankOfMatrix(matTest);
+//let test2 = matrixLib.rankOfMatrix(matTest);
 
-console.log(test2)
+//console.log(test2)
 //console.log(test)
 //console.log(matrixLib.roundMatrix(test.Q,2))
 
-//console.log(matrixLib.multiplyMatrix(test.Q, test.R))
+console.log(matrixLib.multiplyMatrix(test.Q, test.R))
 
 minorTest = [
     [1,2,1],
