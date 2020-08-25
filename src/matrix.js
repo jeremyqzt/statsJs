@@ -794,7 +794,10 @@ class matrixLib{
 
     static QrDecomposeMatrix(mat, topLevel = true){
         if (mat.length === 1){
-            return mat;
+            return {
+                R: mat,
+                Q: null,
+            };
         }
 
         let X = matrixLib.getVectorFromMatrix(mat, 0);
@@ -808,27 +811,46 @@ class matrixLib{
         let H_iA = matrixLib.multiplyMatrix(H_i, mat);
 
         let subMatrix_H_iA = matrixLib.getSubMatix(H_iA, 1);
-        let lowerQr = matrixLib.QrDecomposeMatrix(subMatrix_H_iA, false);
+        let nextQr = matrixLib.QrDecomposeMatrix(subMatrix_H_iA, false);
+        let lowerQr = nextQr.R;
+
+        let H_i_next = [H_i];
+
+        if (nextQr.Q !== null){
+            H_i_next = [H_i, ...nextQr.Q];
+        }
+
         let R = matrixLib.setSubMatix(H_iA, lowerQr, 1);
         if (topLevel){
 
             //TODO: This only works for square matricies...
-            let Q = matrixLib.multiplyMatrix(mat, matrixLib.inverseMatrix(R));
+            //let Q = matrixLib.multiplyMatrix(mat, matrixLib.inverseMatrix(R));
+
+            let nextQ = H_i_next[0];
+            for (let i = 1; i < H_i_next.length; i++){
+                let nextQUnprocessed = matrixLib.getIdentityMatrixRC(H_i_next[i].length + i, H_i_next[i][0].length + i);
+                let subMatrix = matrixLib.setSubMatix(nextQUnprocessed, H_i_next[i], i);
+                nextQ = matrixLib.multiplyMatrix(nextQ, subMatrix);
+            }
 
             return {
                 R: R,
-                Q: Q,
+                Q: nextQ,
             };
         }
 
-        return R;
+        return {
+            R: R,
+            Q: H_i_next,
+        };
     }
 
 }
 
 let matTest = [[1,2,3,4,5], [-1,-10,1,1,5], [7,-8,1,2,8], [9,-1,1,2,3]];
 let test = matrixLib.QrDecomposeMatrix(matTest);
-console.log(matrixLib.roundMatrix(test.Q,2))
+//console.log(test)
+//console.log(matrixLib.roundMatrix(test.Q,2))
 
 console.log(matrixLib.multiplyMatrix(test.Q, test.R))
 
