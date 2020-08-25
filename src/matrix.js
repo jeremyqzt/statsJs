@@ -631,6 +631,22 @@ class matrixLib{
         return matrixLib.divideMatrixC(adjugate, determinant);
     }
 
+
+    static rankOfMatrix(mat){
+        let rref = matrixLib.rowCanonicalMatrix(mat);
+        let rank = 0;
+        let pivot = 0;
+        for (let i = 0; i < rref.length; i++){
+            if (rref[i][pivot] !== 0){
+                rank +=1;
+                pivot += 1;
+            }
+        }
+
+        return rank;
+
+    }
+
     /**
      * Computes the row canonical form of a matrix (Also known as reduced row echelon)
      * Implementation from pseudo code: https://rosettacode.org/wiki/Reduced_row_echelon_form
@@ -847,12 +863,15 @@ class matrixLib{
 
 }
 
-let matTest = [[1,2,3,4,5], [-1,-10,1,1,5], [7,-8,1,2,8], [9,-1,1,2,3]];
+let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
 let test = matrixLib.QrDecomposeMatrix(matTest);
+let test2 = matrixLib.rankOfMatrix(matTest);
+
+console.log(test2)
 //console.log(test)
 //console.log(matrixLib.roundMatrix(test.Q,2))
 
-console.log(matrixLib.multiplyMatrix(test.Q, test.R))
+//console.log(matrixLib.multiplyMatrix(test.Q, test.R))
 
 minorTest = [
     [1,2,1],
