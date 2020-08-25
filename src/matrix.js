@@ -310,6 +310,24 @@ class matrixLib{
     }
 
     /**
+     * Returns an identity matrix of size R X C
+     * @param {number} rows - Number of rows in the matrix
+     * @param {number} cols - Number of columns in the matrix
+     * @return {number[][]} Identity matrix of a given size
+     */
+    static getIdentityMatrixRC(rows, cols){
+        let ret = [];
+        for (let i = 0; i < rows; i++){
+            let newRow = [];
+            for (let j = 0; j < cols; j++){
+                newRow[j] = (i === j) ? 1: 0;
+            }
+            ret[i] = newRow;
+        }
+        return ret;
+    }
+
+    /**
      * Returns an square zero matrix of a given size
      * @param {number} row - The row size of matrix to generate
      * @param {number} col - The column size of matrix to generate
@@ -545,7 +563,6 @@ class matrixLib{
      */
     static duplicateMatrix(mat){
         let ret = [];
-        //[1,2,3]
         if (!Array.isArray(mat[0])){
             return [...mat];
         }
@@ -761,6 +778,20 @@ class matrixLib{
         return ret;
     }
 
+
+    static roundMatrix(mat, digits){
+        let ret = matrixLib.duplicateMatrix(mat);
+
+        for (let i = 0; i < ret.length; i++){
+            for (let j = 0 ; j < ret[i].length; j++){
+                ret[i][j] = +ret[i][j].toFixed(digits);
+            }
+        }
+
+        return ret;
+    }
+
+
     static QrDecomposeMatrix(mat, topLevel = true){
         if (mat.length === 1){
             return mat;
@@ -773,12 +804,15 @@ class matrixLib{
         let H_denominator = matrixLib.multiplyMatrix(matrixLib.transposeMatrix(U), U)[0][0] / 2;
         let identity = matrixLib.getIdentityMatrix(H_numerator.length);
         let H_i = matrixLib.subMatrix(identity, matrixLib.divideMatrixC(H_numerator, H_denominator));
+
         let H_iA = matrixLib.multiplyMatrix(H_i, mat);
 
         let subMatrix_H_iA = matrixLib.getSubMatix(H_iA, 1);
         let lowerQr = matrixLib.QrDecomposeMatrix(subMatrix_H_iA, false);
         let R = matrixLib.setSubMatix(H_iA, lowerQr, 1);
         if (topLevel){
+
+            //TODO: This only works for square matricies...
             let Q = matrixLib.multiplyMatrix(mat, matrixLib.inverseMatrix(R));
 
             return {
@@ -789,10 +823,14 @@ class matrixLib{
 
         return R;
     }
+
 }
 
-let matTest = [[1,2,1], [2,3,2], [1,2,3]];
-console.log(matrixLib.QrDecomposeMatrix(matTest))
+let matTest = [[1,2,3,4,5], [-1,-10,1,1,5], [7,-8,1,2,8], [9,-1,1,2,3]];
+let test = matrixLib.QrDecomposeMatrix(matTest);
+console.log(matrixLib.roundMatrix(test.Q,2))
+
+console.log(matrixLib.multiplyMatrix(test.Q, test.R))
 
 minorTest = [
     [1,2,1],
