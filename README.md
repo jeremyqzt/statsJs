@@ -23,9 +23,9 @@ This is a library that helps with some common stats operations. We support the f
     * Matrix of Minors, Cofactors
     * Matrix Transpose
     * Matrix Inverse
-    * Row Canonical Form (AKA. Reduced Row Echelon Form)
+    * Row Canonical Form (Reduced Row Echelon Form)
     * LU Decomposition
-    * QR Decomposition (Planned)
+    * QR Decomposition
     * Dot product
     * Arithmetic on every matrix element
     * Deep copying a matrix
