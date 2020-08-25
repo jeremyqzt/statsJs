@@ -24,6 +24,7 @@ This is a library that helps with some common stats operations. We support the f
     * Matrix Transpose
     * Matrix Inverse
     * Row Canonical Form (Reduced Row Echelon Form)
+    * Matrix Rank
     * LU Decomposition
     * QR Decomposition
     * Dot product
