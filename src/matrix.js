@@ -744,6 +744,12 @@ class matrixLib{
         return !!ret;
     }
 
+    /**
+     * Gets a matrix column as a vector
+     * @param {number[][]} mat - The matrix get vector for
+     * @param {number[][]} idx - The column to get matrix for
+     * @return {number[]} Vector from the matrix
+     */
     static getVectorFromMatrix(mat, idx){
         let ret = [];
         for (let i = 0 ; i < mat.length; i++){
@@ -753,6 +759,12 @@ class matrixLib{
         return ret;
     }
 
+    /**
+     * Gets a matrix column as a vector
+     * @param {number[][]} mat - The matrix get vector for
+     * @param {number[][]} idx - The column to get matrix for
+     * @return {number[]} Vector from the matrix
+     */
     static vectorNorm(vec, returnAsVec = false){
         let ret = 0;
 
@@ -841,10 +853,6 @@ class matrixLib{
 
         let R = matrixLib.setSubMatix(H_iA, lowerQr, 1);
         if (topLevel){
-
-            //TODO: This only works for square matricies...
-            //let Q = matrixLib.multiplyMatrix(mat, matrixLib.inverseMatrix(R));
-
             let nextQ = H_i_next[0];
             for (let i = 1; i < H_i_next.length; i++){
                 let nextQUnprocessed = matrixLib.getIdentityMatrixRC(H_i_next[i].length + i, H_i_next[i][0].length + i);
