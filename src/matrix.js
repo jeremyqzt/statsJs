@@ -807,6 +807,13 @@ class matrixLib{
     }
 
 
+    /**
+     * Rounds each element in the matrix to a given accuracy
+     * Original reference is maintained
+     * @param {number[][]} mat - The matrix round
+     * @param {number} digits - The number of digits to round to
+     * @return {number[][]} Matrix with rounding applied
+     */
     static roundMatrix(mat, digits){
         let ret = matrixLib.duplicateMatrix(mat);
 
@@ -819,6 +826,12 @@ class matrixLib{
         return ret;
     }
 
+    /**
+     * Performs QR decomposition on the matrix
+     * Original reference is maintained
+     * @param {number[][]} mat - The matrix round
+     * @return {number[][]} Matrix with rounding applied
+     */
     static QrDecomposeMatrix(mat){
         return matrixLib._QrDecomposeMatrix(mat, true);
     }
@@ -854,15 +867,18 @@ class matrixLib{
         let R = matrixLib.setSubMatix(H_iA, lowerQr, 1);
         if (topLevel){
             let nextQ = H_i_next[0];
+            let allQ = [];
             for (let i = 1; i < H_i_next.length; i++){
                 let nextQUnprocessed = matrixLib.getIdentityMatrixRC(H_i_next[i].length + i, H_i_next[i][0].length + i);
                 let subMatrix = matrixLib.setSubMatix(nextQUnprocessed, H_i_next[i], i);
                 nextQ = matrixLib.multiplyMatrix(nextQ, subMatrix);
+                allQ.push(nextQUnprocessed);
             }
 
             return {
                 R: R,
                 Q: nextQ,
+                Q_x: allQ,
             };
         }
 
