@@ -632,6 +632,11 @@ class matrixLib{
     }
 
 
+    /**
+     * Returns then rank of a matrix
+     * @param {number[][]} mat - The matrix to get rank for
+     * @return {number}  Matrix rank
+     */    
     static rankOfMatrix(mat){
         let rref = matrixLib.rowCanonicalMatrix(mat);
         let rank = 0;
@@ -782,6 +787,13 @@ class matrixLib{
     }
 
 
+    /**
+     * Returns a sub matrix from mat[idx][idx] onwards
+     * Original reference is maintained
+     * @param {number[][]} mat - The matrix round
+     * @param {number} idx - The matrix offset
+     * @return {number[][]} Matrix from mat[idx][idx] onwards
+     */
     static getSubMatix(mat, idx){
         let ret = matrixLib.getZeroMatrix(mat.length - idx, mat.length - idx);
 
@@ -888,7 +900,7 @@ class matrixLib{
         };
     }
 
-    static QReig(mat, iter = 20){
+    static QReig(mat, iter = 2000){
         let QR = null;
         let intermediate = null;
         let nextA = mat;
@@ -897,6 +909,7 @@ class matrixLib{
 
         for (let i = 0; i < iter; i++){
             QR = matrixLib.QrDecomposeMatrix(nextA);
+            //nextA = matrixLib.multiplyMatrix(QR.R, QR.Q);
             intermediate = matrixLib.multiplyMatrix(QR.Q, nextA);
             nextA = matrixLib.multiplyMatrix(nextA, matrixLib.transposeMatrix(QR.Q));
         }
