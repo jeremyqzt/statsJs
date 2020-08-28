@@ -888,7 +888,30 @@ class matrixLib{
         };
     }
 
+    static QReig(mat, iter = 20){
+        let QR = null;
+        let intermediate = null;
+        let nextA = mat;
+
+        let ret = [];
+
+        for (let i = 0; i < iter; i++){
+            QR = matrixLib.QrDecomposeMatrix(nextA);
+            intermediate = matrixLib.multiplyMatrix(QR.Q, nextA);
+            nextA = matrixLib.multiplyMatrix(nextA, matrixLib.transposeMatrix(QR.Q));
+        }
+
+        for (let j = 0; j < mat.length; j++){
+            ret.push(nextA[j][j]);
+        }
+
+        return ret;
+    }
+
 }
+
+let ttt = [[1,5,22], [-1,-7, 8], [10,-6, 1]];
+console.log(matrixLib.QReig(ttt));
 
 let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
 let test = matrixLib.QrDecomposeMatrix(matTest);
@@ -898,7 +921,7 @@ let test = matrixLib.QrDecomposeMatrix(matTest);
 //console.log(test)
 //console.log(matrixLib.roundMatrix(test.Q,2))
 
-console.log(matrixLib.multiplyMatrix(test.Q, test.R))
+//console.log(matrixLib.multiplyMatrix(test.Q, test.R))
 
 minorTest = [
     [1,2,1],
