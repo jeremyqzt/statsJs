@@ -810,6 +810,14 @@ class matrixLib{
         return ret;
     }
 
+    /**
+     * Returns a matrix from mat[idx][idx] set as a submatrix
+     * Original reference is maintained
+     * @param {number[][]} mat - The matrix round
+     * @param {number[][]} sub - The submatrix to plug into the original mat
+     * @param {number} idx - The matrix offset
+     * @return {number[][]} Matrix reaplced mat[idx][idx] onwards with sub
+     */
     static setSubMatix(mat, sub, idx){
         let ret = matrixLib.duplicateMatrix(mat);
 
@@ -818,7 +826,6 @@ class matrixLib{
                 ret[i][j] = sub[i-idx][j-idx];
             }
         }
-
         return ret;
     }
 
@@ -904,12 +911,17 @@ class matrixLib{
         };
     }
 
+    /**
+     * Performs QR iteration to determine eigenvalues
+     * @param {number[][]} mat - The matrix to find eigenvalues for
+     * @param {iter} mat - Number of iterations (default 2000)
+     * @return {number[][]} Eigenvalue matrix (eigenvalues in diagnol)
+     */
     static QReig(mat, iter = 2000){
         let QR = null;
         let intermediate = null;
         let nextA = mat;
 
-        let ret = [];
 
         for (let i = 0; i < iter; i++){
             QR = matrixLib.QrDecomposeMatrix(nextA);
@@ -918,8 +930,10 @@ class matrixLib{
             nextA = matrixLib.multiplyMatrix(nextA, matrixLib.transposeMatrix(QR.Q));
         }
 
+        let ret = matrixLib.getIdentityMatrix(mat.length);
+
         for (let j = 0; j < mat.length; j++){
-            ret.push(nextA[j][j]);
+            ret[j][j] = nextA[j][j];
         }
 
         return ret;
