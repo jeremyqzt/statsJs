@@ -244,8 +244,8 @@ class matrixLib{
 
     /**
      * Computers the dot product at a given row and column
-     * Note: A and B must be multiply - able. The dot product is
-     * A (dot) B. Inputs are 0-offset.
+     * Note: A and B must be multiply-able
+     * Inputs are 0-offset.
      * @param {number[][]} A - The matrix A
      * @param {number[][]} B - The matrix B
      * @param {number} row - Row to find dot product for
@@ -280,9 +280,9 @@ class matrixLib{
 
     /**
      * Operates on the given matricies with func (for 1 dim matrices)
-     * @param {number[][]} A - The matrix to sum
-     * @param {number[][]} B - The second to sum
-     * @return {number[][]} Numerical evaluation of matrix A and B
+     * @param {number[]} A - The matrix to sum
+     * @param {number[]} B - The second to sum
+     * @return {number[]} Numerical evaluation of matrix A and B
      */
     static matrixOpperation1D(A, B, func){
         let ret = [];
@@ -369,10 +369,16 @@ class matrixLib{
     }
 
     /**
+     * @typedef {Object} LU
+     * @property {number[][]} L - Lower triangular matrix from decomposition
+     * @property {number[][]} U - Upper triangular matrix from decomposition
+     */
+
+    /**
      * Computes the upper and lower matrix using crout's method
      * Implementation is from: https://en.wikipedia.org/wiki/Crout_matrix_decomposition
      * @param {number[][]} A - The matrix to decompose
-     * @return {number[][]} Identity matrix of a given size
+     * @return {LU} LU decomposition result
      */
     static LuDecomposeMatrix(A){
         let n = A.length;
@@ -499,14 +505,12 @@ class matrixLib{
     /**
      * Transposes a given matrix
      * 
-     * A transpose is exampled as followed:
      * @param {number[][]} mat - The matrix to transpose
      * @return {number[][]} Transposed matrix
      */
     static transposeMatrix(mat){
         let ret = [];
 
-        //[1,2,3]
         if (!Array.isArray(mat[0])){
             for (let i = 0; i < mat.length; i++){
                 ret[i] = [mat[i]];
