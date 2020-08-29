@@ -1,5 +1,6 @@
 const {probabilityLib, statsLib, combinationLib, permutationLib} = require('../index.js');
 const assert = require('assert');
+const { matrixLib } = require('../src/matrix.js');
 
 test = permutationLib.permutation([1,2,3]);
 
@@ -438,4 +439,45 @@ describe('Permutation Test', () => {
     it(`${testDesc} ${simpleTestIdx}`, () => {
         assert.equal(0, statsLib.correlation([1], [1,2]));
     });
+   });
+
+   describe('Matrix Library Test', () => {
+    let testDesc = "Matrix Library Test";
+
+    let t = [1,2,3,4];
+    let tt = [[1,5], [-1,-7]];
+    let ttAppox = [[1.1,5.1], [-1.1,-7.1]];
+
+    let ttt = [[1,5,22], [-1,-7, 8], [10,-6, 1]];
+    let tttt = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
+
+    let simpleTestIdx = 1;
+
+    it(`${testDesc} ${simpleTestIdx}: Comparison`, () => {
+           assert(matrixLib.areMatriciesEqual(tt, tt));
+       });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Comparison Approximate`, () => {
+        assert(matrixLib.areMatriciesApproximatelyEqual(tt, ttAppox, 0.11));
+    });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Add C Test`, () => {
+        let addedMat = matrixLib.addMatrixC(tt, 1);
+        let added1DMat = matrixLib.addMatrixC(t, 1);
+        assert(matrixLib.areMatriciesEqual(added1DMat, [2,3,4,5,6]));
+        assert(matrixLib.areMatriciesApproximatelyEqual(tt, addedMat, 1.01));
+        assert(!matrixLib.areMatriciesApproximatelyEqual(tt, addedMat, 0.99));
+    });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Subtract C Test`, () => {
+        let addedMat = matrixLib.subMatrixC(tt, 1);
+        let added1DMat = matrixLib.subMatrixC(t, 1);
+        assert(matrixLib.areMatriciesEqual(added1DMat, [0,1,2,3,4]));
+        assert(matrixLib.areMatriciesApproximatelyEqual(tt, addedMat, 1.01));
+        assert(!matrixLib.areMatriciesApproximatelyEqual(tt, addedMat, 0.99));
+    });
+    simpleTestIdx++;
    });
