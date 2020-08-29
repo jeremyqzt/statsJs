@@ -731,7 +731,7 @@ class matrixLib{
      * Compares a matrix against another one, but allows a small difference tolerance
      * @param {number[][]} A - The matrix to compare
      * @param {number[][]} B - The second matrix to compare
-     * @param {number[][]} diff - The maximum tolerated difference between A[i][j] and B[i][j]
+     * @param {number} diff - The maximum (exclusive) tolerated difference between A[i][j] and B[i][j]
      * @return {boolean} Absolute equality comparison result, accounting for tolerance
      */
     static areMatriciesApproximatelyEqual(A, B, diff = 0.01){
@@ -941,11 +941,11 @@ class matrixLib{
 
 }
 
-let ttt = [[1,5,22], [-1,-7, 8], [10,-6, 1]];
-console.log(matrixLib.QReig(ttt));
+//let ttt = [[1,5,22], [-1,-7, 8], [10,-6, 1]];
+//console.log(matrixLib.QReig(ttt));
 
-let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
-let test = matrixLib.QrDecomposeMatrix(matTest);
+//let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
+//let test = matrixLib.QrDecomposeMatrix(matTest);
 //let test2 = matrixLib.rankOfMatrix(matTest);
 
 //console.log(test2)
@@ -954,56 +954,56 @@ let test = matrixLib.QrDecomposeMatrix(matTest);
 
 //console.log(matrixLib.multiplyMatrix(test.Q, test.R))
 
-minorTest = [
-    [1,2,1],
-    [6, -1, 0],
-    [-1,-2,-1]
-]
+//minorTest = [
+//   [1,2,1],
+//    [6, -1, 0],
+//    [-1,-2,-1]
+//]
 
 //console.log(matrixLib.getSubMatix(minorTest, 2));
 
 
-vec = [ [ 1 ], [ 6 ], [ -1 ] ];
+//vec = [ [ 1 ], [ 6 ], [ -1 ] ];
 
 //console.log(matrixLib.transposeMatrix(matrixLib.vectorNorm(vec, true)));
-test3 = [
-    [3,7,8,9],
-    [1,4,99,1],
-    [77,11,9,-5],
-    [1.5,5.5,1,-3.1]
-]
+//test3 = [
+//    [3,7,8,9],
+//    [1,4,99,1],
+//    [77,11,9,-5],
+//    [1.5,5.5,1,-3.1]
+//]
 
-test4 = [
-    [1,2,-1,-4],
-    [2,3,-1,-11],
-    [-2,0,-3,22],
-]
-test = [
-    [1,2,3],
-    [4,5,6],
-    [7,2,9]
-]
+//test4 = [
+//    [1,2,-1,-4],
+//    [2,3,-1,-11],
+//    [-2,0,-3,22],
+//]
+//test = [
+//    [1,2,3],
+//    [4,5,6],
+//    [7,2,9]
+//]
 
-test2 = [
-    [1,1,1],
-    [1,1,1],
-    [1,1,1]
-]
+//test2 = [
+//    [1,1,1],
+//    [1,1,1],
+//    [1,1,1]
+//]
 
-t1 = [
-    [1,2,3,4],
-    [2,3,4,5],
-    [4,5,8,6]
-]
-t2 = [
-    [1,2,3],
-    [2,3,4],
-]
+//t1 = [
+//    [1,2,3,4],
+//    [2,3,4,5],
+//    [4,5,8,6]
+//]
+//t2 = [
+//    [1,2,3],
+//    [2,3,4],
+//]
 
-t3 = [[1,2], [2,3], [4,5]]
+//t3 = [[1,2], [2,3], [4,5]]
 
-z = [[1,2,3]];
-z1 = [[1],[2],[3]]
+//z = [[1,2,3]];
+//z1 = [[1],[2],[3]]
 
 //console.log(matrixLib.removeRowAndColMatrix(t1, 0, 0))
 //console.log(matrixLib.LuDecomposeMatrix(t1))
