@@ -273,7 +273,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line145">line 145</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line175">line 175</a>
     </li></ul></dd>
     
 
@@ -513,6 +513,409 @@
     
 
     
+    <h4 class="name" id=".areMatriciesApproximatelyEqual"><span class="type-signature">(static) </span>areMatriciesApproximatelyEqual<span class="signature">(A, B, diff)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Compares a matrix against another one, but allows a small difference tolerance
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>A</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The matrix to compare</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>B</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The second matrix to compare</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>diff</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    0.01
+                
+                </td>
+            
+
+            <td class="description last">The maximum tolerated difference between A[i][j] and B[i][j]</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line737">line 737</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Absolute equality comparison result, accounting for tolerance
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".areMatriciesEqual"><span class="type-signature">(static) </span>areMatriciesEqual<span class="signature">(A, B)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Compares a matrix against another one
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>A</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix to compare</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>B</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The second matrix to compare</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line711">line 711</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Absolute equality comparison result
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id=".cofactorMatrix"><span class="type-signature">(static) </span>cofactorMatrix<span class="signature">(mat)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
     
 
@@ -521,7 +924,7 @@
 
 
 <div class="description">
-    Determins a the matrix of cofactors.The cofactor checkerboard is the followed:[  [+, -, +, -]  [-, +, -, +]  [+, -, +, -]  [-, +, -, +]]The calculation of the cofactor is exampled as followed:  [                     [  [1, 1, 1, 1]          [1, -1, 1, -1]  [2, 2, 2, 2]   ---\   [-2, 2, -2, 2]  [3, 3, 3, 3]   ---/   [3, -3, 3, -3]  [4, 4, 4, 4]          [-4, 4, -4, 4]   ]                     ]
+    Determins a the matrix of cofactors.The cofactor checkerboard is the followed:
 </div>
 
 
@@ -614,7 +1017,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line507">line 507</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line537">line 537</a>
     </li></ul></dd>
     
 
@@ -773,7 +1176,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line410">line 410</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line463">line 463</a>
     </li></ul></dd>
     
 
@@ -932,7 +1335,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line305">line 305</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line353">line 353</a>
     </li></ul></dd>
     
 
@@ -1114,7 +1517,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line89">line 89</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line119">line 119</a>
     </li></ul></dd>
     
 
@@ -1180,7 +1583,7 @@
 
 
 <div class="description">
-    Computers the dot product at a given row and columnNote: A and B must be multiply - able. The dot product isA (dot) B. Inputs are 0-offset.
+    Computers the dot product at a given row and columnNote: A and B must be multiply-ableInputs are 0-offset.
 </div>
 
 
@@ -1342,7 +1745,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line225">line 225</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line255">line 255</a>
     </li></ul></dd>
     
 
@@ -1501,7 +1904,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line538">line 538</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line568">line 568</a>
     </li></ul></dd>
     
 
@@ -1660,7 +2063,189 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line270">line 270</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line300">line 300</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Identity matrix of a given size
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".getIdentityMatrixRC"><span class="type-signature">(static) </span>getIdentityMatrixRC<span class="signature">(rows, cols)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Returns an identity matrix of size R X C
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>rows</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Number of rows in the matrix</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cols</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Number of columns in the matrix</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line318">line 318</a>
     </li></ul></dd>
     
 
@@ -1865,7 +2450,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line372">line 372</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line426">line 426</a>
     </li></ul></dd>
     
 
@@ -1906,6 +2491,370 @@
     <dd>
         
 <span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".getSubMatix"><span class="type-signature">(static) </span>getSubMatix<span class="signature">(mat, idx)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Returns a sub matrix from mat[idx][idx] onwardsOriginal reference is maintained
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix round</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>idx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix offset</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line801">line 801</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Matrix from mat[idx][idx] onwards
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".getVectorFromMatrix"><span class="type-signature">(static) </span>getVectorFromMatrix<span class="signature">(mat, idx)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Gets a matrix column as a vector
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix get vector for</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>idx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The column to get matrix for</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line762">line 762</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Vector from the matrix
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;number></span>
 
 
     </dd>
@@ -2047,7 +2996,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line288">line 288</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line336">line 336</a>
     </li></ul></dd>
     
 
@@ -2206,7 +3155,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line602">line 602</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line629">line 629</a>
     </li></ul></dd>
     
 
@@ -2446,7 +3395,7 @@
     
 
     
-    <h4 class="name" id=".LuDecomposeMatrix"><span class="type-signature">(static) </span>LuDecomposeMatrix<span class="signature">(A)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    <h4 class="name" id=".LuDecomposeMatrix"><span class="type-signature">(static) </span>LuDecomposeMatrix<span class="signature">(A)</span><span class="type-signature"> &rarr; {<a href="global.html#LU">LU</a>}</span></h4>
     
 
     
@@ -2547,7 +3496,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line329">line 329</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line383">line 383</a>
     </li></ul></dd>
     
 
@@ -2576,7 +3525,7 @@
 
         
 <div class="param-desc">
-    Identity matrix of a given size
+    LU decomposition result
 </div>
 
 
@@ -2587,7 +3536,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;Array.&lt;number>></span>
+<span class="param-type"><a href="global.html#LU">LU</a></span>
 
 
     </dd>
@@ -2729,7 +3678,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line239">line 239</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line269">line 269</a>
     </li></ul></dd>
     
 
@@ -2787,7 +3736,7 @@
     
 
     
-    <h4 class="name" id=".matrixOpperation1D"><span class="type-signature">(static) </span>matrixOpperation1D<span class="signature">(A, B)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    <h4 class="name" id=".matrixOpperation1D"><span class="type-signature">(static) </span>matrixOpperation1D<span class="signature">(A, B)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span></h4>
     
 
     
@@ -2837,7 +3786,7 @@
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Array.&lt;number>></span>
+<span class="param-type">Array.&lt;number></span>
 
 
             
@@ -2860,7 +3809,7 @@
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Array.&lt;number>></span>
+<span class="param-type">Array.&lt;number></span>
 
 
             
@@ -2911,7 +3860,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line257">line 257</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line287">line 287</a>
     </li></ul></dd>
     
 
@@ -2951,7 +3900,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;Array.&lt;number>></span>
+<span class="param-type">Array.&lt;number></span>
 
 
     </dd>
@@ -3093,7 +4042,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line186">line 186</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line216">line 216</a>
     </li></ul></dd>
     
 
@@ -3434,7 +4383,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line582">line 582</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line609">line 609</a>
     </li></ul></dd>
     
 
@@ -3475,6 +4424,688 @@
     <dd>
         
 <span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".powerMatrixC"><span class="type-signature">(static) </span>powerMatrixC<span class="signature">(A, c)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Takes the power C for each element in the array
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>A</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix to take power for</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>c</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Constant to take power for</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line90">line 90</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Matrix result from power of c for each element in A
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".QrDecomposeMatrix"><span class="type-signature">(static) </span>QrDecomposeMatrix<span class="signature">(mat)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Performs QR decomposition on the matrixOriginal reference is maintained
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix round</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line858">line 858</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Matrix with rounding applied
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".QReig"><span class="type-signature">(static) </span>QReig<span class="signature">(mat, mat)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Performs QR iteration to determine eigenvalues
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix to find eigenvalues for</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">iter</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Number of iterations (default 2000)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line920">line 920</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Eigenvalue matrix (eigenvalues in diagnol)
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".rankOfMatrix"><span class="type-signature">(static) </span>rankOfMatrix<span class="signature">(mat)</span><span class="type-signature"> &rarr; {number}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Returns then rank of a matrix
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix to get rank for</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line644">line 644</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Matrix rank
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
 
 
     </dd>
@@ -3639,7 +5270,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line562">line 562</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line589">line 589</a>
     </li></ul></dd>
     
 
@@ -3669,6 +5300,552 @@
         
 <div class="param-desc">
     Matrix without the specified row and column
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".roundMatrix"><span class="type-signature">(static) </span>roundMatrix<span class="signature">(mat, digits)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Rounds each element in the matrix to a given accuracyOriginal reference is maintained
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix round</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>digits</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The number of digits to round to</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line840">line 840</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Matrix with rounding applied
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".rowCanonicalMatrix"><span class="type-signature">(static) </span>rowCanonicalMatrix<span class="signature">(mat)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Computes the row canonical form of a matrix (Also known as reduced row echelon)Implementation from pseudo code: https://rosettacode.org/wiki/Reduced_row_echelon_formNote: this method does not accept 1D matriciesOriginal reference is maintained
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix to find inverse of</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line667">line 667</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Row canonical form of the given matrix
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".setSubMatix"><span class="type-signature">(static) </span>setSubMatix<span class="signature">(mat, sub, idx)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Returns a matrix from mat[idx][idx] set as a submatrixOriginal reference is maintained
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix round</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sub</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The submatrix to plug into the original mat</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>idx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix offset</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line821">line 821</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Matrix reaplced mat[idx][idx] onwards with sub
 </div>
 
 
@@ -3821,7 +5998,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line165">line 165</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line195">line 195</a>
     </li></ul></dd>
     
 
@@ -4003,7 +6180,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line117">line 117</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line147">line 147</a>
     </li></ul></dd>
     
 
@@ -4069,7 +6246,7 @@
 
 
 <div class="description">
-    Transposes a given matrixA transpose is exampled as followed:  [                     [  [1, 1, 1, 1]          [1, 1]  [2, 2, 2, 2]   ---\   [2, 2]  ]              ---/   [3, 3]                        [4, 4]                        ]
+    Transposes a given matrix
 </div>
 
 
@@ -4162,7 +6339,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line465">line 465</a>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line511">line 511</a>
     </li></ul></dd>
     
 
@@ -4215,6 +6392,188 @@
 
 
         
+            
+
+    
+
+    
+    <h4 class="name" id=".vectorNorm"><span class="type-signature">(static) </span>vectorNorm<span class="signature">(mat, idx)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Gets a matrix column as a vector
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The matrix get vector for</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>idx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The column to get matrix for</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="matrix.js.html">matrix.js</a>, <a href="matrix.js.html#line777">line 777</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Vector from the matrix
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;number></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
     
 
     
@@ -4236,7 +6595,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Aug 14 2020 21:50:28 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sat Aug 29 2020 16:14:02 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
