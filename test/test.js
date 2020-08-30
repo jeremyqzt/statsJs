@@ -557,4 +557,14 @@ describe('Permutation Test', () => {
 
     });
     simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Identity matrix Test`, () => {
+        let identity = [[1,0,0,0,0],[0,1,0,0,0],[0,0,1,0,0],[0,0,0,1,0],[0,0,0,0,1]];
+        let libIdentity = matrixLib.getIdentityMatrix(5);
+        assert(matrixLib.areMatriciesEqual(identity, libIdentity));
+
+    });
+    simpleTestIdx++;
+
+
    });
