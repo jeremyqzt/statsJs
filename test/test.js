@@ -531,4 +531,16 @@ describe('Permutation Test', () => {
 
     });
     simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Add matrix Test`, () => {
+        let mat0 = matrixLib.subMatrix(tt, tt);
+        let zeroMat = matrixLib.getZeroMatrix(tt.length, tt.length);
+        assert(matrixLib.areMatriciesEqual(mat0, zeroMat));
+
+        let mat01D = matrixLib.subMatrix(t, t);
+        let zeroMat1D = [0,0,0,0];
+        assert(matrixLib.areMatriciesEqual(mat01D, zeroMat1D));
+
+    });
+    simpleTestIdx++;
    });
