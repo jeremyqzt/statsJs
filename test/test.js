@@ -543,4 +543,18 @@ describe('Permutation Test', () => {
 
     });
     simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Multiply matrix Test`, () => {
+        let matMult = [1,2,3];
+        let matMult2 = [[1],[2],[3]]
+        let result = [14];
+        let libResult = matrixLib.multiplyMatrix(matMult, matMult2);
+        assert(matrixLib.areMatriciesEqual(libResult, result));
+
+        let matMult2D = [[216,-162,84],[86,-4,-70],[26,86,173]];
+        let libResult2D = matrixLib.multiplyMatrix(ttt, ttt);
+        assert(matrixLib.areMatriciesEqual(libResult2D, matMult2D));
+
+    });
+    simpleTestIdx++;
    });
