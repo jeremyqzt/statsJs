@@ -573,4 +573,14 @@ describe('Permutation Test', () => {
 
     });
     simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Zero matrix Test`, () => {
+        let zeroMat = matrixLib.getZeroMatrix(5, 6);
+        for (let i = 0; i < zeroMat.length; i++){
+            for (let j = 0; j < zeroMat[0].length; j++){
+                assert(0 === zeroMat[i][j]);
+            }
+        }
+    });
+    simpleTestIdx++;
    });
