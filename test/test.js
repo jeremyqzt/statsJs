@@ -463,6 +463,14 @@ describe('Permutation Test', () => {
     });
     simpleTestIdx++;
 
+    it(`${testDesc} ${simpleTestIdx}: Test Matrix pair`, () => {
+        assert(!matrixLib.isValidMatrixPair(tt, ttt));
+        assert(!matrixLib.isValidMatrixPair(tt, [1,2,3]));
+        assert(!matrixLib.isValidMatrixPair(tt, [[1,2],[1]]));
+        assert(matrixLib.isValidMatrixPair(ttt, ttt));
+
+    });
+
     it(`${testDesc} ${simpleTestIdx}: Add C Test`, () => {
         let addedMat = matrixLib.addMatrixC(tt, 1);
         let added1DMat = matrixLib.addMatrixC(t, 1);
