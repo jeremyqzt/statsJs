@@ -519,4 +519,16 @@ describe('Permutation Test', () => {
 
     });
     simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Add matrix Test`, () => {
+        let mat2XbyAdd = matrixLib.addMatrix(tt, tt);
+        let mat2X = matrixLib.multiplyMatrixC(tt, 2);
+        assert(matrixLib.areMatriciesEqual(mat2X, mat2XbyAdd));
+
+        let mat2XbyAdd1D = matrixLib.addMatrix(t, t);
+        let mat2X1D = matrixLib.multiplyMatrixC(t, 2);
+        assert(matrixLib.areMatriciesEqual(mat2X1D, mat2XbyAdd1D));
+
+    });
+    simpleTestIdx++;
    });
