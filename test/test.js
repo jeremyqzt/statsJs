@@ -498,4 +498,14 @@ describe('Permutation Test', () => {
 
     });
     simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Power matrix Test`, () => {
+        let mat1X = matrixLib.powerMatrixC(tt, 1);
+        let mat2X = matrixLib.powerMatrixC(tt, 2);
+        let expectedMat2X = [[1,25], [1,49]];
+        assert(matrixLib.areMatriciesEqual(tt, mat1X));
+        assert(matrixLib.areMatriciesEqual(mat2X, expectedMat2X));
+
+    });
+    simpleTestIdx++;
    });
