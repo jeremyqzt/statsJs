@@ -583,4 +583,10 @@ describe('Permutation Test', () => {
         }
     });
     simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Zero matrix Test`, () => {
+        let det = matrixLib.determinantMatrix(ttt);
+        assert(det === 2118);
+    });
+    simpleTestIdx++;
    });
