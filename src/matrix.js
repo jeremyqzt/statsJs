@@ -11,10 +11,6 @@ class matrixLib{
             return false;
         }
 
-        if (!(Array.isArray(A[0]) === Array.isArray(B[0]))){
-            return false;
-        }
-
         for (let i = 0; i < A.length; i++){
             if (A[i].length !== B[i].length){
                 return false;
