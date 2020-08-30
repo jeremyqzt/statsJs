@@ -508,4 +508,15 @@ describe('Permutation Test', () => {
 
     });
     simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Divide matrix Test`, () => {
+        let mat1X = matrixLib.divideMatrixC(tt, 1);
+        let mat2X = matrixLib.multiplyMatrixC(tt, 2);
+        let matBackTo1X = matrixLib.divideMatrixC(mat2X, 2);
+        
+        assert(matrixLib.areMatriciesEqual(tt, mat1X));
+        assert(matrixLib.areMatriciesEqual(tt, matBackTo1X));
+
+    });
+    simpleTestIdx++;
    });
