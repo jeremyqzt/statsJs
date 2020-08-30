@@ -566,5 +566,11 @@ describe('Permutation Test', () => {
     });
     simpleTestIdx++;
 
+    it(`${testDesc} ${simpleTestIdx}: RC Identity matrix Test`, () => {
+        let identityRC = [[1,0,0,0,0,0],[0,1,0,0,0,0],[0,0,1,0,0,0],[0,0,0,1,0,0],[0,0,0,0,1,0]];
+        let libIdentityRC = matrixLib.getIdentityMatrixRC(5, 6);
+        assert(matrixLib.areMatriciesEqual(identityRC, libIdentityRC));
 
+    });
+    simpleTestIdx++;
    });
