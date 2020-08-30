@@ -488,4 +488,14 @@ describe('Permutation Test', () => {
         assert(!matrixLib.areMatriciesApproximatelyEqual(tt, addedMat, 0.99));
     });
     simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Mutiply matrix Test`, () => {
+        let mat1X = matrixLib.multiplyMatrixC(tt, 1);
+        let mat2X = matrixLib.multiplyMatrixC(tt, 2);
+        let expectedMat2X = [[2,10], [-2,-14]];
+        assert(matrixLib.areMatriciesEqual(tt, mat1X));
+        assert(matrixLib.areMatriciesEqual(mat2X, expectedMat2X));
+
+    });
+    simpleTestIdx++;
    });
