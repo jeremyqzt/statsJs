@@ -937,6 +937,8 @@ class matrixLib{
 
 }
 
+
+
 //let ttt = [[1,5,22], [-1,-7, 8], [10,-6, 1]];
 //console.log(matrixLib.QReig(ttt));
 

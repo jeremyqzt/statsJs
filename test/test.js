@@ -601,4 +601,20 @@ describe('Permutation Test', () => {
         assert(det0 === 0);
     });
     simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Matrix Inverse Test`, () => {
+        let inverse = [[1,2,3],[4,5,6],[7,2,9]];
+        let invMat = matrixLib.inverseMatrix(inverse);
+        let expectedInv = [[(-11/12), (1/3),(1/12)], [(-1/6),(1/3),(-1/6)],[0.75,(-1/3),(1/12)]];
+        assert(matrixLib.areMatriciesApproximatelyEqual(invMat, expectedInv));
+    });
+    simpleTestIdx++;
+
+    /*it(`${testDesc} ${simpleTestIdx}: Matrix Eigenvalue Test`, () => {
+        let eigTest = [[1,2,1],[6,-1,0],[-1,-2,-1]];
+        let eigs = matrixLib.QReig(eigTest, 80000);
+        console.log(eigs)
+        //assert(det0 === 0);
+    });*/
+    simpleTestIdx++;
    });
