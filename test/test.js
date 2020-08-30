@@ -617,11 +617,10 @@ describe('Permutation Test', () => {
     });
     simpleTestIdx++;
 
-    /*it(`${testDesc} ${simpleTestIdx}: Matrix Eigenvalue Test`, () => {
-        let eigTest = [[1,2,1],[6,-1,0],[-1,-2,-1]];
-        let eigs = matrixLib.QReig(eigTest, 80000);
-        console.log(eigs)
-        //assert(det0 === 0);
-    });*/
+    it(`${testDesc} ${simpleTestIdx}: Matrix Eigenvalue Test`, () => {
+        let eigTest = [[1,2,3],[4,4,4],[9,8,7]];
+        let eigs = matrixLib.QReig(eigTest,200);
+        assert(0 === 0); //TODO
+    });
     simpleTestIdx++;
    });
