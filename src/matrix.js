@@ -349,7 +349,7 @@ class matrixLib{
     static determinantMatrix(A){
         let {L, U} = matrixLib.LuDecomposeMatrix(A);
 
-        if (L === null || U === null){
+        if ((L === U) && L === null){
             return 0;
         }
 

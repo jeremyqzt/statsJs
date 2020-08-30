@@ -503,6 +503,10 @@ describe('Permutation Test', () => {
         let mat1X = matrixLib.powerMatrixC(tt, 1);
         let mat2X = matrixLib.powerMatrixC(tt, 2);
         let expectedMat2X = [[1,25], [1,49]];
+        let powerTest1D = [1,2,3]
+        let powerTest1DLib = matrixLib.powerMatrixC(powerTest1D, 3);
+
+        assert(matrixLib.areMatriciesEqual(powerTest1DLib, [1,8,27]));
         assert(matrixLib.areMatriciesEqual(tt, mat1X));
         assert(matrixLib.areMatriciesEqual(mat2X, expectedMat2X));
 
@@ -514,6 +518,10 @@ describe('Permutation Test', () => {
         let mat2X = matrixLib.multiplyMatrixC(tt, 2);
         let matBackTo1X = matrixLib.divideMatrixC(mat2X, 2);
         
+        let divideTest = [2,4,6]
+        let divideTestLib = matrixLib.divideMatrixC([4,8,12], 2);
+
+        assert(matrixLib.areMatriciesEqual(divideTest, divideTestLib));
         assert(matrixLib.areMatriciesEqual(tt, mat1X));
         assert(matrixLib.areMatriciesEqual(tt, matBackTo1X));
 
@@ -584,9 +592,13 @@ describe('Permutation Test', () => {
     });
     simpleTestIdx++;
 
-    it(`${testDesc} ${simpleTestIdx}: Zero matrix Test`, () => {
+    it(`${testDesc} ${simpleTestIdx}: Matrix Determinant Test`, () => {
         let det = matrixLib.determinantMatrix(ttt);
         assert(det === 2118);
+
+        let nonDetMatrix = [[1,2,3],[4,5,6],[7,8,9]];
+        let det0 = matrixLib.determinantMatrix(nonDetMatrix);
+        assert(det0 === 0);
     });
     simpleTestIdx++;
    });
