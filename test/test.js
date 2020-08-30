@@ -607,6 +607,13 @@ describe('Permutation Test', () => {
         let invMat = matrixLib.inverseMatrix(inverse);
         let expectedInv = [[(-11/12), (1/3),(1/12)], [(-1/6),(1/3),(-1/6)],[0.75,(-1/3),(1/12)]];
         assert(matrixLib.areMatriciesApproximatelyEqual(invMat, expectedInv));
+
+        inverse = [[1,3,-5,9],[-1,3,1,7],[4,3,9,7],[5,2,1,9]];
+        let inv = matrixLib.inverseMatrix(inverse)
+        let res = matrixLib.multiplyMatrix(inverse, inv)
+        let resRounded = matrixLib.roundMatrix(res, 1);
+        let identity = matrixLib.getIdentityMatrix(4)
+        assert(matrixLib.areMatriciesApproximatelyEqual(resRounded, identity));
     });
     simpleTestIdx++;
 
