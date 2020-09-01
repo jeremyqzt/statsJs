@@ -666,7 +666,7 @@ class matrixLib{
         let columnCount = mat[0].length;
         let lead = 0;
 
-        for (let r = 0; r < rowCount; r++){
+        for (let r = 0; r < rowCount && lead + 1; r++){
             let i = r;
             while(ret[i][lead] === 0){
                 i = i + 1;
@@ -674,7 +674,7 @@ class matrixLib{
                     i = r;
                     lead = lead + 1;
                     if (lead === columnCount){
-                        return null;
+                        return ret;
                     }
                 }
             }
@@ -683,15 +683,16 @@ class matrixLib{
             ret[i] = tmp;
 
             if (ret[r][lead] !== 0){
-                let divisor = ret[i][lead];
+                let divisor = ret[r][lead];
                 ret[r] = matrixLib.divideMatrixC(ret[r], divisor);
-                for (let i = 0; i < rowCount; i++){
-                    if (i !== r){
-                        divisor = ret[i][lead];
+                for (let u = 0; u < rowCount; u++){
+                    if (u !== r){
+                        divisor = ret[u][lead];
                         let matToProcess = matrixLib.multiplyMatrixC(ret[r], divisor);
-                        ret[i] = matrixLib.subMatrix(ret[i], matToProcess);
+                        ret[u] = matrixLib.subMatrix(ret[u], matToProcess);
                     }
                 }
+
             }
             lead = lead + 1;
         }
