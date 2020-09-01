@@ -617,6 +617,20 @@ describe('Permutation Test', () => {
     });
     simpleTestIdx++;
 
+    /*it(`${testDesc} ${simpleTestIdx}: Matrix Rank Test`, () => {
+        let rankTest = [[1,2,3, 11],[4,-2,13, -6],[-7, 9,8,7]];
+        let rank = matrixLib.rankOfMatrix(rankTest);
+        assert(rank === 3);
+    });
+    simpleTestIdx++;*/
+
+    it(`${testDesc} ${simpleTestIdx}: Matrix Rank Test2`, () => {
+        let rankTest2 = [[1,2,3, 11],[2,4,6,22],[-7, 9,8,7]];
+        let rank2 = matrixLib.rankOfMatrix(rankTest2);
+        assert(rank2 === 2);
+    });
+    simpleTestIdx++;
+
     it(`${testDesc} ${simpleTestIdx}: Matrix Eigenvalue Test`, () => {
         let eigTest = [[1,2,3],[4,4,4],[9,8,7]];
         let eigs = matrixLib.QReig(eigTest,200);
