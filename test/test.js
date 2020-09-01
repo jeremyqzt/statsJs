@@ -617,12 +617,12 @@ describe('Permutation Test', () => {
     });
     simpleTestIdx++;
 
-    /*it(`${testDesc} ${simpleTestIdx}: Matrix Rank Test`, () => {
+    it(`${testDesc} ${simpleTestIdx}: Matrix Rank Test`, () => {
         let rankTest = [[1,2,3, 11],[4,-2,13, -6],[-7, 9,8,7]];
         let rank = matrixLib.rankOfMatrix(rankTest);
         assert(rank === 3);
     });
-    simpleTestIdx++;*/
+    simpleTestIdx++;
 
     it(`${testDesc} ${simpleTestIdx}: Matrix Rank Test2`, () => {
         let rankTest2 = [[1,2,3, 11],[2,4,6,22],[-7, 9,8,7]];
