@@ -123,6 +123,18 @@ console.log(matrixLib.determinantMatrix(test));
 //=> -36
 ```
 
+### Inverse of a matrix
+Returns the inverse of the matrix
+```
+test = [[1,2,3], [4,5,6], [7,2,9]]
+console.log(matrixLib.inverseMatrix(test));
+//=> [
+      [ -0.9166666666666666, 0.3333333333333333, 0.08333333333333333 ],  
+      [ -0.16666666666666666, 0.3333333333333333, -0.16666666666666666 ],
+      [ 0.75, -0.3333333333333333, 0.08333333333333333 ]
+    ]
+```
+
 ## Combination Helper
 ### Counting number of combinations
 Returns the number of pemutations of the given input. The following is 5 choose 3 (5C3) and 10 choose 7 (10C7).
