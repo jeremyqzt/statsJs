@@ -919,12 +919,11 @@ class matrixLib{
         let intermediate = null;
         let nextA = mat;
 
-
         for (let i = 0; i < iter; i++){
             QR = matrixLib.QrDecomposeMatrix(nextA);
-            //nextA = matrixLib.multiplyMatrix(QR.R, QR.Q);
-            intermediate = matrixLib.multiplyMatrix(QR.Q, nextA);
-            nextA = matrixLib.multiplyMatrix(nextA, matrixLib.transposeMatrix(QR.Q));
+            nextA = matrixLib.multiplyMatrix(QR.R, QR.Q);
+            //intermediate = matrixLib.multiplyMatrix(QR.Q, nextA);
+            //nextA = matrixLib.multiplyMatrix(nextA, matrixLib.transposeMatrix(QR.Q));
         }
 
         let ret = matrixLib.getIdentityMatrix(mat.length);
