@@ -454,11 +454,20 @@ describe('Permutation Test', () => {
     let simpleTestIdx = 1;
 
     it(`${testDesc} ${simpleTestIdx}: Comparison`, () => {
-           assert(matrixLib.areMatriciesEqual(tt, tt));
-       });
+        let equals1D = [1,2,3];
+        let equals1D2 = [1,2,3];
+        assert(matrixLib.areMatriciesEqual(equals1D, equals1D2));
+        assert(matrixLib.areMatriciesEqual(tt, tt));
+     });
     simpleTestIdx++;
 
     it(`${testDesc} ${simpleTestIdx}: Comparison Approximate`, () => {
+        let equals1D = [1,2,3];
+        let equals1D2 = [1.1,2.1,3.1];
+        let equals1D3 = [1.2,2.2,3.2];
+
+        assert(matrixLib.areMatriciesApproximatelyEqual(equals1D, equals1D2, 0.11));
+        assert(!matrixLib.areMatriciesApproximatelyEqual(equals1D, equals1D3, 0.1));
         assert(matrixLib.areMatriciesApproximatelyEqual(tt, ttAppox, 0.11));
     });
     simpleTestIdx++;
