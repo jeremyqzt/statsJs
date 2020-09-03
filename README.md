@@ -61,9 +61,22 @@ console.log(matrixLib.addMatrixC(t,3))
 ### Multiplying a constant to every matrix element
 Returns a matrix with the each constant c multiplied to each element. In this example, c = 3
 ```
-t = [[1,2,3], [1,2,3], [1,2,3]]
-console.log(matrixLib.multiplyMatrixC(t,3))
+let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
+console.log(matrixLib.roundMatrix(matTest))
 //=> [ [ 3, 6, 9 ], [ 3, 6, 9 ], [ 3, 6, 9 ] ]
+```
+
+### Rounding every matrix element
+Rounds each matrix element to a given decimal place, in this case, rounds to first decimal
+```
+t = [[1,2,3], [1,2,3], [1,2,3]]
+console.log(matrixLib.roundMatrix(matTest, 1))
+//=> [
+//    [ 1, 2.3, 3, 4, 5 ],
+//    [ -1, -10.4, 1, 1, 5 ],
+//    [ 7, -8, 1, 2, 8 ],
+//    [ 9, -1.1, 1, 2, 3 ]
+//   ]
 ```
 
 ### Matrix dot product
@@ -93,14 +106,13 @@ console.log(matrixLib.divideMatrixC(t,3))
 ```
 
 ### LU Decomposition
-Returns a lower and upper matrix decomposed from the given matrix.
+Returns a lower and upper matrix decomposed from the given matrix. Utilizes Crout's method
 Returns null if the determinant is too close to 0 (No LU available)
 ```
-t = [[3,6,9], [12,15,18], [21,24,27]]
-console.log(matrixLib.LuDecomposeMatrix(t))
-//=> { L: null, U: null }
-t = [[-3,1.7,-9], [-12,1,-0.6], [77,-24,100]]
-console.log(matrixLib.LuDecomposeMatrix(t))
+let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
+console.log(matrixLib.QrDecomposeMatrix(matTest));
+
+
 //=> {
 //     L: [
 //       [ -3, 0, 0 ],
@@ -113,6 +125,37 @@ console.log(matrixLib.LuDecomposeMatrix(t))
 //       [ 0, 0, 1 ]
 //     ]
 //   }
+```
+
+### QR Decomposition
+Performs householder's algorithm to QR decompose the matrix.
+returns a dictionary with {
+  Q: <Q matrix>
+  R: <R matrix>
+  Q_x: <Intermediate H matricies, starting from H0...Hx>
+}
+```
+let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
+let qrRes = matrixLib.QrDecomposeMatrix(matTest);
+console.log(matrixLib.roundMatrix(qrRes.R));
+//=> [
+//     [ 11, -5, 2, 3, 7 ],
+//     [ 0, 13, -0, -0, -6 ],
+//     [ -0, 0, 3, 4, 6 ],
+//     [ 0, -0, 0, 0, 2 ]
+//   ]
+console.log(matrixLib.roundMatrix(qrRes.Q));
+//=> [
+//     [ 0, 0, 1, 0 ],
+//     [ -0, -1, 0, -0 ],
+//     [ 1, -0, -0, 1 ],
+//     [ 1, 0, -0, -1 ]
+//   ]
+console.log(qrRes.Q_x)
+//=> [
+//     [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ],
+//     [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ]
+//   ]
 ```
 
 ### Determinant
@@ -135,8 +178,9 @@ console.log(matrixLib.inverseMatrix(test));
     ]
 ```
 
+
 ## Combination Helper
-### Counting number of combinations
+### Counting number of combinations 
 Returns the number of pemutations of the given input. The following is 5 choose 3 (5C3) and 10 choose 7 (10C7).
 ```
 console.log(combinationLib.countCombinations(5,3))
