@@ -641,9 +641,40 @@ describe('Permutation Test', () => {
     simpleTestIdx++;
 
     it(`${testDesc} ${simpleTestIdx}: Matrix Eigenvalue Test`, () => {
-        let eigTest = [[1,2,3],[4,4,4],[9,8,7]];
-        let eigs = matrixLib.QReig(eigTest,200);
+        let eigTest = [[1,2,3],[4,7,4],[9,8,7]];
+        let eigs = matrixLib.QReig(eigTest, 10);
+        //console.log(eigs)
         assert(0 === 0); //TODO
     });
     simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Random Matrix Test`, () => {
+        let min = -20;
+        let max = 20;
+        let random = matrixLib.getRandomMatrix(10,10, {min: min, max: max, intOnly: false});
+        assert(random[0].length === 10);
+        assert(random.length === 10);
+
+        for (let i = 0; i < random.length;i++){
+            for (let j = 0; j < random[0].length; j++){
+                assert(random[i][j] >= min && random[i][j] <= max)
+            }
+        }
+
+        random = matrixLib.getRandomMatrix(10,10, {min: min, max: max, intOnly: true});
+        assert(random[0].length === 10);
+        assert(random.length === 10);
+
+        for (let i = 0; i < random.length;i++){
+            for (let j = 0; j < random[0].length; j++){
+                assert(random[i][j] >= min && random[i][j] <= max)
+                assert(Math.round(random[i][j]) === random[i][j]);
+            }
+        }
+
+    });
+    simpleTestIdx++;
    });
+
+
+   
