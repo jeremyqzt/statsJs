@@ -421,9 +421,8 @@ class matrixLib{
      */
     static getRandomMatrix(row, col, opt = {min: -10, max: 10, intOnly: true}){
         let ret = [];
-
         const randNum = (minVal, maxVal, integer) => {
-            let val = (Math.random() * maxVal + minVal);
+            let val = (Math.random() * maxVal)  + minVal;
             if (integer){
                 return Math.round(val);
             }
