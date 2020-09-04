@@ -638,14 +638,27 @@ class matrixLib{
     static rankOfMatrix(mat){
         let rref = matrixLib.rowCanonicalMatrix(mat);
         let rank = 0;
-        let pivot = 0;
-        for (let i = 0; i < rref.length; i++){
-            if (rref[i][pivot] !== 0){
-                rank +=1;
-                pivot += 1;
+        let colOkay = false;
+        for (let col = 0 ; col < rref[0].length; col++){
+            colOkay = false;
+            for (let row = 0; row < rref.length; row++){
+                if (rref[row][col] !== 0){
+                    if (colOkay){
+                        colOkay = false;
+                        break;
+                    }
+                    colOkay = true;
+                    continue;
+                }
+
+            }
+
+            if(colOkay){
+                rank+=1;
             }
         }
 
+        console.log(rank);
         return rank;
 
     }
