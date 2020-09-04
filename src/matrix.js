@@ -934,6 +934,29 @@ class matrixLib{
         return ret;
     }
 
+    static matrixEigenVector(mat, eigenvalue, b_i = null, opt={tol:0.1, iter:9}){       
+        let b_k = (b_i === null) ?        
+        matrixLib.getRandomMatrix(mat.length, 1, opt={min:-1, max:1,intOnly: true}):
+        b_i;
+
+        let matIdentity = matrixLib.getIdentityMatrix(mat.length);
+        matIdentity = matrixLib.multiplyMatrixC(matIdentity, eigenvalue);
+        let inv = matrixLib.subMatrix(mat, matIdentity);
+        inv = matrixLib.inverseMatrix(inv);
+
+        let b_kx = null;
+        let divisor = 0;
+
+        for (let i = 0; i < opt.iter; i++){
+            b_kx = matrixLib.multiplyMatrix(inv, b_k);
+            divisor = matrixLib.vectorNorm(b_kx);
+            b_k = matrixLib.divideMatrixC(b_kx, divisor);
+            b_k = matrixLib.divideMatrixC(b_k, b_k[b_k.length - 1][0]);
+        }
+
+        return b_k;
+    }
+
 }
 
 module.exports = {
