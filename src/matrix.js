@@ -911,7 +911,7 @@ class matrixLib{
      * Performs QR iteration to determine eigenvalues
      * @param {number[][]} mat - The matrix to find eigenvalues for
      * @param {iter} mat - Number of iterations (default 2000)
-     * @return {number[][]} Eigenvalue matrix (eigenvalues in diagnol)
+     * @return {number[][]} Eigenvalue matrix (eigenvalues in diagonal)
      */
     static QReig(mat, iter = 2000){
         let QR = null;
@@ -934,6 +934,13 @@ class matrixLib{
         return ret;
     }
 
+    /**
+     * Performs the inverse power method on a matrix to find its eigenvector
+     * @param {number[][]} mat - The matrix to find eigenvalues for
+     * @param {number} eigenvalue - A approximate eigenvalue
+     * @param {{tol: number, iter: number}} opt - Maximum iterations or maximum change between b_k and b_k+1 before termination
+     * @return {number[][]} Eigenvector corresponding to given eigenvector
+     */
     static matrixEigenVector(mat, eigenvalue, b_i = null, opt={tol:0.1, iter:9}){       
         let b_k = (b_i === null) ?        
         matrixLib.getRandomMatrix(mat.length, 1, opt={min:-1, max:1,intOnly: true}):
