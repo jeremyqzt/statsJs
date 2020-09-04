@@ -658,7 +658,6 @@ class matrixLib{
             }
         }
 
-        console.log(rank);
         return rank;
 
     }

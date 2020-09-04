@@ -641,9 +641,15 @@ describe('Permutation Test', () => {
     simpleTestIdx++;
 
     it(`${testDesc} ${simpleTestIdx}: Matrix Rank Test 3`, () => {
-        let rankTest2 = [[0,2,3, 11],[0,4,6,22],[0, 9,8,7]];
-        let rank2 = matrixLib.rankOfMatrix(rankTest2);
-        assert(rank2 === 2);
+        let rankTest3 = [[0,2,3, 11],[0,4,6,22],[0, 9,8,7]];
+        let rank3 = matrixLib.rankOfMatrix(rankTest3);
+        assert(rank3 === 2);
+    });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Matrix Rank Test 3`, () => {
+        let rank4 = matrixLib.rankOfMatrix(matrixLib.getZeroMatrix(3,4));
+        assert(rank4 === 0);
     });
     simpleTestIdx++;
 
