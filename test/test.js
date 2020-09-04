@@ -633,8 +633,15 @@ describe('Permutation Test', () => {
     });
     simpleTestIdx++;
 
-    it(`${testDesc} ${simpleTestIdx}: Matrix Rank Test2`, () => {
+    it(`${testDesc} ${simpleTestIdx}: Matrix Rank Test 2`, () => {
         let rankTest2 = [[1,2,3, 11],[2,4,6,22],[-7, 9,8,7]];
+        let rank2 = matrixLib.rankOfMatrix(rankTest2);
+        assert(rank2 === 2);
+    });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Matrix Rank Test 3`, () => {
+        let rankTest2 = [[0,2,3, 11],[0,4,6,22],[0, 9,8,7]];
         let rank2 = matrixLib.rankOfMatrix(rankTest2);
         assert(rank2 === 2);
     });
@@ -680,6 +687,7 @@ describe('Permutation Test', () => {
         let nonSquare = [[1,2,3],[2,3,4]];
         let invalid = [[1,2,3,4],[2,3,4]];
         let vectorT = [1,2,3];
+        let normalMat = matrixLib.getRandomMatrix(10, 10);
 
         let idDesc = matrixLib.describeMatrix(identity);
         assert(idDesc.row === 6);
@@ -699,6 +707,13 @@ describe('Permutation Test', () => {
         idDesc = matrixLib.describeMatrix(vectorT);
         assert(idDesc.row === 1);
         assert(idDesc.valid);
+
+        idDesc = matrixLib.describeMatrix(normalMat);
+        assert(idDesc.row === 10);
+        assert(idDesc.col === 10);
+        assert(idDesc.square);
+        assert(idDesc.valid);
+        assert(!idDesc.identity);
     });
     simpleTestIdx++;
 
@@ -719,9 +734,9 @@ describe('Permutation Test', () => {
     simpleTestIdx++;
 
     it(`${testDesc} ${simpleTestIdx}: matrix Eigenvector test`, () => {
-        //let mat = [[0,1],[1,1]];
-        //let eVec = matrixLib.matrixEigenVector(mat, -0.5, [[1],[1]]);
-        //assert(matrixLib.areMatriciesApproximatelyEqual(eVec,[[-1.618034],[ 1]]));
+        let mat = [[0,1],[1,1]];
+        let eVec = matrixLib.matrixEigenVector(mat, -0.5, [[1],[1]]);
+        assert(matrixLib.areMatriciesApproximatelyEqual(eVec,[[-1.618034],[ 1]]));
 
         let mat2 = [[3,2],[3,-2]];
         let det = matrixLib.determinantMatrix(mat2);
