@@ -462,7 +462,6 @@ class matrixLib{
 
         if (Array.isArray(mat[0])){
             let colFirst = mat[0].length;
-            let first = mat[0][0];
             for (let i = 0; i < rows; i++){
                 if (mat[i].length !== colFirst){
                     colSame = colSame && false;
@@ -470,7 +469,7 @@ class matrixLib{
 
                 for (let j = 0; j < mat[i].length; j++){
                     if (i === j){
-                        if (mat[i][j] !== first){
+                        if (mat[i][j] !== 1){
                             isIdentity = isIdentity && false;
                         }
                     } else if (mat[i][j] !== 0){
@@ -938,23 +937,25 @@ class matrixLib{
      * Performs the inverse power method on a matrix to find its eigenvector
      * @param {number[][]} mat - The matrix to find eigenvalues for
      * @param {number} eigenvalue - A approximate eigenvalue
-     * @param {{tol: number, iter: number}} opt - Maximum iterations or maximum change between b_k and b_k+1 before termination
+     * @param {{tol: number, iter: number}} options - Maximum iterations or maximum change in norms between b_k and b_k+1 before termination
      * @return {number[][]} Eigenvector corresponding to given eigenvector
      */
-    static matrixEigenVector(mat, eigenvalue, b_i = null, opt={tol:0.1, iter:9}){       
+    static matrixEigenVector(mat, eigenvalue, b_i = null, options={tol:0.1, iter: 200}){
+
         let b_k = (b_i === null) ?        
-        matrixLib.getRandomMatrix(mat.length, 1, opt={min:-1, max:1,intOnly: true}):
-        b_i;
+        matrixLib.getRandomMatrix(mat.length, 1, opt={min:-10, max:10 , intOnly: false}):
+        matrixLib.duplicateMatrix(b_i);
 
         let matIdentity = matrixLib.getIdentityMatrix(mat.length);
         matIdentity = matrixLib.multiplyMatrixC(matIdentity, eigenvalue);
         let inv = matrixLib.subMatrix(mat, matIdentity);
-        inv = matrixLib.inverseMatrix(inv);
 
+        inv = matrixLib.inverseMatrix(inv);
         let b_kx = null;
         let divisor = 0;
 
-        for (let i = 0; i < opt.iter; i++){
+
+        for (let i = 0; i < options.iter; i++){
             b_kx = matrixLib.multiplyMatrix(inv, b_k);
             divisor = matrixLib.vectorNorm(b_kx);
             b_k = matrixLib.divideMatrixC(b_kx, divisor);
