@@ -674,6 +674,78 @@ describe('Permutation Test', () => {
 
     });
     simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: Matrix Description Test`, () => {
+        let identity = matrixLib.getIdentityMatrix(6);
+        let nonSquare = [[1,2,3],[2,3,4]];
+        let invalid = [[1,2,3,4],[2,3,4]];
+        let vectorT = [1,2,3];
+
+        let idDesc = matrixLib.describeMatrix(identity);
+        assert(idDesc.row === 6);
+        assert(idDesc.col === 6);
+        assert(idDesc.square);
+        assert(idDesc.valid);
+        assert(idDesc.identity);
+
+        idDesc = matrixLib.describeMatrix(nonSquare);
+        assert(!idDesc.square);
+        assert(idDesc.valid);
+
+        idDesc = matrixLib.describeMatrix(invalid);
+        assert(!idDesc.valid);
+
+        
+        idDesc = matrixLib.describeMatrix(vectorT);
+        assert(idDesc.row === 1);
+        assert(idDesc.valid);
+    });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: 1 by x sized Matrix Test`, () => {
+        let vectorT = [1,2,3];
+        let transposed = matrixLib.transposeMatrix(vectorT);
+        assert(matrixLib.areMatriciesEqual(transposed,[[1],[2],[3]]));
+
+        vectorT = [1,2,3,4];
+        let cofactor = matrixLib.cofactorMatrix(vectorT);
+        assert(matrixLib.areMatriciesEqual(cofactor,[1,-2,3,-4]));
+        
+        vectorT = [1,2,3,4];
+        let dup = matrixLib.duplicateMatrix(vectorT);
+        assert(matrixLib.areMatriciesEqual(dup,vectorT));
+
+    });
+    simpleTestIdx++;
+
+    it(`${testDesc} ${simpleTestIdx}: matrix Eigenvector test`, () => {
+        //let mat = [[0,1],[1,1]];
+        //let eVec = matrixLib.matrixEigenVector(mat, -0.5, [[1],[1]]);
+        //assert(matrixLib.areMatriciesApproximatelyEqual(eVec,[[-1.618034],[ 1]]));
+
+        let mat2 = [[3,2],[3,-2]];
+        let det = matrixLib.determinantMatrix(mat2);
+        assert(det === -12)
+
+        let eigs = matrixLib.QReig(mat2);
+        assert(matrixLib.areMatriciesApproximatelyEqual(eigs,[[4,0],[0,-3]]));
+        let realEig = eigs[0][0];
+        let approximateEig = realEig - 1;
+
+        eVec = matrixLib.matrixEigenVector(mat2, approximateEig, b_i=null, opt={tol:0.1, iter: 200});
+        let newMat = matrixLib.multiplyMatrix(mat2, eVec);
+        let expectedVec = matrixLib.multiplyMatrixC(eVec, realEig);
+        assert(matrixLib.areMatriciesApproximatelyEqual(newMat,expectedVec));
+
+        realEig = eigs[1][1];
+        approximateEig = realEig - 1;
+
+        eVec = matrixLib.matrixEigenVector(mat2, approximateEig, b_i=null, opt={tol:0.1, iter: 200});
+        newMat = matrixLib.multiplyMatrix(mat2, eVec);
+        expectedVec = matrixLib.multiplyMatrixC(eVec, realEig);
+        assert(matrixLib.areMatriciesApproximatelyEqual(newMat,expectedVec));
+    });
+    simpleTestIdx++;
    });
 
 
