@@ -39,10 +39,6 @@ class matrixLib{
             return false;
         }
 
-        if (!(Array.isArray(A[0]) === Array.isArray(B[0]))){
-            return false;
-        }
-
         for (let i = 0; i &lt; A.length; i++){
             if (A[i].length !== B[i].length){
                 return false;
@@ -381,7 +377,7 @@ class matrixLib{
     static determinantMatrix(A){
         let {L, U} = matrixLib.LuDecomposeMatrix(A);
 
-        if (L === null || U === null){
+        if ((L === U) &amp;&amp; L === null){
             return 0;
         }
 
@@ -453,9 +449,8 @@ class matrixLib{
      */
     static getRandomMatrix(row, col, opt = {min: -10, max: 10, intOnly: true}){
         let ret = [];
-
         const randNum = (minVal, maxVal, integer) => {
-            let val = (Math.random() * maxVal + minVal);
+            let val = (Math.random() * maxVal)  + minVal;
             if (integer){
                 return Math.round(val);
             }
@@ -473,6 +468,26 @@ class matrixLib{
         return ret;
     }
 
+
+    /**
+     * Gets a random matrix of the given value
+     * @param {number} row - number of rows to generate
+     * @param {number} col - number of columns to generate
+     * @param {number} val - Option for random values
+     * @return {number[][]} A matrix of the given value
+     */
+    static getMatrix(row, col, val){
+        let ret = [];
+
+        for (let i = 0; i &lt; row; i++){
+            let newRow = [];
+            for (let j = 0; j &lt; col; j++){
+                newRow[j] = val;
+            }
+            ret[i] = newRow;
+        }
+        return ret;
+    }
 
     /**
      * @typedef {Object} MatrixDescription
@@ -495,7 +510,6 @@ class matrixLib{
 
         if (Array.isArray(mat[0])){
             let colFirst = mat[0].length;
-            let first = mat[0][0];
             for (let i = 0; i &lt; rows; i++){
                 if (mat[i].length !== colFirst){
                     colSame = colSame &amp;&amp; false;
@@ -503,7 +517,7 @@ class matrixLib{
 
                 for (let j = 0; j &lt; mat[i].length; j++){
                     if (i === j){
-                        if (mat[i][j] !== first){
+                        if (mat[i][j] !== 1){
                             isIdentity = isIdentity &amp;&amp; false;
                         }
                     } else if (mat[i][j] !== 0){
@@ -557,8 +571,7 @@ class matrixLib{
     }
 
     /**
-     * Determins a the matrix of cofactors.
-     * The cofactor checkerboard is the followed:
+     * Determins a the matrix of cofactors. (+,-,+,-,+,- ...)
      * @param {number[][]} mat - The matrix to determine cofactors for
      * @return {number[][]} matrix of cofactors
      */
@@ -566,7 +579,6 @@ class matrixLib{
         let ret = [];
         let multFactor = 1;
 
-        //[1,2,3]
         if (!Array.isArray(mat[0])){
             for (let i = 0; i &lt; mat.length; i++){
                 ret[i] = mat[i] * multFactor;
@@ -672,11 +684,23 @@ class matrixLib{
     static rankOfMatrix(mat){
         let rref = matrixLib.rowCanonicalMatrix(mat);
         let rank = 0;
-        let pivot = 0;
-        for (let i = 0; i &lt; rref.length; i++){
-            if (rref[i][pivot] !== 0){
-                rank +=1;
-                pivot += 1;
+        let colOkay = false;
+        for (let col = 0 ; col &lt; rref[0].length; col++){
+            colOkay = false;
+            for (let row = 0; row &lt; rref.length; row++){
+                if (rref[row][col] !== 0){
+                    if (colOkay){
+                        colOkay = false;
+                        break;
+                    }
+                    colOkay = true;
+                    continue;
+                }
+
+            }
+
+            if(colOkay){
+                rank+=1;
             }
         }
 
@@ -698,7 +722,7 @@ class matrixLib{
         let columnCount = mat[0].length;
         let lead = 0;
 
-        for (let r = 0; r &lt; rowCount; r++){
+        for (let r = 0; r &lt; rowCount &amp;&amp; lead + 1; r++){
             let i = r;
             while(ret[i][lead] === 0){
                 i = i + 1;
@@ -706,7 +730,7 @@ class matrixLib{
                     i = r;
                     lead = lead + 1;
                     if (lead === columnCount){
-                        return null;
+                        return ret;
                     }
                 }
             }
@@ -715,15 +739,16 @@ class matrixLib{
             ret[i] = tmp;
 
             if (ret[r][lead] !== 0){
-                let divisor = ret[i][lead];
+                let divisor = ret[r][lead];
                 ret[r] = matrixLib.divideMatrixC(ret[r], divisor);
-                for (let i = 0; i &lt; rowCount; i++){
-                    if (i !== r){
-                        divisor = ret[i][lead];
+                for (let u = 0; u &lt; rowCount; u++){
+                    if (u !== r){
+                        divisor = ret[u][lead];
                         let matToProcess = matrixLib.multiplyMatrixC(ret[r], divisor);
-                        ret[i] = matrixLib.subMatrix(ret[i], matToProcess);
+                        ret[u] = matrixLib.subMatrix(ret[u], matToProcess);
                     }
                 }
+
             }
             lead = lead + 1;
         }
@@ -759,7 +784,7 @@ class matrixLib{
      * Compares a matrix against another one, but allows a small difference tolerance
      * @param {number[][]} A - The matrix to compare
      * @param {number[][]} B - The second matrix to compare
-     * @param {number[][]} diff - The maximum tolerated difference between A[i][j] and B[i][j]
+     * @param {number} diff - The maximum (exclusive) tolerated difference between A[i][j] and B[i][j]
      * @return {boolean} Absolute equality comparison result, accounting for tolerance
      */
     static areMatriciesApproximatelyEqual(A, B, diff = 0.01){
@@ -942,20 +967,19 @@ class matrixLib{
     /**
      * Performs QR iteration to determine eigenvalues
      * @param {number[][]} mat - The matrix to find eigenvalues for
-     * @param {iter} mat - Number of iterations (default 2000)
-     * @return {number[][]} Eigenvalue matrix (eigenvalues in diagnol)
+     * @param {iter} mat - Number of iterations (default 20)
+     * @return {number[][]} Eigenvalue matrix (eigenvalues in diagonal)
      */
-    static QReig(mat, iter = 2000){
+    static QReig(mat, iter = 20){
         let QR = null;
         let intermediate = null;
         let nextA = mat;
 
-
         for (let i = 0; i &lt; iter; i++){
             QR = matrixLib.QrDecomposeMatrix(nextA);
-            //nextA = matrixLib.multiplyMatrix(QR.R, QR.Q);
-            intermediate = matrixLib.multiplyMatrix(QR.Q, nextA);
-            nextA = matrixLib.multiplyMatrix(nextA, matrixLib.transposeMatrix(QR.Q));
+            nextA = matrixLib.multiplyMatrix(QR.R, QR.Q);
+            //intermediate = matrixLib.multiplyMatrix(QR.Q, nextA);
+            //nextA = matrixLib.multiplyMatrix(nextA, matrixLib.transposeMatrix(QR.Q));
         }
 
         let ret = matrixLib.getIdentityMatrix(mat.length);
@@ -967,105 +991,55 @@ class matrixLib{
         return ret;
     }
 
+    /**
+     * Performs the inverse power method on a matrix to find its eigenvector
+     * @param {number[][]} mat - The matrix to find eigenvalues for
+     * @param {number} eigenvalue - A approximate eigenvalue
+     * @param {{tol: number, iter: number}} options - Maximum iterations or maximum change in norms between b_k and b_k+1 before termination
+     * @return {number[][]} Eigenvector corresponding to given eigenvector
+     */
+    static matrixEigenVector(mat, eigenvalue, b_i = null, options={tol:0, iter: 200}){
+
+        let b_k = (b_i === null) ?        
+        matrixLib.getRandomMatrix(mat.length, 1, {min:-10, max:10 , intOnly: false}):
+        matrixLib.duplicateMatrix(b_i);
+        let b_k_last = matrixLib.getMatrix(mat.length, 1, Infinity);
+
+        let matIdentity = matrixLib.getIdentityMatrix(mat.length);
+        matIdentity = matrixLib.multiplyMatrixC(matIdentity, eigenvalue);
+        let inv = matrixLib.subMatrix(mat, matIdentity);
+
+        inv = matrixLib.inverseMatrix(inv);
+        let b_kx = null;
+        let divisor = 0;
+        let diff = Infinity;
+
+
+        for (let i = 0; i &lt; options.iter; i++){
+            b_kx = matrixLib.multiplyMatrix(inv, b_k);
+            divisor = matrixLib.vectorNorm(b_kx);
+            b_k = matrixLib.divideMatrixC(b_kx, divisor);
+            b_k = matrixLib.divideMatrixC(b_k, b_k[b_k.length - 1][0]);
+
+            diff = matrixLib.subMatrix(b_k, b_k_last);
+            diff = matrixLib.vectorNorm(diff);
+            if (diff &lt; options.tol){
+                break;
+            }
+
+            b_k_last = matrixLib.duplicateMatrix(b_k);
+        }
+
+        return b_k;
+    }
+
 }
-
-let ttt = [[1,5,22], [-1,-7, 8], [10,-6, 1]];
-console.log(matrixLib.QReig(ttt));
-
-let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
-let test = matrixLib.QrDecomposeMatrix(matTest);
-//let test2 = matrixLib.rankOfMatrix(matTest);
-
-//console.log(test2)
-//console.log(test)
-//console.log(matrixLib.roundMatrix(test.Q,2))
-
-//console.log(matrixLib.multiplyMatrix(test.Q, test.R))
-
-minorTest = [
-    [1,2,1],
-    [6, -1, 0],
-    [-1,-2,-1]
-]
-
-//console.log(matrixLib.getSubMatix(minorTest, 2));
-
-
-vec = [ [ 1 ], [ 6 ], [ -1 ] ];
-
-//console.log(matrixLib.transposeMatrix(matrixLib.vectorNorm(vec, true)));
-test3 = [
-    [3,7,8,9],
-    [1,4,99,1],
-    [77,11,9,-5],
-    [1.5,5.5,1,-3.1]
-]
-
-test4 = [
-    [1,2,-1,-4],
-    [2,3,-1,-11],
-    [-2,0,-3,22],
-]
-test = [
-    [1,2,3],
-    [4,5,6],
-    [7,2,9]
-]
-
-test2 = [
-    [1,1,1],
-    [1,1,1],
-    [1,1,1]
-]
-
-t1 = [
-    [1,2,3,4],
-    [2,3,4,5],
-    [4,5,8,6]
-]
-t2 = [
-    [1,2,3],
-    [2,3,4],
-]
-
-t3 = [[1,2], [2,3], [4,5]]
-
-z = [[1,2,3]];
-z1 = [[1],[2],[3]]
-
-//console.log(matrixLib.removeRowAndColMatrix(t1, 0, 0))
-//console.log(matrixLib.LuDecomposeMatrix(t1))
-//console.log(matrixLib.ofMinorsMatrix(minorTest));
-//console.log(matrixLib.inverseMatrix(t));
-
-//t = [[-3,1.7,-9], [-12,1,-0.6], [77,-24,100]]
-
-//console.log(matrixLib.LuDecomposeMatrix(t))
 
 module.exports = {
     matrixLib: matrixLib,
 };
-//let out = matrixLib.areMatriciesApproximatelyEqual(z, matrixLib.addMatrixC(z, 0.1));
-//let out = matrixLib.areMatriciesEqual(test, test);
 
-//matrixLib.rowCanonicalMatrix(test4)
-//console.log(matrixLib.multiplyMatrix(z1, z));
-//console.log(matrixLib.multiplyMatrix(t2, t3));
-
-//console.log(matrixLib.getIdentityMatrix(6));
-//matrixLib.describeMatrix(matrixLib.getIdentityMatrix(6))
-//console.log(matrixLib.describeMatrix(t2));
-//console.log(matrixLib.determinantMatrix(test));
-//console.log(matrixLib.getRandomMatrix(5, 4, {min:-2,max:10,intOnly: true}));
-
-//console.log(matrixLib.multiplyMatrixC(t, 6));
-
-//console.log(matrixLib.divideMatrixC(t, 2));
-//console.log(matrixLib.transposeMatrix(z1))
-
-//console.log(matrixLib.cofactorMatrix(z))
-//console.log(t === t)
-//console.log(matrixLib.duplicateMatrix(t) === t)</code></pre>
+</code></pre>
         </article>
     </section>
 
@@ -1081,7 +1055,7 @@ module.exports = {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sat Aug 29 2020 16:14:02 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sat Sep 05 2020 15:21:34 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

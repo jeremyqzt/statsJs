@@ -93,9 +93,10 @@
 Example usages are as followed.</p>
 <h2>Importing</h2>
 <p>The libraries can be imported using the following.</p>
-<pre class="prettyprint source"><code>const {probabilityLib, statsLib, combinationLib, permutationLib} = require('@jeremyqzt/nodestats');
+<pre class="prettyprint source"><code>const {matrixLib, probabilityLib, statsLib, combinationLib, permutationLib} = require('../index.js');
 </code></pre>
 <h2>Matrix Helper</h2>
+<p>Note that all matrixLib operations work on a duplicated copy of the matrix, the original reference is always maintained.</p>
 <h3>Adding a constant to every matrix element</h3>
 <p>Returns a matrix with the each constant C added to each element. In this example, c = 3</p>
 <pre class="prettyprint source"><code>t = [[1,2,3], [1,2,3], [1,2,3]]
@@ -110,9 +111,64 @@ console.log(matrixLib.addMatrixC(t,3))
 </code></pre>
 <h3>Multiplying a constant to every matrix element</h3>
 <p>Returns a matrix with the each constant c multiplied to each element. In this example, c = 3</p>
-<pre class="prettyprint source"><code>t = [[1,2,3], [1,2,3], [1,2,3]]
-console.log(matrixLib.multiplyMatrixC(t,3))
+<pre class="prettyprint source"><code>let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
+console.log(matrixLib.roundMatrix(matTest))
 //=> [ [ 3, 6, 9 ], [ 3, 6, 9 ], [ 3, 6, 9 ] ]
+</code></pre>
+<h3>Dividing a constant to every matrix element</h3>
+<p>Returns a matrix with each element divided by constant c. In this example, c = 3</p>
+<pre class="prettyprint source"><code>t = [[3,6,9], [12,15,18], [21,24,27]]
+console.log(matrixLib.divideMatrixC(t,3))
+//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+</code></pre>
+<h3>Getting basic matricies</h3>
+<p>Get an identity matrix</p>
+<pre class="prettyprint source"><code>console.log(matrixLib.getIdentityMatrix(3))
+//=> [ [ 1, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 1 ] ]
+</code></pre>
+<p>Get an identity matrix, but with extra columns of rows</p>
+<pre class="prettyprint source"><code>console.log(matrixLib.getIdentityMatrixRC(4, 3))
+//=> [ [ 1, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 1 ], [ 0, 0, 0 ] ]
+</code></pre>
+<p>Get an matrix of constants (3X2 matrix of constantly 4)</p>
+<pre class="prettyprint source"><code>console.log(matrixLib.getMatrix(3, 2, 4))
+//=> [ [ 4, 4 ], [ 4, 4 ], [ 4, 4 ] ]
+</code></pre>
+<h3>Basic Matrix operations</h3>
+<p>Comparing 2 matricies</p>
+<pre class="prettyprint source"><code>let A = [1,2,3]
+console.log(matrixLib.areMatriciesEqual(A, A)
+//=> true
+console.log(matrixLib.areMatriciesEqual(A, [[1,2],[2,3]])
+//=> false
+</code></pre>
+<p>Comparing 2 matricies, with an error tolerance. By default tolerance is 0.1 set it using the third parameter.</p>
+<pre class="prettyprint source"><code>let A = [1,2,3]
+console.log(matrixLib.areMatriciesApproximatelyEqual(A, A))
+//=> true
+console.log(matrixLib.areMatriciesApproximatelyEqual(A, [1.09,2.01,3]))
+//=> true
+console.log(matrixLib.areMatriciesApproximatelyEqual(A, [1.09,2.01,3], 0.05))
+//=> false
+</code></pre>
+<p>Duplicating a matrix - leaves original reference intact</p>
+<pre class="prettyprint source"><code>let A = [1,2,3]
+console.log(matrixLib.duplicateMatrix(A))
+//=> [1,2,3]
+</code></pre>
+<p>Get an random matrix (4X3 matrix between -10 and 10, floats allowed)</p>
+<pre class="prettyprint source"><code>matrixLib.getRandomMatrix(4, 3, {min:-10, max:10 , intOnly: false}):
+</code></pre>
+<h3>Rounding every matrix element</h3>
+<p>Rounds each matrix element to a given decimal place, in this case, rounds to first decimal</p>
+<pre class="prettyprint source"><code>t = [[1,2,3], [1,2,3], [1,2,3]]
+console.log(matrixLib.roundMatrix(matTest, 1))
+//=> [
+//    [ 1, 2.3, 3, 4, 5 ],
+//    [ -1, -10.4, 1, 1, 5 ],
+//    [ 7, -8, 1, 2, 8 ],
+//    [ 9, -1.1, 1, 2, 3 ]
+//   ]
 </code></pre>
 <h3>Matrix dot product</h3>
 <p>Returns a matrix that represents the dot product of the 2 input matricies</p>
@@ -130,20 +186,13 @@ t2 = [
 console.log(matrixLib.multiplyMatrix(t, t2));
 //=> [ [ 6, 6, 6 ], [ 15, 15, 15 ], [ 18, 18, 18 ] ]
 </code></pre>
-<h3>Dividing a constant to every matrix element</h3>
-<p>Returns a matrix with each element divided by constant c. In this example, c = 3</p>
-<pre class="prettyprint source"><code>t = [[3,6,9], [12,15,18], [21,24,27]]
-console.log(matrixLib.divideMatrixC(t,3))
-//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
-</code></pre>
 <h3>LU Decomposition</h3>
-<p>Returns a lower and upper matrix decomposed from the given matrix.
+<p>Returns a lower and upper matrix decomposed from the given matrix. Utilizes Crout's method
 Returns null if the determinant is too close to 0 (No LU available)</p>
-<pre class="prettyprint source"><code>t = [[3,6,9], [12,15,18], [21,24,27]]
-console.log(matrixLib.LuDecomposeMatrix(t))
-//=> { L: null, U: null }
-t = [[-3,1.7,-9], [-12,1,-0.6], [77,-24,100]]
-console.log(matrixLib.LuDecomposeMatrix(t))
+<pre class="prettyprint source"><code>let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
+console.log(matrixLib.QrDecomposeMatrix(matTest));
+
+
 //=> {
 //     L: [
 //       [ -3, 0, 0 ],
@@ -157,11 +206,120 @@ console.log(matrixLib.LuDecomposeMatrix(t))
 //     ]
 //   }
 </code></pre>
+<h3>QR Decomposition</h3>
+<p>Performs householder's algorithm to QR decompose the matrix.
+returns a dictionary with {
+Q: <Q matrix>
+R: <R matrix>
+Q_x: &lt;Intermediate H matricies, starting from H0...Hx&gt;
+}</p>
+<pre class="prettyprint source"><code>let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
+let qrRes = matrixLib.QrDecomposeMatrix(matTest);
+console.log(matrixLib.roundMatrix(qrRes.R));
+//=> [
+//     [ 11, -5, 2, 3, 7 ],
+//     [ 0, 13, -0, -0, -6 ],
+//     [ -0, 0, 3, 4, 6 ],
+//     [ 0, -0, 0, 0, 2 ]
+//   ]
+console.log(matrixLib.roundMatrix(qrRes.Q));
+//=> [
+//     [ 0, 0, 1, 0 ],
+//     [ -0, -1, 0, -0 ],
+//     [ 1, -0, -0, 1 ],
+//     [ 1, 0, -0, -1 ]
+//   ]
+console.log(qrRes.Q_x)
+//=> [
+//     [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ],
+//     [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ]
+//   ]
+</code></pre>
 <h3>Determinant</h3>
 <p>Returns the determinant of the matrix</p>
 <pre class="prettyprint source"><code>test = [[1,2,3], [4,5,6], [7,2,9]]
 console.log(matrixLib.determinantMatrix(test));
 //=> -36
+</code></pre>
+<h3>Inverse of a matrix</h3>
+<p>Returns the inverse of the matrix</p>
+<pre class="prettyprint source"><code>test = [[1,2,3], [4,5,6], [7,2,9]]
+console.log(matrixLib.inverseMatrix(test));
+//=> [
+//    [ -0.9166666666666666, 0.3333333333333333, 0.08333333333333333 ],  
+//    [ -0.16666666666666666, 0.3333333333333333, -0.16666666666666666 ],
+//    [ 0.75, -0.3333333333333333, 0.08333333333333333 ]
+//   ]
+</code></pre>
+<h3>Matrix of Cofactors</h3>
+<p>Puts the matrix as a matrix of cofactors</p>
+<pre class="prettyprint source"><code>let coFactorTest = [[1,2,3, 11],[4,-2,13, -6],[-7, 9,8,7]];
+console.log(matrixLib.cofactorMatrix(coFactorTest));
+// => [
+//      [ 1, -2, 3, -11 ],
+//      [ -4, -2, -13, -6 ],
+//      [ -7, -9, 8, -7 ]
+//    ]
+</code></pre>
+<h3>Matrix of Minors</h3>
+<p>Puts the matrix as a matrix of minors, matrix must be <em>Square</em>.</p>
+<pre class="prettyprint source"><code>let coFactorTest = [[1,2,3, 11],[4,-2,13, -6],[-7, 9,8,7]];
+console.log(matrixLib.cofactorMatrix(coFactorTest));
+// => [
+//      [ -133, 123, 22, 22 ],
+//      [ -11, 29, 23, 23 ],
+//      [ 32, 1, -10, -10 ]
+//    ]
+</code></pre>
+<h3>Eigenvalues of a matrix</h3>
+<p>Returns the eigenvalues of a matrix, all eigenvalues appears on the diagonal. In this case,
+the matrix eigenvalues are 4 and -3.</p>
+<p>The second paramter can be used to control the maximum number of QR iteration algorithms cycles.
+The default is 20.</p>
+<pre class="prettyprint source"><code>let mat2 = [[3,2],[3,-2]];
+console.log(matrixLib.QReig(mat2));
+//=> [
+       [ 4.001464871443321, 0 ],
+       [ 0, -3.0014648714433183 ]
+     ]
+
+console.log(matrixLib.QReig(mat2,2000));
+//=> [
+       [ 4.000000007324081, 0 ],
+       [ 0, -3.000000007324077 ]
+     ]
+</code></pre>
+<h3>Eigenvectors of a matrix and given eigenvalue</h3>
+<p>Given a <em>Square</em> matrix and an approximate eigenvalue. A corresponding eigenvector is returned.
+The initial eigenvalue must be different than the actual eigenvalue - otherwise it may return NaN or Inifinty</p>
+<p>This is based off of the inverse iteration algorithm.</p>
+<p>In the following example, the eigenvalues are 4,-3 (as found previously). 3 is passed in as the initial eigenvalue.</p>
+<p>The initial eigenvector is null (a random eigenvector is generated).
+By default - the iteration tolerance is 0, a maximum of 200 cycles is perofmed.</p>
+<pre class="prettyprint source"><code>let mat2 = [[3,2],[3,-2]];
+console.log(matrixLib.matrixEigenVector(mat2, 2));
+// => [ [ 2 ], [ 1 ] ]
+</code></pre>
+<p>In the following example, the eigenvalues are 4,-3 (as found previously). -22 is passed in as the initial eigenvalue
+and <code>[[-10],[-2]]</code> is the initial eigenvector guess.</p>
+<p>The algorithm parameters are 2000 cycles maximum or 0 change between each successive iterations</p>
+<pre class="prettyprint source"><code>let mat2 = [[3,2],[3,-2]];
+console.log(matrixLib.matrixEigenVector(mat2, -22, [[-10],[-2]], {tol = 0, iter=2000}));
+// => [ [ -0.33333333333333337 ], [ 1 ] ]
+</code></pre>
+<h3>Row Canonical Form and Rank</h3>
+<p>Puts the matrix in row canonical form (Reduced Row Echelon Form).</p>
+<pre class="prettyprint source"><code>let rankTest = [[1,2,3, 11],[4,-2,13, -6],[-7, 9,8,7]];
+console.log(matrixLib.rowCanonicalMatrix(rankTest));
+// => [
+//     [ 1, 0, 0, 4.169329073482428 ],
+//     [ 0, 1, 0, 4.900958466453674 ],
+//     [ 0, 0, 1, -0.9904153354632588 ]
+//    ]
+</code></pre>
+<p>Finds the rank of the matrix</p>
+<pre class="prettyprint source"><code>console.log(matrixLib.rankOfMatrix(rankTest));
+// => 3
 </code></pre>
 <h2>Combination Helper</h2>
 <h3>Counting number of combinations</h3>
@@ -367,7 +525,7 @@ console.log(statsLib.correlation([1,4,9,5,3], [-1,-2,-3,-4,-5]))
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sat Aug 29 2020 16:14:02 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sat Sep 05 2020 15:21:34 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
