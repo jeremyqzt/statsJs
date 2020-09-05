@@ -442,6 +442,26 @@ class matrixLib{
 
 
     /**
+     * Gets a random matrix of the given value
+     * @param {number} row - number of rows to generate
+     * @param {number} col - number of columns to generate
+     * @param {number} val - Option for random values
+     * @return {number[][]} A matrix of the given value
+     */
+    static getMatrix(row, col, val){
+        let ret = [];
+
+        for (let i = 0; i < row; i++){
+            let newRow = [];
+            for (let j = 0; j < col; j++){
+                newRow[j] = val;
+            }
+            ret[i] = newRow;
+        }
+        return ret;
+    }
+
+    /**
      * @typedef {Object} MatrixDescription
      * @property {number} row - Numbers of rows in the given matrix (Do not use if not valid)
      * @property {number} col - Number of columns in the given matrix (Do not use if not valid)
@@ -921,10 +941,10 @@ class matrixLib{
     /**
      * Performs QR iteration to determine eigenvalues
      * @param {number[][]} mat - The matrix to find eigenvalues for
-     * @param {iter} mat - Number of iterations (default 2000)
+     * @param {iter} mat - Number of iterations (default 20)
      * @return {number[][]} Eigenvalue matrix (eigenvalues in diagonal)
      */
-    static QReig(mat, iter = 2000){
+    static QReig(mat, iter = 20){
         let QR = null;
         let intermediate = null;
         let nextA = mat;
@@ -952,11 +972,12 @@ class matrixLib{
      * @param {{tol: number, iter: number}} options - Maximum iterations or maximum change in norms between b_k and b_k+1 before termination
      * @return {number[][]} Eigenvector corresponding to given eigenvector
      */
-    static matrixEigenVector(mat, eigenvalue, b_i = null, options={tol:0.1, iter: 200}){
+    static matrixEigenVector(mat, eigenvalue, b_i = null, options={tol:0, iter: 200}){
 
         let b_k = (b_i === null) ?        
         matrixLib.getRandomMatrix(mat.length, 1, opt={min:-10, max:10 , intOnly: false}):
         matrixLib.duplicateMatrix(b_i);
+        let b_k_last = matrixLib.getMatrix(mat.length, 1, Infinity);
 
         let matIdentity = matrixLib.getIdentityMatrix(mat.length);
         matIdentity = matrixLib.multiplyMatrixC(matIdentity, eigenvalue);
@@ -965,6 +986,7 @@ class matrixLib{
         inv = matrixLib.inverseMatrix(inv);
         let b_kx = null;
         let divisor = 0;
+        let diff = Infinity;
 
 
         for (let i = 0; i < options.iter; i++){
@@ -972,6 +994,14 @@ class matrixLib{
             divisor = matrixLib.vectorNorm(b_kx);
             b_k = matrixLib.divideMatrixC(b_kx, divisor);
             b_k = matrixLib.divideMatrixC(b_k, b_k[b_k.length - 1][0]);
+
+            diff = matrixLib.subMatrix(b_k, b_k_last);
+            diff = matrixLib.vectorNorm(diff);
+            if (diff < options.tol){
+                break;
+            }
+
+            b_k_last = matrixLib.duplicateMatrix(b_k);
         }
 
         return b_k;

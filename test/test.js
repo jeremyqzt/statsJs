@@ -647,7 +647,7 @@ describe('Permutation Test', () => {
     });
     simpleTestIdx++;
 
-    it(`${testDesc} ${simpleTestIdx}: Matrix Rank Test 3`, () => {
+    it(`${testDesc} ${simpleTestIdx}: Matrix Rank Test 4`, () => {
         let rank4 = matrixLib.rankOfMatrix(matrixLib.getZeroMatrix(3,4));
         assert(rank4 === 0);
     });
@@ -753,15 +753,15 @@ describe('Permutation Test', () => {
         let realEig = eigs[0][0];
         let approximateEig = realEig - 1;
 
-        eVec = matrixLib.matrixEigenVector(mat2, approximateEig, b_i=null, opt={tol:0.1, iter: 200});
+        eVec = matrixLib.matrixEigenVector(mat2, approximateEig, null, {tol:0.001, iter: 200});
         let newMat = matrixLib.multiplyMatrix(mat2, eVec);
         let expectedVec = matrixLib.multiplyMatrixC(eVec, realEig);
-        assert(matrixLib.areMatriciesApproximatelyEqual(newMat,expectedVec));
+        assert(matrixLib.areMatriciesApproximatelyEqual(newMat, expectedVec));
 
         realEig = eigs[1][1];
         approximateEig = realEig - 1;
 
-        eVec = matrixLib.matrixEigenVector(mat2, approximateEig, b_i=null, opt={tol:0.1, iter: 200});
+        eVec = matrixLib.matrixEigenVector(mat2, approximateEig, null, {tol:0.0, iter: 200});
         newMat = matrixLib.multiplyMatrix(mat2, eVec);
         expectedVec = matrixLib.multiplyMatrixC(eVec, realEig);
         assert(matrixLib.areMatriciesApproximatelyEqual(newMat,expectedVec));
