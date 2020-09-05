@@ -543,8 +543,7 @@ class matrixLib{
     }
 
     /**
-     * Determins a the matrix of cofactors.
-     * The cofactor checkerboard is the followed:
+     * Determins a the matrix of cofactors. (+,-,+,-,+,- ...)
      * @param {number[][]} mat - The matrix to determine cofactors for
      * @return {number[][]} matrix of cofactors
      */
@@ -552,7 +551,6 @@ class matrixLib{
         let ret = [];
         let multFactor = 1;
 
-        //[1,2,3]
         if (!Array.isArray(mat[0])){
             for (let i = 0; i < mat.length; i++){
                 ret[i] = mat[i] * multFactor;
@@ -975,7 +973,7 @@ class matrixLib{
     static matrixEigenVector(mat, eigenvalue, b_i = null, options={tol:0, iter: 200}){
 
         let b_k = (b_i === null) ?        
-        matrixLib.getRandomMatrix(mat.length, 1, opt={min:-10, max:10 , intOnly: false}):
+        matrixLib.getRandomMatrix(mat.length, 1, {min:-10, max:10 , intOnly: false}):
         matrixLib.duplicateMatrix(b_i);
         let b_k_last = matrixLib.getMatrix(mat.length, 1, Infinity);
 
@@ -1012,3 +1010,4 @@ class matrixLib{
 module.exports = {
     matrixLib: matrixLib,
 };
+

@@ -38,10 +38,12 @@ Example usages are as followed.
 ## Importing
 The libraries can be imported using the following.
 ```
-const {probabilityLib, statsLib, combinationLib, permutationLib} = require('@jeremyqzt/nodestats');
+const {matrixLib, probabilityLib, statsLib, combinationLib, permutationLib} = require('../index.js');
 ```
 
 ## Matrix Helper
+Note that all matrixLib operations work on a duplicated copy of the matrix, the original reference is always maintained.
+
 ### Adding a constant to every matrix element
 Returns a matrix with the each constant C added to each element. In this example, c = 3
 ```
@@ -64,6 +66,64 @@ Returns a matrix with the each constant c multiplied to each element. In this ex
 let matTest = [[1.00002,2.31,3,4,5], [-1,-10.4,1,1,5], [7,-8,1,2,8], [9,-1.1231,1,2,3]];
 console.log(matrixLib.roundMatrix(matTest))
 //=> [ [ 3, 6, 9 ], [ 3, 6, 9 ], [ 3, 6, 9 ] ]
+```
+
+### Dividing a constant to every matrix element
+Returns a matrix with each element divided by constant c. In this example, c = 3
+```
+t = [[3,6,9], [12,15,18], [21,24,27]]
+console.log(matrixLib.divideMatrixC(t,3))
+//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+```
+
+### Getting basic matricies
+Get an identity matrix
+```
+console.log(matrixLib.getIdentityMatrix(3))
+//=> [ [ 1, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 1 ] ]
+```
+
+Get an identity matrix, but with extra columns of rows
+```
+console.log(matrixLib.getIdentityMatrixRC(4, 3))
+//=> [ [ 1, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 1 ], [ 0, 0, 0 ] ]
+```
+
+Get an matrix of constants (3X2 matrix of constantly 4)
+```
+console.log(matrixLib.getMatrix(3, 2, 4))
+//=> [ [ 4, 4 ], [ 4, 4 ], [ 4, 4 ] ]
+```
+
+### Basic Matrix operations
+Comparing 2 matricies
+```
+let A = [1,2,3]
+console.log(matrixLib.areMatriciesEqual(A, A)
+//=> true
+console.log(matrixLib.areMatriciesEqual(A, [[1,2],[2,3]])
+//=> false
+```
+Comparing 2 matricies, with an error tolerance. By default tolerance is 0.1 set it using the third parameter.
+```
+let A = [1,2,3]
+console.log(matrixLib.areMatriciesApproximatelyEqual(A, A))
+//=> true
+console.log(matrixLib.areMatriciesApproximatelyEqual(A, [1.09,2.01,3]))
+//=> true
+console.log(matrixLib.areMatriciesApproximatelyEqual(A, [1.09,2.01,3], 0.05))
+//=> false
+```
+Duplicating a matrix - leaves original reference intact
+```
+let A = [1,2,3]
+console.log(matrixLib.duplicateMatrix(A))
+//=> [1,2,3]
+```
+
+Get an random matrix (4X3 matrix between -10 and 10, floats allowed)
+```
+matrixLib.getRandomMatrix(4, 3, {min:-10, max:10 , intOnly: false}):
 ```
 
 ### Rounding every matrix element
@@ -95,14 +155,6 @@ t2 = [
 ]
 console.log(matrixLib.multiplyMatrix(t, t2));
 //=> [ [ 6, 6, 6 ], [ 15, 15, 15 ], [ 18, 18, 18 ] ]
-```
-
-### Dividing a constant to every matrix element
-Returns a matrix with each element divided by constant c. In this example, c = 3
-```
-t = [[3,6,9], [12,15,18], [21,24,27]]
-console.log(matrixLib.divideMatrixC(t,3))
-//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
 ```
 
 ### LU Decomposition
@@ -172,12 +224,99 @@ Returns the inverse of the matrix
 test = [[1,2,3], [4,5,6], [7,2,9]]
 console.log(matrixLib.inverseMatrix(test));
 //=> [
-      [ -0.9166666666666666, 0.3333333333333333, 0.08333333333333333 ],  
-      [ -0.16666666666666666, 0.3333333333333333, -0.16666666666666666 ],
-      [ 0.75, -0.3333333333333333, 0.08333333333333333 ]
-    ]
+//    [ -0.9166666666666666, 0.3333333333333333, 0.08333333333333333 ],  
+//    [ -0.16666666666666666, 0.3333333333333333, -0.16666666666666666 ],
+//    [ 0.75, -0.3333333333333333, 0.08333333333333333 ]
+//   ]
 ```
 
+### Matrix of Cofactors
+Puts the matrix as a matrix of cofactors
+```
+let coFactorTest = [[1,2,3, 11],[4,-2,13, -6],[-7, 9,8,7]];
+console.log(matrixLib.cofactorMatrix(coFactorTest));
+// => [
+//      [ 1, -2, 3, -11 ],
+//      [ -4, -2, -13, -6 ],
+//      [ -7, -9, 8, -7 ]
+//    ]
+```
+
+### Matrix of Minors
+Puts the matrix as a matrix of minors, matrix must be *Square*.
+```
+let coFactorTest = [[1,2,3, 11],[4,-2,13, -6],[-7, 9,8,7]];
+console.log(matrixLib.cofactorMatrix(coFactorTest));
+// => [
+//      [ -133, 123, 22, 22 ],
+//      [ -11, 29, 23, 23 ],
+//      [ 32, 1, -10, -10 ]
+//    ]
+```
+
+### Eigenvalues of a matrix
+Returns the eigenvalues of a matrix, all eigenvalues appears on the diagonal. In this case,
+the matrix eigenvalues are 4 and -3.
+
+The second paramter can be used to control the maximum number of QR iteration algorithms cycles.
+The default is 20.
+```
+let mat2 = [[3,2],[3,-2]];
+console.log(matrixLib.QReig(mat2));
+//=> [
+       [ 4.001464871443321, 0 ],
+       [ 0, -3.0014648714433183 ]
+     ]
+
+console.log(matrixLib.QReig(mat2,2000));
+//=> [
+       [ 4.000000007324081, 0 ],
+       [ 0, -3.000000007324077 ]
+     ]
+```
+
+
+### Eigenvectors of a matrix and given eigenvalue
+Given a *Square* matrix and an approximate eigenvalue. A corresponding eigenvector is returned.
+The initial eigenvalue must be different than the actual eigenvalue - otherwise it may return NaN or Inifinty
+
+This is based off of the inverse iteration algorithm.
+
+In the following example, the eigenvalues are 4,-3 (as found previously). 3 is passed in as the initial eigenvalue.
+
+The initial eigenvector is null (a random eigenvector is generated).
+By default - the iteration tolerance is 0, a maximum of 200 cycles is perofmed.
+```
+let mat2 = [[3,2],[3,-2]];
+console.log(matrixLib.matrixEigenVector(mat2, 2));
+// => [ [ 2 ], [ 1 ] ]
+```
+In the following example, the eigenvalues are 4,-3 (as found previously). -22 is passed in as the initial eigenvalue
+and `[[-10],[-2]]` is the initial eigenvector guess. 
+
+The algorithm parameters are 2000 cycles maximum or 0 change between each successive iterations
+```
+let mat2 = [[3,2],[3,-2]];
+console.log(matrixLib.matrixEigenVector(mat2, -22, [[-10],[-2]], {tol = 0, iter=2000}));
+// => [ [ -0.33333333333333337 ], [ 1 ] ]
+```
+
+### Row Canonical Form and Rank
+Puts the matrix in row canonical form (Reduced Row Echelon Form).
+```
+let rankTest = [[1,2,3, 11],[4,-2,13, -6],[-7, 9,8,7]];
+console.log(matrixLib.rowCanonicalMatrix(rankTest));
+// => [
+//     [ 1, 0, 0, 4.169329073482428 ],
+//     [ 0, 1, 0, 4.900958466453674 ],
+//     [ 0, 0, 1, -0.9904153354632588 ]
+//    ]
+```
+Finds the rank of the matrix
+```
+console.log(matrixLib.rankOfMatrix(rankTest));
+// => 3
+```
 
 ## Combination Helper
 ### Counting number of combinations 

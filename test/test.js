@@ -1,6 +1,5 @@
-const {probabilityLib, statsLib, combinationLib, permutationLib} = require('../index.js');
+const {matrixLib, probabilityLib, statsLib, combinationLib, permutationLib} = require('../index.js');
 const assert = require('assert');
-const { matrixLib } = require('../src/matrix.js');
 
 test = permutationLib.permutation([1,2,3]);
 
