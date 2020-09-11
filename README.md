@@ -287,7 +287,7 @@ The initial eigenvalue must be different than the actual eigenvalue - otherwise 
 
 This is based off of the inverse iteration algorithm.
 
-In the following example, the eigenvalues are 4,-3 (as found previously). 3 is passed in as the initial eigenvalue.
+In the following example, the eigenvalues are 4,-3 (as found previously). 2 is passed in as the initial eigenvalue.
 
 The initial eigenvector is null (a random eigenvector is generated).
 By default - the iteration tolerance is 0, a maximum of 200 cycles is perofmed.
