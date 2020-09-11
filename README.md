@@ -126,6 +126,11 @@ Get an random matrix (4X3 matrix between -10 and 10, floats allowed)
 matrixLib.getRandomMatrix(4, 3, {min:-10, max:10 , intOnly: false}):
 ```
 
+Matrix Transpose
+```
+console.log(matrixLib.transposeMatrix([1,2,3]));
+//=> [ [ 1 ], [ 2 ], [ 3 ] ]
+```
 ### Rounding every matrix element
 Rounds each matrix element to a given decimal place, in this case, rounds to first decimal
 ```
