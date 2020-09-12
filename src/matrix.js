@@ -1010,4 +1010,3 @@ class matrixLib{
 module.exports = {
     matrixLib: matrixLib,
 };
-
