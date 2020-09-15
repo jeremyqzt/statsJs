@@ -34,7 +34,8 @@
     "matrix inverse",
     "matrix arithmetic",
     "eigenvalues",
-    "eigenvectors"
+    "eigenvectors",
+    "transpose"
   ],
   "author": "Jeremy Qian and Ben Ni",
   "license": "MIT",
